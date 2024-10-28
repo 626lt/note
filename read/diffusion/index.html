@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
+<title>Diffusion - lt's notes</title>
+<link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link href="../../css/heti.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&amp;display=fallback" rel="stylesheet"/>
+<link href="../../css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#diffusion">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="lt's notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            lt's notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Diffusion
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="夜间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</label>
+<input aria-label="日间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../cg/">
+        CG
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../os/">
+        OS
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="lt's notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+    lt's notes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../cg/">CG</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="CG" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          CG
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Intro/">
+        Introduction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/2D%20Graphics/">
+        2D Graphics
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/OpenGL/">
+        OpenGL
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Geometric%20Transformation/">
+        Geometric Transformation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/View/">
+        View
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../os/">OS</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="OS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          OS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/intro/">
+        intro
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/structures/">
+        structures
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Threads/">
+        Threads
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Synchronization/">
+        Synchronization
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#latent">
+    Latent
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elbo">
+    ELBO
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#variational-autoencoder-vae">
+    Variational Autoencoder (VAE)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hierarchical-vae">
+    Hierarchical VAE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#variational-diffusion-models">
+    Variational Diffusion Models
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learning-diffusion-noise-parameters">
+    Learning Diffusion Noise parameters
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#three-equivalent-interpretations">
+    Three Equivalent Interpretations
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="diffusion">Diffusion</h1>
+<h2 id="latent">Latent</h2>
+<p>base assumption: the data/knowledge we learned can be represented by a high/low-dimensional latent space.
+尽管这种变量不能被直观的观察到，我们仍可以描述和从中推断。</p>
+<p>在尝试建模<span class="heti-skip"><span class="heti-spacing"> </span>latent<span class="heti-spacing"> </span></span>的过程中，存在建模高维还是低维数据的选择。大多数偏向其是低维的建模，原因是这是因为如果没有强大的先验知识，试图学习比观察更高维度的表示是徒劳的，另一方面是因为低维数据可以看作是一种压缩的表示，并且可以潜在地揭示描述观察结果的语义上有意义的结构。</p>
+<h2 id="elbo">ELBO</h2>
+<p><span>ELBO means Evidence Lower Bound. It is a<span class="heti-spacing"> </span></span><strong><span>lower bound<span class="heti-spacing"> </span></span></strong><span>of the log likelihood of the data. It is used in variational inference to approximate the posterior distribution.<span class="heti-spacing"> </span></span>对<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>的合理参数化和优化可以逼近实际的后验分布。</p>
+<p>形式上定义为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{ELBO}(\theta, \phi) = \mathbb{E}_{q_{\phi}(z|x)}[\log \frac{p_{\theta}(x, z)}{q_{\phi}(z|x)}]
+\end{aligned}
+\]</div>
+<p>这里的 <span class="arithmatex">\(p_{\theta}(x, z)\)</span> 是<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>与<span class="heti-skip"><span class="heti-spacing"> </span>data<span class="heti-spacing"> </span></span>的联合分布。 <span class="arithmatex">\(q_{\phi}(z|x)\)</span> 是<span><span class="heti-spacing"> </span>flexible approximate variational distribution</span>，由 <span class="arithmatex">\(\phi\)</span> 参数化以寻求优化。</p>
+<p><span>ELBO<span class="heti-spacing"> </span></span>可以看作是一个参数化的模型去评估在给定<span class="heti-skip"><span class="heti-spacing"> </span>observation<span class="heti-spacing"> </span></span><span class="arithmatex">\(x\)</span>下的<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span><span class="arithmatex">\(z\)</span>的分布。也就是说，它试图逼近真实的后验 <span class="arithmatex">\(p(z|x)\)</span>。当这个逼近足够好的时候，我们就获得了真实数据的分布，然后就可以做各种推理来生成。</p>
+<p>下面我们从数学角度来说明为什么<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>是一个合适的优化对象。</p>
+<p>$$
+\begin{aligned}
+\log p(x) &amp;= \log \int p(x, z) dz \
+&amp;= \log \int q_\phi(z|x) \frac{p(x, z)}{q_\phi(z|x)} dz \
+&amp;= \log \mathbb{E}<em>{q</em>\phi(z|x)} \left[ \frac{p(x, z)}{q_\phi(z|x)} \right] \
+&amp;\geq \mathbb{E}<em>{q</em>\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right] \
+\end{aligned}
+$$
+最后一步是由 Jensen 不等式得到的。这里的 <span class="arithmatex">\(\mathbb{E}_{q_\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right]\)</span> 就是 ELBO。</p>
+<div class="admonition note 期望">
+<p class="admonition-title">Note</p>
+<p>随机变量<span class="arithmatex">\(Z\)</span> 在分布 <span class="arithmatex">\(q(z)\)</span> 下的期望表示为 <span class="arithmatex">\(E_{q(z)}[f(Z)]=\int f(Z)q(z) dz\)</span></p>
+</div>
+<p>但是通过<span class="heti-skip"><span class="heti-spacing"> </span>Jensen<span class="heti-spacing"> </span></span>不等式只是说明了<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>是一个下界，但是没有说明为什么这个下界可以达到，适合去优化。于是我们可以通过<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度来证明这一点。</p>
+<div class="admonition note kl 散度">
+<p class="admonition-title">Note</p>
+<p><span>KL<span class="heti-spacing"> </span></span>散度是两个分布之间的差异度量。对于两个分布 <span class="arithmatex">\(p(x)\)</span> 和 <span class="arithmatex">\(q(x)\)</span>，<span>KL<span class="heti-spacing"> </span></span>散度定义为：
+$$
+D_\text{KL}(p||q) = \int p(x) \log \frac{p(x)}{q(x)} dx = E_{p(x)}[\log \frac{p(x)}{q(x)}]
+$$</p>
+</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\log p(x) &amp;= \log p(x) \int q_\phi(z|x) dz \\
+&amp;= \int q_\phi(z|x) \log p(x) dz \\
+&amp;= \mathbb{E}_{q_\phi(z|x)}[\log p(x)] \\
+&amp;= \mathbb{E}_{q_\phi(z|x)}[\log \frac{p(x, z)}{p(z|x)}] \\
+&amp;= \mathbb{E}_{q_\phi(z|x)}[\log \frac{p(x, z)}{q_\phi(z|x)}] + \mathbb{E}_{q_\phi(z|x)}[\log \frac{q_\phi(z|x)}{p(z|x)}] \\
+&amp;= \mathbb{E}_{q_\phi(z|x)}[\log \frac{p(x, z)}{q_\phi(z|x)}] + D_\text{KL}(q_\phi(z|x) || p(z|x)) \\
+&amp;= \text{ELBO}(\theta, \phi) + D_\text{KL}(q_\phi(z|x) || p(z|x))\\
+&amp;\geq \text{ELBO}(\theta, \phi)
+\end{aligned}
+\]</div>
+<p>在上面的推导中我们可以看到<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度就是<span class="heti-skip"><span class="heti-spacing"> </span>evidence<span class="heti-spacing"> </span></span>与<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>的差值，这说明<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>确实是一个下界</p>
+<p></p><center><img src="./figures/2024-10-27-21-59-10.png" width="60%"/></center>
+<p>这里我们希望得到的是真实的分布 <span class="arithmatex">\(p(z|x)\)</span>，但是由于这个分布是不可解的，我们希望通过 <span class="arithmatex">\(q_\phi(z|x)\)</span>来近似真实分布，这通过最小化<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度来实现，但很难直接去做最小化。同时注意到的是我们的证据即对数似然是一个与 <span class="arithmatex">\(\phi\)</span> 无关的常数，所以通过<span class="arithmatex">\(\phi\)</span>的最大化<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>可以起到同样的效果。而当<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>足够大的时候，我们就可以认为 <span class="arithmatex">\(q_\phi(z|x)\)</span> 逼近了真实的分布 <span class="arithmatex">\(p(z|x)\)</span>。那么一旦得到了这个分布以后，我们就可以从中做推断，通过解码器 <span class="arithmatex">\(p_\theta(x|z)\)</span> 来生成数据。</p>
+<h2 id="variational-autoencoder-vae">Variational Autoencoder (VAE)</h2>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>default formulation of VAE,<span class="heti-spacing"> </span></span>我们直接最大化<span><span class="heti-spacing"> </span>ELBO.</span>
++ variational，因为我们在由 <span class="arithmatex">\(\phi\)</span> 参数化的一系列潜在后验分布中寻找最优的参数 <span class="arithmatex">\(\phi\)</span> 来优化 <span class="arithmatex">\(q_\phi(z|x)\)</span>。
++ autoencoder，因为输入数据在经历中间瓶颈表示步骤后被训练以预测自身</p>
+<p>下面来进一步分析<span><span class="heti-spacing"> </span>ELBO</span>：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{ELBO}(\theta, \phi) &amp;= \mathbb{E}_{q_{\phi}(z|x)}[\log \frac{p_{\theta}(x, z)}{q_{\phi}(z|x)}] \\
+&amp;= \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] + \mathbb{E}_{q_{\phi}(z|x)}[\log \frac{p_{\theta}(z)}{q_{\phi}(z|x)}] \\
+&amp;= \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] - D_\text{KL}(q_{\phi}(z|x) || p_{\theta}(z))
+\end{aligned}
+\]</div>
+<p>在这里，<span class="arithmatex">\(q_\phi(z|x)\)</span> 被视作<span><span class="heti-spacing"> </span>encoder</span>，<span class="arithmatex">\(p_\theta(x|z)\)</span> 被视作<span><span class="heti-spacing"> </span>decoder</span>。</p>
+<p><span>the first term measures the reconstruction likelihood of the decoder from our variational distribution; this ensures that the learned distribution is modeling effective latents that the original data can be regenerated from.<span class="heti-spacing"> </span></span>第一项衡量的是变分分布测量解码器的重建可能性。这确保了学到的分布是在建模有效的潜在变量，原始数据可以从中再生。
+The second term measures how similar the learned variational distribution is to a prior belief held over latent variables. 第二项衡量的是学到的分布与实际的分布（prior belief）的相似程度</p>
+<p>从公式中我们可以看到，最大化<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>的过程就是在最大化重建概率和最小化<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度。</p>
+<p><span>VAE<span class="heti-spacing"> </span></span>的一个决定性特征是如何对参数 <span class="arithmatex">\(\phi\)</span> 和 <span class="arithmatex">\(\theta\)</span> 联合优化<span><span class="heti-spacing"> </span>ELBO</span>。有以下的定义：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+q_\phi(z|x) &amp;= \mathcal{N}(z; \mu_\phi(x), \sigma^2_\phi(x)I) \\
+p(z) &amp;= \mathcal{N}(z; 0, I) \\
+\end{aligned}
+\]</div>
+<p>有了这两个定义，<span>KL<span class="heti-spacing"> </span></span>散度项就可以计算了，重建项可以用蒙特卡洛测量来估计。我们的目标可以重写为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \argmax_{\phi,\theta} \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] - D_\text{KL}(q_{\phi}(z|x) || p_{\theta}(z)) \\
+\approx &amp; \argmax_{\phi,\theta} \frac{1}{L} \sum_{l=1}^L \log p_{\theta}(x|z^{(l)}) - D_\text{KL}(q_{\phi}(z|x) || p_{\theta}(z))
+\end{aligned}
+\]</div>
+<p>这里的 <span class="arithmatex">\(z^{(l)}\)</span> 是从 <span class="arithmatex">\(q_\phi(z|x)\)</span> 中采样得到的，对于每一个<span class="heti-skip"><span class="heti-spacing"> </span>obserbation<span class="heti-spacing"> </span></span><span class="arithmatex">\(x\)</span>都会采样 <span class="arithmatex">\(L\)</span> 个 <span class="arithmatex">\(z\)</span>。然而这样的默认设置带来问题：计算损失的每个<span class="heti-skip"><span class="heti-spacing"> </span>z(l)<span class="heti-spacing"> </span></span>都是由随机采样过程生成的，该过程通常是不可微分的。为了解决这个问题，我们可以使用重参数化技巧当 <span class="arithmatex">\(q_\phi(z|x)\)</span> 被设计为对某些分布建模时。</p>
+<div class="admonition note reparameterization trick">
+<p class="admonition-title">Note</p>
+<p>这个重参数方法是通过引入一个额外的噪声项 <span class="arithmatex">\(\epsilon\)</span> 来实现的，将随机变量转化为噪声的确定函数，这就允许我们通过梯度下降来优化非随机项。例如从正态分布 <span class="arithmatex">\(x \sim \mathcal{N}(\mu, \sigma^2)\)</span> 中采样，我们可以通过 <span class="arithmatex">\(x = \mu + \sigma \epsilon\)</span> 来实现，其中 <span class="arithmatex">\(\epsilon \sim \mathcal{N}(0, 1)\)</span>。因此，通过重新参数化技巧，可以通过从标准高斯分布采样、按目标标准差缩放结果并按目标均值平移结果来执行任意高斯分布的采样。</p>
+</div>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>VAE<span class="heti-spacing"> </span></span>中，我们可以通过以下方式来重参数化：这里 <span class="arithmatex">\(z\)</span> 被定义为输入 <span class="arithmatex">\(x\)</span> 和辅助噪声变量 <span class="arithmatex">\(\epsilon\)</span>的确定性函数。</p>
+<div class="arithmatex">\[
+\begin{aligned}
+z &amp;= \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon \\
+\epsilon &amp;\sim \mathcal{N}(0, I)
+\end{aligned}
+\]</div>
+<p>这里 <span class="arithmatex">\(\odot\)</span> 表示逐元素乘法。在这个表示下，可以根据需要计算梯度来优化 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\theta\)</span>。</p>
+<p>在训练了<span class="heti-skip"><span class="heti-spacing"> </span>VAE<span class="heti-spacing"> </span></span>后，可以通过在潜在空间中采样 <span class="arithmatex">\(z\)</span> 并通过解码器 <span class="arithmatex">\(p_\theta(x|z)\)</span> 来生成新的数据。当<span class="heti-skip"><span class="heti-spacing"> </span>latent space<span class="heti-spacing"> </span></span>的维度较低时，可能会到学习紧凑、有用的表示。此外，当学习到语义上有意义的潜在空间时，可以在将潜在向量传递到解码器之前对其进行编辑，以更精确地控制生成的数据。</p>
+<h2 id="hierarchical-vae">Hierarchical VAE</h2>
+<p><span>Hierarchical VAE<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>VAE<span class="heti-spacing"> </span></span>的一种扩展，它通过在潜在空间中引入多个层次的结构来提高建模能力。在这种结构中，每个层次的潜在变量都可以被视为对数据的不同抽象级别的表示，从而允许模型学习更复杂的数据分布。尽管对一般的<span class="heti-skip"><span class="heti-spacing"> </span>HVAE<span class="heti-spacing"> </span></span>来说，每个<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>都可以以先前所有的<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>为条件，但是在这里，我们考虑特殊情况——马尔可夫<span><span class="heti-spacing"> </span>VAE</span>（ Markovian HVAE (MHVAE)）。这说明每个<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>只依赖于前一个<span><span class="heti-spacing"> </span>latent variable</span>。直观来说就是叠很多层的<span><span class="heti-spacing"> </span>VAE</span>，每一层的输出作为下一层的输入。</p>
+<p></p><center><img src="./figures/2024-10-28-00-03-30.png" width="60%"/></center>
+<p>数学上，<span>MHVAE<span class="heti-spacing"> </span></span>的表示为：</p>
+<div class="arithmatex">\[  
+\begin{aligned}
+p(x,z_{1:T}) &amp;= p(z_T)p_\theta(x|z_1) \prod_{t=2}^T p(z_{t-1}|z_{t}) \\
+q_\phi(z_{1:T}|x) &amp;= q_\phi(z_1|x) \prod_{t=2}^T q_\phi(z_t|z_{t-1})
+\end{aligned}
+\]</div>
+<p>我们可以将<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>推广为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{ELBO}(\theta, \phi) &amp;= \log \mathbb{E}_{q_{\phi}(z_{1:T}|x)}[\frac{p_{\theta}(x, z_{1:T})}{q_{\phi}(z_{1:T}|x)}] \\
+&amp;\geq \mathbb{E}_{q_{\phi}(z_{1:T}|x)}[\log \frac{p_{\theta}(x, z_{1:T})}{q_{\phi}(z_{1:T}|x)}]
+\end{aligned}
+\]</div>
+<p>然后把上面的定义带入到<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>中，我们可以得到：</p>
+<div class="arithmatex">\[
+\mathbb{E}_{q_{\phi}(z_{1:T}|x)}[\log \frac{p_{\theta}(x, z_{1:T})}{q_{\phi}(z_{1:T}|x)}] = \mathbb{E}_{q_{\phi}(z_{1:T}|x)}\left[\log\frac{p(z_T)p_\theta{x|z_1}\prod_{t=2}^Tp_\theta(z_{t-1}|z_t)}{q_\phi(z_1|x)\prod_{t=2}^Tq_\phi(z_t|z_{t-1})}\right]
+\]</div>
+<p>当我们研究变分扩散模型时，这个目标可以进一步分解为可解释的组件。</p>
+<h2 id="variational-diffusion-models">Variational Diffusion Models</h2>
+<p>一种最简单看待<span class="heti-skip"><span class="heti-spacing"> </span>Variational Diffusion Models(VDM)<span class="heti-spacing"> </span></span>的方式是将其看作有三个关键约束的<span><span class="heti-spacing"> </span>MHVAE</span>。这三个约束是：</p>
+<ul>
+<li>The latent dimension is exactly equal to the data dimension</li>
+<li>The structure of the latent encoder at each timestep is not learned; it is pre-defined as a linear Gaussian model. In other words, it is a Gaussian distribution centered around the output of the previous timestep</li>
+<li>The Gaussian parameters of the latent encoders vary over time in such a way that the distribution of the latent at final timestep T is a standard Gaussian</li>
+</ul>
+<p></p><center><img src="./figures/2024-10-28-00-19-03.png" width="60%"/></center>
+<p>我们用 <span class="arithmatex">\(x_t\)</span> 表示真实数据采样和潜在变量，<span class="arithmatex">\(t_0\)</span> 表示<span><span class="heti-spacing"> </span>true data sample</span>，<span class="arithmatex">\(t\in[1,T]\)</span> 表示相应的<span><span class="heti-spacing"> </span>latent</span>。<span>VDM<span class="heti-spacing"> </span></span>的先验与<span class="heti-skip"><span class="heti-spacing"> </span>HMVAE<span class="heti-spacing"> </span></span>相同，根据上面的定义可以写成：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+q(x_{1:T}|x_0) = \prod_{t=1}^T q(x_t|x_{t-1})
+\end{aligned}
+\]</div>
+<p>根据第二个假设，我们知道每一个<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>分布是以其先前的分层<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>为中心（期望是<span><span class="heti-spacing"> </span>latent variable</span>）的高斯分布。每一步的<span><span class="heti-spacing"> </span>encoder</span>（加噪过程）都是固定的，均值和标准差可以是预先定义的超参数，也可以作为参数被学习。这个过程的数学表示是：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_t(x_t) = \sqrt{\alpha_t}x_{t-1}\\
+\Sigma_t(x_t) = \sqrt{1-\alpha_t}I
+\end{aligned}
+\]</div>
+<p>这个设计保证方差保持在相似的范围内，也就是说是<span><span class="heti-spacing"> </span>variance-preserving.</span>（利用参数控制）</p>
+<p>这里的重点是 <span class="arithmatex">\(\alpha_t\)</span> 可能是一个可学习的参数，随着时间步的增大而变化。</p>
+<p>因此，数学上可以表示为</p>
+<div class="arithmatex">\[
+q(x_t|x_{t-1})=\mathcal{N}(x_t;\sqrt{\alpha_t}x_{t-1},(1-\alpha_t)I)
+\]</div>
+<p>从第三个假设中可以知道，加噪过程的最终结果是将<span class="heti-skip"><span class="heti-spacing"> </span>latent<span class="heti-spacing"> </span></span>变为高斯噪声。那么<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>的联合分布可以写成：</p>
+<div class="arithmatex">\[
+p(x_{0:T} = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1}|x_t))
+\]</div>
+<p>其中 <span class="arithmatex">\(p(x_T) = \mathcal{N}(X_T;0,I)\)</span></p>
+<p>这组假设描述的是图像输入随时间的稳定噪声；我们通过添加高斯噪声逐渐破坏图像，直到最终它变得与纯高斯噪声完全相同。</p>
+<p>注意到我们的<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>不再通过 <span class="arithmatex">\(\phi\)</span> 参数化，而是完全由在每一时间步的有预定义的均值与方差的高斯分布建模。因此，在<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>中，我们只关注去噪过程，即 <span class="arithmatex">\(p_\theta(x_{t-1}|x_t)\)</span> 在优化<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>后，采样过程就很简单了，只需要迭代运行<span class="heti-skip"><span class="heti-spacing"> </span>T<span class="heti-spacing"> </span></span>个步骤的去噪转换即可。与任何的<span class="heti-skip"><span class="heti-spacing"> </span>HVAE<span class="heti-spacing"> </span></span>一样，<span>VDM<span class="heti-spacing"> </span></span>也可以通过最大化<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>进行优化。</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\log p(x) &amp;\geq \mathbb{E}_{q(x_{1:T}|x_0)}[\log \frac{p(x_{0:T})}{q(x_{1:T}|x_0)}]\\
+&amp;= \mathbb{E}_{q(x_{1:T}|x_0)}[\log\frac{p(x_T)\prod_{t=1}^Tp_\theta(x_{t-1}|x_t)}{\prod_{t=1}^Tq(x_t|x_{t-1})}]\\
+&amp;= \mathbb{E}_{q(x_{1:T}|x_0)}[\log\frac{p(x_T)p_\theta(x_0|x_1)\prod_{t=1}^{T-1}p_\theta(x_{t}|x_{t+1})}{q(x_T|x_{T-1})\prod_{t=1}^{T-1}q(x_t|x_{t-1})}]\\
+&amp;= \mathbb{E}_{q(x_{1:T}|x_0)}[\log\frac{p(x_T)p_\theta(x_0|x_1)}{q(x_T|x_{T-1})}] + \mathbb{E}_{q(x_{1:T}|x_0)}[\sum_{t=1}^{T-1}\log\frac{p_\theta(x_{t}|x_{t+1})}{q(x_t|x_{t-1})}]\\
+&amp;= \mathbb{E}_{q(x_{1:T}|x_0)}[\log p_\theta(x_0|x_1)]+\mathbb{E}_{q(x_{1:T}|x_0)}[\log\frac{p(x_T)}{q(x_T|x_{T-1})}] + \sum_{t=1}^{T-1}\mathbb{E}_{q(x_{1:T}|x_0)}[\log\frac{p_\theta(x_{t}|x_{t+1})}{q(x_t|x_{t-1})}]\\
+&amp;= \mathbb{E}_{q(x_{1}|x_0)}[\log p_\theta(x_0|x_1)]+\mathbb{E}_{q(x_{T-1},x_T|x_0)}[\log\frac{p(x_T)}{q(x_T|x_{T-1})}] + \sum_{t=1}^{T-1}\mathbb{E}_{q(x_{t-1},x_{t},x_{t+1}|x_0)}[\log\frac{p_\theta(x_{t}|x_{t+1})}{q(x_t|x_{t-1})}]\\
+&amp;= \mathbb{E}_{q(x_{1}|x_0)}[\log p_\theta(x_0|x_1)] - \mathbb{E}_{q(x_{T-1}|x_0)}[D_{KL}(q(x_T|x_{T-1})||p(x_T))] \\
+&amp; - \sum_{t=1}^{T-1}\mathbb{E}_{q(x_{t-1},x_{t+1}|x_0)}[D_{KL}(q(x_t|x_{t-1})||p_\theta(x_{t}|x_{t+1})]]
+\end{aligned}
+\]</div>
+<p>这里的第一项是重建项，与之前类似。
+第二项是先验匹配项，当最终的潜在分布与高斯先验匹配时，它会被最小化。该项不需要优化，因为它没有可训练的参数；此外，由于我们假设 T 足够大，使得最终分布呈高斯分布，因此该项实际上变为零。
+第三项是一致性项。它努力使得 <span class="arithmatex">\(x_t\)</span> 的分布在前向和后向的过程中保持一致。</p>
+<p></p><center><img src="./figures/2024-10-28-01-08-31.png" width="60%"/></center>
+<p>由于我们必须在所有的<span class="heti-skip"><span class="heti-spacing"> </span>timestep<span class="heti-spacing"> </span></span>上进行优化，优化<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>的成本主要由第三项决定。</p>
+<p>然而，这样得到的<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>可能不是最优的，因为一致性项的计算是通过两个随机变量 <span class="arithmatex">\(x_{t-1},x_{t+1}\)</span> 来计算的，这样得到的方差可能比只用一个随机变量计算的方差要大。在累积了 <span class="arithmatex">\(T-1\)</span> 个时间步以后，得到的方差可能会很大。因此，我们可以通过引入一个额外的约束来减小这个方差。<span class="arithmatex">\(q(x_t|x_{t-1})=q(x_t|x_{t-1},x_0)\)</span>，由于马尔可夫性质，额外的条件项是多余的，那么根据贝叶斯法则，我们可以得到：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+q(x_t|x_{t-1},x_0) &amp;= \frac{q(x_{t-1}|x_t,x_0)q(x_t|x_0)}{q(x_{t-1},x_0)}
+\end{aligned}
+\]</div>
+<p>有了这个新的约束，我们可以得到一个更好的<span><span class="heti-spacing"> </span>ELBO</span>：这中间添加的 <span class="arithmatex">\(q(x_{t-1}|x_t,x_0)\)</span> 可以消去推导过程中的一些量，最后的结果是</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \mathbb{E}_{q(x_{1}|x_0)}[\log p_\theta(x_0|x_1)] - D_{KL}(q(x_T|x_{0})||p(x_T)) \\
+&amp; - \sum_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_0)}[D_{KL}(q(x_{t-1}|x_{t},x_0)||p_\theta(x_{t-1}|x_{t})]]
+\end{aligned}
+\]</div>
+<p>第二项可以重新解释为最终噪声输入的分布与标准高斯先验的接近程度
+第三项可以重新解释为每个去噪步骤的一致性，我们学习所需的去噪转换步骤 <span class="arithmatex">\(p_\theta(x_{t−1}|x_t)\)</span> 作为易于处理的、真实的去噪转换步骤 <span class="arithmatex">\(q(x_{t−1}|x_t, x_0)\)</span> 的近似值。<span class="arithmatex">\(q(x_{t−1}|x_t, x_0)\)</span> 可以充当 ground truth signal。这一项当学习到的去噪声过程与真实的去噪声过程一致时，会被最小化。</p>
+<p>由于同时学习编码器增加了复杂性，因此最小化任意复杂马尔可夫<span class="heti-skip"><span class="heti-spacing"> </span>HVAE<span class="heti-spacing"> </span></span>中的任意后验分布，每个<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度项很难最小化，在<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>中我们可以利用高斯转移假设来使优化变得容易处理：</p>
+<div class="arithmatex">\[
+q(x_{t-1}|x_t,x_0) = \frac{q(x_t|x_{t-1},x_0)q(x_{t-1}|x_0)}{q(x_{t}|x_0)}
+\]</div>
+<p>在这里，我们已经知道 <span class="arithmatex">\(q(x_t|x_{t-1},x_0)=\mathcal{N}(x_t;\sqrt{\alpha_t}x_{t-1},(1-\alpha_t)I)\)</span>，所以我们只需要 <span class="arithmatex">\(q(x_{t-1}|x_0)\)</span> 和 <span class="arithmatex">\(q(x_{t}|x_0)\)</span>。这里可以利用之前提到的重参数化技巧，从 <span class="arithmatex">\(x_t \sim q(x_t|x_{t-1})\)</span> 中采样</p>
+<div class="arithmatex">\[
+x_t = \sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}\epsilon_t
+\]</div>
+<p>同样的，可以从 <span class="arithmatex">\(x_{t-1} \sim q(x_{t-1}|x_{t-2})\)</span> 中采样</p>
+<div class="arithmatex">\[
+x_{t-1} = \sqrt{\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_{t-1}}\epsilon_{t-1}
+\]</div>
+<p>因此，可以通过递归这一操作得到 <span class="arithmatex">\(x_t \sim q(x_t|x_0)\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+x_t &amp;= \sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}\epsilon^*_{t-1}    \\
+&amp;= \sqrt{\alpha_t}(\sqrt{\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_{t-1}}\epsilon^*_{t-2}) + \sqrt{1-\alpha_t}\epsilon^*_{t-1} \\
+&amp;=\sqrt{\alpha_t\alpha_{t-1}}x_{t-2} + \sqrt{\sqrt{\alpha_t-\alpha_t\alpha_{t-1}}^2+\sqrt{1-\alpha_t}^2}\epsilon_{t-2}\\
+&amp;= \sqrt{\alpha_t\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_t\alpha_{t-1}}\epsilon_{t-2} \\
+&amp;= ... \\
+&amp; = \sqrt{\prod_{i=1}^{t}\alpha_i}x_0 + \sqrt{1-\prod_{i=1}^{t}\alpha_i}\epsilon_0 \\ 
+&amp; = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon_0 \\
+&amp; \sim \mathcal{N}(x_t;\sqrt{\bar{\alpha}_t}x_0,\sqrt{1-\bar{\alpha}_t}I)
+\end{aligned}
+\]</div>
+<p>中间用到了所有的噪声都是独立同分布的，利用了高斯分布的特性。</p>
+<p>现在我们已经得到了前面贝叶斯形式的去噪过程所需要的全部项，现在来推导最后的去噪声过程</p>
+<p></p><center><img src="./figures/2024-10-28-01-47-34.png" width="100%"/></center>
+<p>因此，我们证明了在每一步中 <span class="arithmatex">\(x_{t-1}\sim q(x_{t-1}|x_t,x_0)\)</span> 呈正态分布，其中均值 <span class="arithmatex">\(\mu_q(x_t,x_0)\)</span> 是 <span class="arithmatex">\(x_t\)</span> 和 <span class="arithmatex">\(x_0\)</span> 的函数，方差 <span class="arithmatex">\(\Sigma_q(t)\)</span> 是 <span class="arithmatex">\(\alpha\)</span> 系数。这些 <span class="arithmatex">\(\alpha\)</span> 系数是已知的并且在每个时间步都是固定的；它们要么在建模为超参数时永久设置，要么被视为试图对其建模的网络的当前推理输出。</p>
+<p>这里两个关键的参数是</p>
+<div class="arithmatex">\[
+\mu_q(x_t,x_0) = \frac{\sqrt{\alpha_t(1-\overline{\alpha_{t-1}})x_t}+\sqrt{\overline{\alpha_{t-1}}}(1-\alpha_t)x_0}{1-\overline{\alpha_t}} 
+\]</div>
+<div class="arithmatex">\[
+\sigma_q(t)^2 = \frac{(1-\alpha_t)(1-\overline{\alpha_{t-1}})}{1-\overline{\alpha_{t}}}
+\]</div>
+<p>从两个正态分布的<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度的变换出发：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \argmin_\theta D_{\text{KL}}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)) \\
+&amp;= \argmin_\theta \frac{1}{2}(\log\frac{|\Sigma_{p_\theta}|}{|\Sigma_q|} - d + \text{tr}(\Sigma_{p_\theta}^{-1}\Sigma_q) + (\mu_{p_\theta}-\mu_q)^T\Sigma_{p_\theta}^{-1}(\mu_{p_\theta}-\mu_q)) \\
+&amp;= \arg \min_{\theta} \frac{1}{2 \sigma_q^2(t)} \left\| \mu_\theta - \mu_q \right\|_2^2
+\end{aligned}
+\]</div>
+<p>这里 <span class="arithmatex">\(\mu_q = \mu_q(x_t,x_0),\mu_\theta=\mu_\theta(x_t,t)\)</span></p>
+<p>根据前面的推导，我们可以将 <span class="arithmatex">\(\mu_\theta(x_t,t)\)</span> 设置成下面的形式来逼近 <span class="arithmatex">\(\mu_q(x_t,x_0)\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_\theta(x_t,t)=\frac{\sqrt{\alpha_t}(1-\overline{\alpha_{t-1}})x_t+\sqrt{\overline{\alpha_{t-1}}}(1-\alpha_t)\hat{x_\theta}(x_t,t)}{1-\overline{\alpha_{t}}}
+\end{aligned}
+\]</div>
+<p>这里 <span class="arithmatex">\(\hat{x_\theta}(x_t,t)\)</span> 是由神经网络参数化的，这个神经网络的寻求从噪声图像 <span class="arithmatex">\(x_t\)</span> 和时间步骤 <span class="arithmatex">\(t\)</span> 预测 <span class="arithmatex">\(x_0\)</span></p>
+<p>那么对<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度的优化可以转化为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \argmin_\theta D_{\text{KL}}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)) \\
+&amp; = \arg \min_{\theta} \frac{1}{2 \sigma_q^2(t)} \frac{\overline{\alpha_{t-1}}(1-\alpha_t)^2}{(1-\overline{\alpha_{t}})^2}[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2]
+\end{aligned}
+\]</div>
+<p>此外，最小化我们导出的<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>目标在所有噪声水平上的求和项可以通过最小化所有时间步长的期望来近似：</p>
+<div class="arithmatex">\[
+\argmin_\theta \mathbb{E}_{t\sim U{2,T}}[\mathbb{E}_{q(x_t|x_0)}[D_{\text{KL}}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t))]]
+\]</div>
+<p>然后可以使用随时间步长的随机样本进行优化。</p>
+<h2 id="learning-diffusion-noise-parameters">Learning Diffusion Noise parameters</h2>
+<p>一个可能的方式是通过以 <span class="arithmatex">\(\eta\)</span> 参数化的神经网络 <span class="arithmatex">\(\hat{\alpha}_\eta(t)\)</span> 来预测 <span class="arithmatex">\(\alpha_t\)</span>。但是为了计算 <span class="arithmatex">\(\bar{\alpha}_t\)</span>，需要在每一个<span class="heti-skip"><span class="heti-spacing"> </span>timestep<span class="heti-spacing"> </span></span>做一些推断，这是低效的。尽管可以用缓存的方式来提高效率，我们也可以从数学的方式改进公式。</p>
+<p>将先前得到的 <span class="arithmatex">\(\sigma_q^2(t)\)</span> 带入目标，我们得到：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\frac{1}{2 \sigma_q^2(t)} \frac{\overline{\alpha_{t-1}}(1-\alpha_t)^2}{(1-\overline{\alpha_{t}})^2}[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2] \\
+&amp;=\frac{1}{2\frac{(1-\alpha_t)(1-\overline{\alpha_{t-1}})}{1-\overline{\alpha_{t}}}}\frac{\overline{\alpha_{t-1}}(1-\alpha_t)^2}{(1-\overline{\alpha_{t}})^2}[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2]\\
+&amp;=\frac{1}{2}\left(\frac{\overline{\alpha_{t-1}}}{1-\overline{\alpha_{t-1}}}-\frac{\overline{\alpha_{t}}}{1-\overline{\alpha_{t}}}\right)[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2]
+\end{aligned}
+\]</div>
+<div class="admonition note snr">
+<p class="admonition-title">Note</p>
+<p>SNR means signal-to-noise ratio <span class="arithmatex">\(\text{SNR}=\frac{\mu^2}{\sigma^2}\)</span></p>
+</div>
+<p>根据前面的推导，<span class="arithmatex">\(q(x_t|x_0) \sim \mathcal{N}(x_t;\sqrt{\overline{\alpha_t}}x_0,(1-\overline{\alpha_t})I)\)</span> 那么我们就可以写出 </p>
+<div class="arithmatex">\[
+\text{SNR}(t) =\frac{\overline{\alpha_{t}}}{1-\overline{\alpha_{t}}}
+\]</div>
+<p>那么前面的公式就可以转化为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\frac{1}{2}\left(\frac{\overline{\alpha_{t-1}}}{1-\overline{\alpha_{t-1}}}-\frac{\overline{\alpha_{t}}}{1-\overline{\alpha_{t}}}\right)[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2] \\
+&amp;=\frac{1}{2}(\text{SNR}(t-1)-\text{SNR}(t))[\left\|\hat{x_\theta}(x_t,t)-x_0\right\|^2_2]
+\end{aligned}
+\]</div>
+<p>顾名思义，<span>SNR<span class="heti-spacing"> </span></span>表示原始信号与存在的噪声量之间的比率；较高的<span class="heti-skip"><span class="heti-spacing"> </span>SNR<span class="heti-spacing"> </span></span>表示较多的信号，较低的<span class="heti-skip"><span class="heti-spacing"> </span>SNR<span class="heti-spacing"> </span></span>表示较多的噪声。在扩散模型中我们要求<span class="heti-skip"><span class="heti-spacing"> </span>SNR<span class="heti-spacing"> </span></span>随着时间步<span class="heti-skip"><span class="heti-spacing"> </span>t<span class="heti-spacing"> </span></span>的增加而单调减小；这形式化了这样一个概念：受扰动的输入 <span class="arithmatex">\(x_t\)</span> 随着时间的推移变得越来越嘈杂，直到它在 <span class="arithmatex">\(t = T\)</span> 时变得与标准高斯相同。</p>
+<p>根据前面的推导，我们可以使用神经网络直接参数化每个时间步的<span><span class="heti-spacing"> </span>SNR</span>，并与扩散模型一起联合学习。由于<span class="heti-skip"><span class="heti-spacing"> </span>SNR<span class="heti-spacing"> </span></span>必须随时间单调下降，我们可以将其表示为：</p>
+<div class="arithmatex">\[
+\text{SNR}(t) = \exp(-\omega_\eta(t))
+\]</div>
+<p>其中 <span class="arithmatex">\(\omega_\eta(t)\)</span> 被建模为参数为 <span class="arithmatex">\(\eta\)</span> 的单调递增神经网络。那么<span class="arithmatex">\(\overline{\alpha_t}\)</span> 有一个优雅的形式</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\overline{\alpha_t} = \text{sigmoid}(-\omega_\eta(t)) \\
+1-\overline{\alpha_t} = \text{sigmoid}(\omega_\eta(t))
+\end{aligned}
+\]</div>
+<h2 id="three-equivalent-interpretations">Three Equivalent Interpretations</h2>
+<p>正如我们之前证明的，可以通过简单地学习神经网络来训练变分扩散模型，以从任意噪声版本 <span class="arithmatex">\(x_t\)</span> 及其时间索引 <span class="arithmatex">\(t\)</span> 预测原始自然图像 <span class="arithmatex">\(x_0\)</span>。而 <span class="arithmatex">\(x_0\)</span> 有另外两种参数化方法，可以推出<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>的两个等价解释。</p>
+<p>在前面的推导中，利用重参数方法，我们可以用 <span class="arithmatex">\(x_t\)</span> 和噪声表示 <span class="arithmatex">\(x_0\)</span>，即</p>
+<div class="arithmatex">\[
+x_0 = \frac{x_t - \sqrt{1-\overline{\alpha_t}}\epsilon_0}{\sqrt{\overline{\alpha_t}}}
+\]</div>
+<p>那么将前面方差中的 <span class="arithmatex">\(x_0\)</span> 用上面的公式代入，我们可以得到</p>
+<div class="arithmatex">\[
+\mu_q(x_t,x_0) = \frac{1}{\sqrt{\alpha_t}}x_t - \frac{1-\alpha_t}{\sqrt{1-\overline{\alpha_{t}}}\sqrt{\alpha_t}}\epsilon_0
+\]</div>
+<p>因此，我们可以设置<span class="heti-skip"><span class="heti-spacing"> </span>approximate denoising transition mean<span class="heti-spacing"> </span></span>为</p>
+<div class="arithmatex">\[
+\mu_\theta(x_t,t) = \frac{1}{\sqrt{\alpha_t}}x_t - \frac{1-\alpha_t}{\sqrt{1-\overline{\alpha_{t}}}\sqrt{\alpha_t}}\hat{x_\theta}(x_t,t)
+\]</div>
+<p>相应的优化问题转化为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\argmin_\theta D_{\text{KL}}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)) \\
+= \argmin_{\theta} \frac{1}{2 \sigma_q^2(t)} \frac{(1 - \alpha_t)^2}{(1 - \bar{\alpha}_t) \alpha_t} \left\| \epsilon_0 - \hat{\epsilon}_\theta(x_t, t) \right\|_2^2
+\end{aligned}
+\]</div>
+<p>这里 <span class="arithmatex">\(\hat{\epsilon}_\theta(x_t, t)\)</span>是一个神经网络，它学习预测源噪声 <span class="arithmatex">\(\epsilon_0 \sim \mathcal{N}(\epsilon;0,I)\)</span> 从而根据 <span class="arithmatex">\(x_0\)</span> 确定 <span class="arithmatex">\(x_t\)</span>。这样我们就证明了通过预测原始图像 <span class="arithmatex">\(x_0\)</span> 来学习<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>等价于学习预测噪声。</p>
+<p>第三种等价形式需要利用<span><span class="heti-spacing"> </span>Tweedie</span>’s Formula.</p>
+<div class="admonition note">
+<p class="admonition-title">Tweedie's Formula</p>
+<p>给定从中抽取的样本，指数族分布的真实平均值可以通过样本的最大似然估计（也称为经验平均值）加上一些涉及估计分数的校正项来估计。如果只有一个观察样本，经验平均值就是样本本身。它通常用于减轻样本偏差；如果观察到的样本全部位于基础分布的一端，则负分数会变大，并将样本的朴素最大似然估计校正为真实平均值。
+数学上的表示是，对高斯变量 <span class="arithmatex">\(z\sim \mathcal{N}(z;\mu_z,\Sigma_z)\)</span>，Tweedie’s Formula states that:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}[\mu_z|z] = z + \Sigma_z\nabla_z\log p(z)
+\end{aligned}
+\]</div>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+<script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
+<script src="../../js/katex.js"></script>
+<script src="../../js/heti.js"></script>
+</body>
+</html>
