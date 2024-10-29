@@ -4,12 +4,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/cg/2D%20Graphics/" rel="canonical"/>
-<link href="../Intro/" rel="prev"/>
-<link href="../OpenGL/" rel="next"/>
+<link href="https://626lt.github.io/note/os/Deadlock/" rel="canonical"/>
+<link href="../Synchronization/" rel="prev"/>
+<link href="../../ml/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
-<title>2D Graphics - lt's notes</title>
+<title>Deadlock - lt's notes</title>
 <link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#2d-graphics">
+<a class="md-skip" href="#deadlock">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              2D Graphics
+              Deadlock
             
           </span>
 </div>
@@ -116,12 +116,12 @@
     </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../">
+<a class="md-tabs__link" href="../../cg/">
         CG
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../os/">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         OS
       </a>
 </li>
@@ -166,10 +166,10 @@
         Home
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">CG</a>
+<a href="../../cg/">CG</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -181,98 +181,37 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Intro/">
+<a class="md-nav__link" href="../../cg/Intro/">
         Introduction
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          2D Graphics
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/2D%20Graphics/">
         2D Graphics
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    引入
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#line-segments">
-    Line Segments
-  </a>
-<nav aria-label="Line Segments" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#scan-converting-a-line-segment">
-    Scan converting a line segment
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3d-lines">
-    3D lines
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#circles">
-    Circles
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#polygons">
-    Polygons
-  </a>
-<nav aria-label="Polygons" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#filling-polygons">
-    Filling Polygons 填充多边形
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#clipping">
-    clipping
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../OpenGL/">
+<a class="md-nav__link" href="../../cg/OpenGL/">
         OpenGL
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Geometric%20Transformation/">
+<a class="md-nav__link" href="../../cg/Geometric%20Transformation/">
         Geometric Transformation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../View/">
+<a class="md-nav__link" href="../../cg/View/">
         View
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../os/">OS</a>
+<a href="../">OS</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -284,29 +223,89 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../os/intro/">
+<a class="md-nav__link" href="../intro/">
         intro
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../os/structures/">
+<a class="md-nav__link" href="../structures/">
         structures
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../os/Threads/">
+<a class="md-nav__link" href="../Threads/">
         Threads
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../os/Synchronization/">
+<a class="md-nav__link" href="../Synchronization/">
         Synchronization
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../os/Deadlock/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Deadlock
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Deadlock
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadlock-problem">
+    Deadlock problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#system-model-of-deadlock">
+    System Model of deadlock
+  </a>
+<nav aria-label="System Model of deadlock" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#four-conditions-of-deadlock">
+    Four Conditions of Deadlock
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-to-handle-deadlock">
+    How to handle deadlock
+  </a>
+<nav aria-label="How to handle deadlock" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadlock-prevention">
+    Deadlock Prevention
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadlock-avoidance">
+    Deadlock Avoidance
+  </a>
+<nav aria-label="Deadlock Avoidance" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#safe-state">
+    Safe State
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -370,52 +369,51 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    引入
+<a class="md-nav__link" href="#deadlock-problem">
+    Deadlock problem
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#line-segments">
-    Line Segments
+<a class="md-nav__link" href="#system-model-of-deadlock">
+    System Model of deadlock
   </a>
-<nav aria-label="Line Segments" class="md-nav">
+<nav aria-label="System Model of deadlock" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#scan-converting-a-line-segment">
-    Scan converting a line segment
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3d-lines">
-    3D lines
+<a class="md-nav__link" href="#four-conditions-of-deadlock">
+    Four Conditions of Deadlock
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#circles">
-    Circles
+<a class="md-nav__link" href="#how-to-handle-deadlock">
+    How to handle deadlock
+  </a>
+<nav aria-label="How to handle deadlock" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadlock-prevention">
+    Deadlock Prevention
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#polygons">
-    Polygons
+<a class="md-nav__link" href="#deadlock-avoidance">
+    Deadlock Avoidance
   </a>
-<nav aria-label="Polygons" class="md-nav">
+<nav aria-label="Deadlock Avoidance" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#filling-polygons">
-    Filling Polygons 填充多边形
+<a class="md-nav__link" href="#safe-state">
+    Safe State
   </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#clipping">
-    clipping
-  </a>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -424,88 +422,64 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="2d-graphics">2D Graphics</h1>
-<h3 id="_1">引入</h3>
-<p>convert 2D primitives into a raster image
-+ for output on a monitor/printer
-+ rasterization or scan conversion</p>
-<p><span>CRT:<span class="heti-spacing"> </span></span>阴极射线管 </p>
-<p><img src="./figures/2024-09-18-08-10-36.png" width="75%"/></p>
-<p>光栅是为了减少相邻电子之间的干扰</p>
-<p>LCD:</p>
-<p><img src="./figures/2024-09-18-08-19-01.png" width="75%"/> </p>
-<p>efficiency is most important to the performance of a display system</p>
-<p>高性能的算法一般都固化在硬件中<span><span class="heti-spacing"> </span>,Modern PCs (video cards)</span></p>
-<h2 id="line-segments">Line Segments</h2>
-<p>坐标系：笛卡尔坐标系，定义在整数点上</p>
-<h3 id="scan-converting-a-line-segment">Scan converting a line segment</h3>
-<p>线是建模世界很有力度元素。线段是由两个端点定义的，端点的<span class="heti-skip"><span class="heti-spacing"> </span>pixels<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>color</span>。</p>
-<p><img src="./figures/2024-09-18-08-25-37.png" width="75%"/> </p>
-<p>Requirement:
-+ the selected pixels should lie as close to the ideal line as possible
-+ the sequence of pixels should be as straight as possible
-+ all lines should appear to be of constant brightness independent of their length and orientation
-+ should start and end accurately
-+ should be drawn as rapidly as possible
-+ should be possible to draw lines with different width and line styles</p>
-<p>How to draw a line:</p>
-<p><img src="./figures/2024-09-18-08-35-07.png" width="75%"/></p>
+<h1 id="deadlock">Deadlock</h1>
+<h2 id="deadlock-problem">Deadlock problem</h2>
+<p>Deadlock problem: a set of block processes each holding a resource and waiting to acquire a resource held by another process in the set.</p>
+<p>Note: most OSes do not prevent or deal with deadlocks.</p>
+<p>Can be illustrated by a resource allocation graph.</p>
+<h2 id="system-model-of-deadlock">System Model of deadlock</h2>
 <ul>
-<li>
-<p>Equation of a line: <span class="arithmatex">\(y = mx +c\)</span> , for line starting at <span class="arithmatex">\((x_0, y_0)\)</span> and ending at <span class="arithmatex">\((x_1, y_1)\)</span>, we have <span class="arithmatex">\(m = \frac{y_1 - y_0}{x_1 - x_0} = \frac{\Delta y}{\Delta x}\)</span></p>
+<li>Resources: each represents a different resource type e.g. CPU cycles, memory space, I/O devices</li>
+<li>each resource type <span class="arithmatex">\(R_i\)</span> has <span class="arithmatex">\(W_i\)</span> instances</li>
+<li>Each process utilizes a resource in the following pattern</li>
+<li>request</li>
+<li>use</li>
+<li>release</li>
+</ul>
+<h3 id="four-conditions-of-deadlock">Four Conditions of Deadlock</h3>
+<ol>
+<li>Mutual exclusion: a resource can only be used by one process at a time.</li>
+<li>Hold and wait: a process holding at least one resource is waiting to acquire additional resources held by other processes.</li>
+<li>No preemption: a resource can be released only voluntarily by the process holding it, after it has completed its task.</li>
+<li>Circular wait: there exists a set of waiting processes </li>
+</ol>
+<h2 id="how-to-handle-deadlock">How to handle deadlock</h2>
+<p>Ensure the system will never enter a deadlock state.</p>
+<ul>
+<li>Prevention</li>
+<li>Avoidance</li>
+</ul>
+<p>Allow the system to enter a deadlock state and then recover.</p>
+<ul>
+<li>Detection</li>
+</ul>
+<p>Ignore the problem and pretend that deadlocks never occur in the system; used by most OSes.</p>
+<h3 id="deadlock-prevention">Deadlock Prevention</h3>
+<ul>
+<li>prevent mutual exclusion</li>
+<li>not required for sharable resources</li>
+<li>must hold for non-sharable resources</li>
+<li>hold and wait</li>
+<li>whenever a process requests a resource, it doesn’t hold any other resources<ul>
+<li>require process to request all its resources before it begins execution</li>
+<li>allow process to request resources only when the process has none
+  申请资源时不能有其他资源，要一次性申请所有需要的资源。</li>
+</ul>
 </li>
-<li>
-<p>Digital Differential Analyzer (DDA) Algorithm:</p>
-</li>
+<li>low resource utilization; starvation possible
+    利用率低，而且可能有进程永远拿不到所有需要的资源，因此无法执行。</li>
+<li>no preemption</li>
+<li>可以抢，但不实用。</li>
+<li>circular wait</li>
+<li>impose a total ordering of all resource types</li>
+<li>require that each process requests resources in an increasing order of enumeration</li>
+<li>many OSes adopt this strategy for some locks.</li>
 </ul>
-<p><img src="./figures/2024-09-18-08-38-22.png" width="75%"/></p>
-<p>如何要获得只用整数运算的算法，从而完全避免浮点数？</p>
-<ul>
-<li>Bresenham's Line Drawing Algorithm</li>
-</ul>
-<p><img src="./figures/2024-09-18-08-56-37.png" width="75%"/></p>
-<p>Some equations:</p>
-<div class="arithmatex">\[
-\begin{aligned}
-&amp; y = m(x_i + 1) + b \qquad &amp; dx= x_2-x_1  \\
-&amp; d_1 = y - y_i  \qquad &amp; dy = y_2-y_1 \\
-&amp; d_2 = y_i + 1 - y  \qquad &amp; m=dy/dx
-\end{aligned}
-\]</div>
-<p>if <span class="arithmatex">\(d_1 - d_2 &gt; 0\)</span>,then <span class="arithmatex">\(y_{i+1} = y_i + 1\)</span>, otherwise <span class="arithmatex">\(y_{i+1} = y_i\)</span>
-<span class="arithmatex">\(d_1-d_2=2y-2y_i-1=2dy/dx*x_i+2dy/dx+2b-2y_i-1\)</span>
-both <span class="arithmatex">\(*dx\)</span>, donate <span class="arithmatex">\((d_1-d_2)dx\)</span> as <span class="arithmatex">\(p_i\)</span>, we have 
-<span class="arithmatex">\(p_i=2x_{i+1}dy - 2y_{i+1}dx+2dy+(2b-1)dx\)</span>
-<span class="arithmatex">\(p_{i+1}=p_i+2dy-2(y_{i+1}-y_i)dx\)</span></p>
-<p><img src="./figures/2024-09-18-10-00-06.png" width="75%"/></p>
-<h3 id="3d-lines">3D lines</h3>
-<h2 id="circles">Circles</h2>
-<p>A circle with center <span class="arithmatex">\((x_c, y_c)\)</span> and radius <span class="arithmatex">\(r\)</span> is defined by the equation <span class="arithmatex">\((x - x_c)^2 + (y - y_c)^2 = r^2\)</span></p>
-<p>用类似的直角坐标计算依然需要根据<span class="heti-skip"><span class="heti-spacing"> </span>45<span class="heti-spacing"> </span></span>度进行划分，这里考虑用极坐标<span><span class="heti-spacing"> </span>convert</span></p>
-<p><img src="./figures/2024-09-18-10-02-51.png" width="75%"/></p>
-<p>问题在于这里使用增量的形式会导致误差的累积</p>
-<h2 id="polygons">Polygons</h2>
-<h3 id="filling-polygons"><span>Filling Polygons<span class="heti-spacing"> </span></span>填充多边形</h3>
-<ul>
-<li>even-odd test / winding number test</li>
-</ul>
-<p><img src="./figures/2024-09-18-09-18-42.png" width="75%"/></p>
-<p>scan-line algorithm
-+ Use intersections between region boundaries and scan lines to identify pixels that are inside the area
-+ Exploit the coherence
-  + Spatial coherence: Except at the boundary edges, adjacent pixels are likely to have the same characteristics
-  + Scan line coherence: Pixels in the adjacent scan lines are likely to have the same characteristics</p>
-<p><img src="./figures/2024-09-18-09-21-54.png" width="75%"/></p>
-<p><img src="./figures/2024-09-18-09-25-23.png" width="75%"/></p>
-<p><img src="./figures/2024-09-18-09-26-14.png" width="75%"/></p>
-<p>Seed fill algorithm
-+ Assumes that at least one pixel inside the polygon is known
-+ A recursive algorithm
-+ Useful in interactive painting packages</p>
-<p><img src="./figures/2024-10-22-10-54-36.png" width="75%"/></p>
-<h2 id="clipping">clipping</h2>
-<p>Removal of content that is not going to be displayed</p>
-<p>在<span class="heti-skip"><span class="heti-spacing"> </span>convert<span class="heti-spacing"> </span></span>之前做，是为了<span><span class="heti-spacing"> </span>efficient</span></p>
+<h3 id="deadlock-avoidance">Deadlock Avoidance</h3>
+<p><span>avoidance<span class="heti-spacing"> </span></span>用了一些算法，在分配资源之前，先判断是否会死锁，如果会死锁就不分配。</p>
+<h4 id="safe-state">Safe State</h4>
+<p>序列里的每一个进程都可以被满足<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（空闲的资源和之前的进程释放的资源）
+Safe state can guarantee no deadlock.</p>
 </article>
 </div>
 </div>
