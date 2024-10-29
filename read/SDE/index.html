@@ -4,12 +4,11 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/ml/probability%20graph/" rel="canonical"/>
-<link href="../" rel="prev"/>
-<link href="../../read/" rel="next"/>
+<link href="https://626lt.github.io/note/read/SDE/" rel="canonical"/>
+<link href="../Consistency%20Models/" rel="prev"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
-<title>probability graph - lt's notes</title>
+<title>SDE - lt's notes</title>
 <link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
@@ -24,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#_1">
+<a class="md-skip" href="#score-based-generative-modeling-through-stochastic-differential-equations">
           Skip to content
         </a>
 </div>
@@ -48,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              probability graph
+              SDE
             
           </span>
 </div>
@@ -126,12 +125,12 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../">
+<a class="md-tabs__link" href="../../ml/">
         ML
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../read/">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         Read
       </a>
 </li>
@@ -250,10 +249,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">ML</a>
+<a href="../../ml/">ML</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -264,89 +263,18 @@
           ML
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          probability graph
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ml/probability%20graph/">
         probability graph
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    隐马尔可夫模型
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    马尔可夫随机场
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    条件随机场
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    学习与推断
-  </a>
-<nav aria-label="学习与推断" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-    变量消去
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-    信念传播
-  </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-    近似推断
-  </a>
-<nav aria-label="近似推断" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-    蒙特卡罗法采样
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_10">
-    变分推断
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_11">
-    话题模型
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../read/">Read</a>
+<a href="../">Read</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -358,19 +286,36 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../read/diffusion/">
+<a class="md-nav__link" href="../diffusion/">
         Diffusion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../read/Consistency%20Models/">
+<a class="md-nav__link" href="../Consistency%20Models/">
         Consistency Models
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../read/SDE/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          SDE
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         SDE
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -390,62 +335,8 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    隐马尔可夫模型
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    马尔可夫随机场
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    条件随机场
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    学习与推断
-  </a>
-<nav aria-label="学习与推断" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-    变量消去
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-    信念传播
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-    近似推断
-  </a>
-<nav aria-label="近似推断" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-    蒙特卡罗法采样
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_10">
-    变分推断
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_11">
-    话题模型
-  </a>
+<a class="md-nav__link" href="#_1">
+</a>
 </li>
 </ul>
 </nav>
@@ -454,156 +345,11 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">概率图模型</h1>
-<h2 id="_2">隐马尔可夫模型</h2>
-<p>概率模型：提供了一种描述框架，将学习任务归结于计算变量的概率分布</p>
-<p>推断<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>在概率模型中，利用已知变量推测未知变量的分布</p>
-<p>定义：关心的变量集合<span><span class="heti-spacing"> </span>Y</span>；可观测变量集合<span><span class="heti-spacing"> </span>O</span>；其他变量的集合<span><span class="heti-spacing"> </span>R</span></p>
-<ul>
-<li>生成式模型考虑联合分布 <span class="arithmatex">\(P(Y, R, O)\)</span></li>
-<li>判别式模型考虑条件分布 <span class="arithmatex">\(P(Y, R| O)\)</span></li>
-</ul>
-<p>给定一组观测变量值，推断就是要由 <span class="arithmatex">\(P(Y, R| O)\)</span> 或<span class="arithmatex">\(P(Y, R, O)\)</span> 推断出 <span class="arithmatex">\(P(Y|O)\)</span> 的分布</p>
-<p>概率图模型：一类用图来表达变量相关关系的概率模型。它以图为表示工具， 最常见的是用一个结点表示一个或一组随机变量，结点之间的边表示变量间的概率相关关系，即“ 变量关系图 ”</p>
-<ul>
-<li>使用有向无环图表示变量间的依赖关系，称为贝叶斯网络或有向圈模型</li>
-<li>使用无向图表示变量间的相关关系，称为马尔可夫网或无向图模型</li>
-</ul>
-<p>隐马尔可夫模型有两种变量
-+ 状态变量：假定状态变量是隐藏的不可观测的，所以也称为隐变量(latent variable)
-+ 观测变量：可以是连续型也可以是离散型(visible variable)</p>
-<p>马尔可夫链：系统下一时刻的状态仅由当前状态决定，不依赖于以往的任何状态。基于这种依赖关系，所有变量的联合概率分布为</p>
-<div class="arithmatex">\[
-P(x_1, x_2, \cdots, x_n,y_n) = P(x_1|y_1)\prod_{i=2}^n P(x_i|y_i)P(y_i|y_{i-1})
-\]</div>
-<p>是一种现在决定未来的模型</p>
-<p></p><center><img src="./figures/2024-10-29-17-23-20.png" width="80%"/></center>
-<p></p><center><img src="./figures/2024-10-29-17-24-02.png" width="80%"/></center>
-<p>观测训练产生：</p>
-<ol>
-<li>设置 <span class="arithmatex">\(t=1\)</span>，并根据初始状态概率<span class="arithmatex">\(\pi\)</span>选择初始状态 <span class="arithmatex">\(y_1\)</span></li>
-<li>根据状态 <span class="arithmatex">\(y_t\)</span> 的概率分布和输出观测概率<span class="heti-skip"><span class="heti-spacing"> </span>B<span class="heti-spacing"> </span></span>选择观测变量取值 <span class="arithmatex">\(x_t\)</span></li>
-<li>根据状态 <span class="arithmatex">\(y_t\)</span> 的概率分布和状态转移概率<span class="heti-skip"><span class="heti-spacing"> </span>A<span class="heti-spacing"> </span></span>选择下一状态 <span class="arithmatex">\(y_{t+1}\)</span></li>
-<li>若 <span class="arithmatex">\(t&lt;T\)</span>，则 <span class="arithmatex">\(t=t+1\)</span>，转步骤<span><span class="heti-spacing"> </span>2</span>；否则结束</li>
-</ol>
-<p></p><center><img src="./figures/2024-10-29-17-26-05.png" width="80%"/></center>
-<h2 id="_3">马尔可夫随机场</h2>
-<p>markov random field (MRF)</p>
-<p>典型的马尔可夫网，这是一种著名的无向图模型。图中每个结点 表示一个或一组变量，结点之间的边表示两个变量之间的依赖关 系。马尔可夫随机场有二组势函数，亦称“因子”，这是定义在变 量子集上的非负实函数，主要用于定义概率分布函数。</p>
-<p></p><center><img src="./figures/2024-10-29-17-26-51.png" width="80%"/></center>
-<p>对于图中结点的一个子集，若其中任意两结点间都有边连接，则 称该结点子集为一个“ 团” 。 若在一个团中加入另外任何一个结点 都不再形成团，则称该团为“极大团”<span>;<span class="heti-spacing"> </span></span>换言之，极大团就是不能 被其他团所包含的团。</p>
-<p>在马尔可夫随机场中，多个变量之间的联合概率分布能基于团分 解为多个因子的乘积，每个因子仅与一个团相关。联合概率<span class="heti-skip"><span class="heti-spacing"> </span>P(X)<span class="heti-spacing"> </span></span>定义为</p>
-<div class="arithmatex">\[
-P(x) = \frac{1}{Z} \prod_{Q\in C} \phi_Q(x_Q)
-\]</div>
-<p>基于极大团定义</p>
-<p></p><center><img src="./figures/2024-10-29-17-32-08.png" width="80%"/></center>
-<p>分离集<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>若从结点集<span class="heti-skip"><span class="heti-spacing"> </span>A<span class="heti-spacing"> </span></span>中的结点到<span class="heti-skip"><span class="heti-spacing"> </span>B<span class="heti-spacing"> </span></span>中的结点都必须经过结点集<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>中的结点，则称结点集<span class="heti-skip"><span class="heti-spacing"> </span>A<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>B<span class="heti-spacing"> </span></span>被结点集<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>分离</p>
-<p>全局马尔可夫性<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>给定两个变量子集的分离集，则这两个变量子 集条件独立。</p>
-<p></p><center><img src="./figures/2024-10-29-17-33-30.png" width="80%"/></center>
-<p>基于条件概率的定义可得：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-P(x_A, x_B \mid x_C) &amp;= \frac{P(x_A, x_B, x_C)}{P(x_C)} = \frac{P(x_A, x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} P(x'_A, x'_B, x_C)} \\
-&amp;= \frac{\frac{1}{Z} \psi_{AC}(x_A, x_C) \psi_{BC}(x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} \frac{1}{Z} \psi_{AC}(x'_A, x_C) \psi_{BC}(x'_B, x_C)} \\
-&amp;= \frac{\psi_{AC}(x_A, x_C)}{\sum_{x'_A} \psi_{AC}(x'_A, x_C)} \cdot \frac{\psi_{BC}(x_B, x_C)}{\sum_{x'_B} \psi_{BC}(x'_B, x_C)}.
-\end{aligned}
-\]</div>
-<div class="arithmatex">\[
-\begin{aligned}
-P(x_A \mid x_C) &amp;= \frac{P(x_A, x_C)}{P(x_C)} = \frac{\sum_{x'_B} P(x_A, x'_B, x_C)}{\sum_{x'_A} \sum_{x'_B} P(x'_A, x'_B, x_C)} \\
-&amp;= \frac{\sum_{x_B} \frac{1}{Z} \psi_{AC}(x_A, x_C) \psi_{BC}(x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} \frac{1}{Z} \psi_{AC}(x'_A, x_C) \psi_{BC}(x'_B, x_C)} \\
-&amp;= \frac{\psi_{AC}(x_A, x_C)}{\sum_{x'_A} \psi_{AC}(x'_A, x_C)}.
-\end{aligned}
-\]</div>
-<p>因此我们有 <span class="arithmatex">\(P(x_A,x_B|x_C)=P(x_A|x_C)P(x_B|x_C)\)</span></p>
-<p>推论：
-+ 局部马尔可夫性:给定某变量的邻接变量，则该变量条件独立于其他变量
-+ 成立对马尔可夫性:给定所有其他变量，两个非邻接变量条件独立</p>
-<p></p><center><img src="./figures/2024-10-29-17-40-55.png" width="80%"/></center>
-<h2 id="_4">条件随机场</h2>
-<p>条件随机场试图对多个变量在给定观测值后的条件概率进行建模</p>
-<p>若图<span class="heti-skip"><span class="heti-spacing"> </span>G<span class="heti-spacing"> </span></span>的每个变量 <span class="arithmatex">\(y_v\)</span> 都满足马尔可夫性，即</p>
-<div class="arithmatex">\[
-P(y_v|x,y_{V-\{v\}}) = P(y_v|x,y_{N(v)})
-\]</div>
-<p>则 <span class="arithmatex">\((y,x)\)</span> 构成一个条件随机场</p>
-<p></p><center><img src="./figures/2024-10-29-17-43-08.png" width="80%"/></center>
-<p></p><center><img src="./figures/2024-10-29-17-43-39.png" width="80%"/></center>
-<h2 id="_5">学习与推断</h2>
-<p>边际化：给定一个联合概率分布，将某些变量边际化掉，得到另一组变量的概率分布，求解某个变量的边缘概率，就是对其他无关概率作积分。</p>
-<p>推断问题的目标是计算边际概率或条件概率</p>
-<h3 id="_6">变量消去</h3>
-<p>变量消去就是对无关变量都做求和，将与之相关的项相加就得到了与之无关的项。</p>
-<p></p><center><img src="./figures/2024-10-29-17-50-02.png" width="80%"/></center>
-<h3 id="_7">信念传播</h3>
-<p>信念传播算法将变量消去法中的求和操作看作一个消息传递过程， 较好地解决了求解多个边际分布时的重复计算问题。</p>
-<p>在信念传播算法中，一个结点仅在接收到来自其他所有结点的消 息后才能向另 一个结点发送消息，且结点的边际分布正比于它所 接收的消息的乘积，即</p>
-<div class="arithmatex">\[
-P(x_i) \propto \prod_{j\in N(i)} \mu_{j\to i}(x_i)
-\]</div>
-<p>若图结构中没有环，则信念传播算法经过两个步骤即可完成所有消息传递，进而能计算所有变量上的边际分布。
-+ 指定一个根结点，从所有叶结点开始向根结点传递消息，直到根结点收到所有邻接结点的消息
-+ 从根结点开始向叶结点传递消息，直到所有叶结点均收到消息</p>
-<p></p><center><img src="./figures/2024-10-29-17-53-27.png" width="80%"/></center>
-<h2 id="_8">近似推断</h2>
-<ul>
-<li>采样（sampling）使用随机化方法完成近似推断，如马尔可夫链蒙特卡罗法</li>
-<li>使用确定性近似完成近似推断，变分推断</li>
-</ul>
-<h3 id="_9">蒙特卡罗法采样</h3>
-<p>假定目标是计算函数 <span class="arithmatex">\(f(x)\)</span> 的期望值，即</p>
-<div class="arithmatex">\[
-E_p(f) = \int f(x) p(x) dx
-\]</div>
-<p>计算 <span class="arithmatex">\(f(x)\)</span> 在这些样本上的均值</p>
-<div class="arithmatex">\[
-\hat{f} = \frac{1}{N}\sum_{i=1}^N f(x^{(i)})
-\]</div>
-<p>马尔可夫链的平稳分布：</p>
-<div class="arithmatex">\[
-p(x^t)T(x^{t-1}|x^t) = p(x^{t-1})T(x^t|x^{t-1})
-\]</div>
-<p><span>Metropolis-Hastings<span class="heti-spacing"> </span></span>算法<span class="heti-skip"><span class="heti-spacing"> </span>(MH)<span class="heti-spacing"> </span></span>算法</p>
-<p></p><center><img src="./figures/2024-10-29-18-30-16.png" width="80%"/></center>
-<p></p><center><img src="./figures/2024-10-29-18-30-49.png" width="80%"/></center>
-<h3 id="_10">变分推断</h3>
-<ul>
-<li>盘式记法</li>
-</ul>
-<p></p><center><img src="./figures/2024-10-29-18-31-33.png" width="80%"/></center>
-<p>所有能观察到的变量<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>的联合分布的概率密度函数是</p>
-<div class="arithmatex">\[
-p(x|\Theta) = \prod_{i=1}^n \sum_z p(x_i, z|\Theta)
-\]</div>
-<p>所对应的对数似然函数为</p>
-<div class="arithmatex">\[
-\ln p(x|\Theta) = \sum_{i=1}^n \ln \sum_z p(x_i, z|\Theta)
-\]</div>
-<p>概率模型的参数估计通常以最大化对数似然函数为手段：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\Theta^{t+1} &amp;= \argmax_{\Theta} Q(\Theta;\Theta^t)\\
-&amp;= \argmax_{\Theta} \sum_{z} p(z|x,\Theta^t) \ln p(x,z|\Theta)
-\end{aligned}
-\]</div>
-<p>对数似然可以分解成<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>散度<span><span class="heti-spacing"> </span>:</span></p>
-<div class="arithmatex">\[
-\begin{aligned}
-\ln p(x|\Theta) = ELBO + KL(q||p) \\
-ELBO = \int q(z) \ln \frac{p(x,z)}{q(z)} dz \\
-KL(q||p) = -\int q(z) \ln \frac{p(z|x)}{q(z)} dz
-\end{aligned}
-\]</div>
-<p></p><center><img src="./figures/2024-10-29-18-51-33.png" width="80%"/></center>
-<p></p><center><img src="./figures/2024-10-29-19-00-03.png" width="80%"/></center>
-<h2 id="_11">话题模型</h2>
-<p>话题模型是一族生成式有向图模型，主要用于处理离散型的数据（如文本集合），在信息检索，自然语言处理等领域有广泛应用。代表有潜在狄利克雷分配模型（LDA）。</p>
-<p><span>"<span class="heti-spacing"> </span></span>词<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>是待处理数据的基本离散单元，例如在文本处理任务中，一个词就是一个英文单词或有独立意义的中文词
-“文档”是待处理的数据对象，它由一组词组成，这些词在文档中是不计顺序的，例如一篇论文、一个网页都可看作一个文档:这样的表示方式称为"词袋" 
-数据对象只要能用词袋描述，就可使用话题模型“话题”表示一个概念，具体表示为一系列相关的词，以及它们在该概念下出现的概率。</p>
-<p></p><center><img src="./figures/2024-10-29-19-03-58.png" width="80%"/></center>
-<p></p><center><img src="./figures/2024-10-29-19-04-16.png" width="80%"/></center>
+<h1 id="score-based-generative-modeling-through-stochastic-differential-equations">SCORE-BASED GENERATIVE MODELING THROUGH STOCHASTIC DIFFERENTIAL EQUATIONS</h1>
+<p><a href="https://openreview.net/pdf?id=PxTIG12RRHS">pdf</a></p>
+<p>time-dependent gradient field a.k.a. score</p>
+<p>为了启用新的采样方法并进一步扩展基于分数的生成模型的功能，我们提出了一个统一的框架，通过随机微分方程（SDE）的视角概括了以前的方法。</p>
+<h2 id="_1"></h2>
 </article>
 </div>
 </div>

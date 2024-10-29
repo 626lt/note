@@ -6,6 +6,7 @@
 <meta content="lt's notes" name="description"/>
 <link href="https://626lt.github.io/note/read/diffusion/" rel="canonical"/>
 <link href="../" rel="prev"/>
+<link href="../Consistency%20Models/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
 <title>Diffusion - lt's notes</title>
@@ -335,8 +336,47 @@
     Three Equivalent Interpretations
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#score-based-generative-modeling">
+    Score-based Generative Modeling
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guidance">
+    Guidance
+  </a>
+<nav aria-label="Guidance" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classifier-guidance">
+    Classifier Guidance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classifier-free-guidance">
+    Classifier-Free Guidance
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary">
+    Summary
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Consistency%20Models/">
+        Consistency Models
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../SDE/">
+        SDE
+      </a>
 </li>
 </ul>
 </nav>
@@ -390,6 +430,35 @@
     Three Equivalent Interpretations
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#score-based-generative-modeling">
+    Score-based Generative Modeling
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guidance">
+    Guidance
+  </a>
+<nav aria-label="Guidance" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classifier-guidance">
+    Classifier Guidance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classifier-free-guidance">
+    Classifier-Free Guidance
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary">
+    Summary
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -413,15 +482,15 @@
 <p>这里的 <span class="arithmatex">\(p_{\theta}(x, z)\)</span> 是<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span>与<span class="heti-skip"><span class="heti-spacing"> </span>data<span class="heti-spacing"> </span></span>的联合分布。 <span class="arithmatex">\(q_{\phi}(z|x)\)</span> 是<span><span class="heti-spacing"> </span>flexible approximate variational distribution</span>，由 <span class="arithmatex">\(\phi\)</span> 参数化以寻求优化。</p>
 <p><span>ELBO<span class="heti-spacing"> </span></span>可以看作是一个参数化的模型去评估在给定<span class="heti-skip"><span class="heti-spacing"> </span>observation<span class="heti-spacing"> </span></span><span class="arithmatex">\(x\)</span>下的<span class="heti-skip"><span class="heti-spacing"> </span>latent variable<span class="heti-spacing"> </span></span><span class="arithmatex">\(z\)</span>的分布。也就是说，它试图逼近真实的后验 <span class="arithmatex">\(p(z|x)\)</span>。当这个逼近足够好的时候，我们就获得了真实数据的分布，然后就可以做各种推理来生成。</p>
 <p>下面我们从数学角度来说明为什么<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>是一个合适的优化对象。</p>
-<p>$$
+<div class="arithmatex">\[
 \begin{aligned}
-\log p(x) &amp;= \log \int p(x, z) dz \
-&amp;= \log \int q_\phi(z|x) \frac{p(x, z)}{q_\phi(z|x)} dz \
-&amp;= \log \mathbb{E}<em>{q</em>\phi(z|x)} \left[ \frac{p(x, z)}{q_\phi(z|x)} \right] \
-&amp;\geq \mathbb{E}<em>{q</em>\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right] \
+\log p(x) &amp;= \log \int p(x, z) dz \\
+&amp;= \log \int q_\phi(z|x) \frac{p(x, z)}{q_\phi(z|x)} dz \\
+&amp;= \log \mathbb{E}_{q_\phi(z|x)} \left[ \frac{p(x, z)}{q_\phi(z|x)} \right] \\
+&amp;\geq \mathbb{E}_{q_\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right] \\
 \end{aligned}
-$$
-最后一步是由 Jensen 不等式得到的。这里的 <span class="arithmatex">\(\mathbb{E}_{q_\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right]\)</span> 就是 ELBO。</p>
+\]</div>
+<p>最后一步是由<span class="heti-skip"><span class="heti-spacing"> </span>Jensen<span class="heti-spacing"> </span></span>不等式得到的。这里的 <span class="arithmatex">\(\mathbb{E}_{q_\phi(z|x)} \left[ \log \frac{p(x, z)}{q_\phi(z|x)} \right]\)</span> 就是<span><span class="heti-spacing"> </span>ELBO</span>。</p>
 <div class="admonition note 期望">
 <p class="admonition-title">Note</p>
 <p>随机变量<span class="arithmatex">\(Z\)</span> 在分布 <span class="arithmatex">\(q(z)\)</span> 下的期望表示为 <span class="arithmatex">\(E_{q(z)}[f(Z)]=\int f(Z)q(z) dz\)</span></p>
@@ -715,6 +784,145 @@ x_0 = \frac{x_t - \sqrt{1-\overline{\alpha_t}}\epsilon_0}{\sqrt{\overline{\alpha
 \end{aligned}
 \]</div>
 </div>
+<p>这里的情况中我们有：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}[\mu_{x_t}|x_t] &amp;= x_t + (1-\overline{\alpha_t})\nabla_{x_t}\log p(x_t) \\
+\end{aligned}
+\]</div>
+<p>为了简化，我们把 <span class="arithmatex">\(\nabla_{x_t}\log p(x_t)\)</span> 记为 <span class="arithmatex">\(\nabla\log p(x_t)\)</span>。</p>
+<p>根据前面的推导我们有</p>
+<div class="arithmatex">\[
+q(x_t|x_0) = \mathcal{N}(x_t;\sqrt{\overline{\alpha_t}}x_0,\sqrt{1-\overline{\alpha_t}}I)
+\]</div>
+<p>根据<span class="heti-skip"><span class="heti-spacing"> </span>Tweedie<span class="heti-spacing"> </span></span>公式，<span class="arithmatex">\(x_t\)</span> 生成的真实均值的最佳估计为：<span class="arithmatex">\(\mu_{x_t} = \sqrt{\overline{\alpha_t}}x_0\)</span></p>
+<p>带入上面的公式，我们可以得到</p>
+<div class="arithmatex">\[
+x_0 = \frac{x_t + \sqrt{1-\overline{\alpha_t}}\nabla \log p(x_t)}{\sqrt{\overline{\alpha_t}}}
+\]</div>
+<p>这里我们就得到了 <span class="arithmatex">\(x_0\)</span> 的另一种表示，将其带入实际去噪过程的均值 <span class="arithmatex">\(\mu_q(x_t,x_0)\)</span> 中，我们可以得到<span><span class="heti-spacing"> </span>:</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_q(x_t,x_0) &amp;= \frac{1}{\sqrt{\alpha_t}}x_t + \frac{1-\alpha_t}{\sqrt{\alpha_t}}\nabla \log p(x_t)
+\end{aligned}
+\]</div>
+<p>接着和之前同样的步骤，我们可以设置近似去噪过程的均值为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_\theta(x_t,t) &amp;= \frac{1}{\sqrt{\alpha_t}}x_t + \frac{1-\alpha_t}{\sqrt{\alpha_t}}s_\theta(x_t,t)
+\end{aligned}
+\]</div>
+<p>这里 <span class="arithmatex">\(s_\theta(x_t,t)\)</span> 是一个神经网络，它学习预测 <span class="arithmatex">\(\nabla_{x_t}\log p(x_t)v\)</span> 的梯度。相应的优化问题转化为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\argmin_\theta D_{\text{KL}}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)) \\
+= \argmin_{\theta} \frac{1}{2 \sigma_q^2(t)} \frac{(1 - \alpha_t)^2}{\alpha_t} \left\| s_\theta(x_t,t) - \nabla \log p(x_t) \right\|_2^2
+\end{aligned}
+\]</div>
+<p>这里的<span class="heti-skip"><span class="heti-spacing"> </span>score function<span class="heti-spacing"> </span></span><span class="arithmatex">\(\nabla \log p(x_t)\)</span>与噪声的非常像，具体来说有</p>
+<div class="arithmatex">\[
+\nabla \log p(x_t) = - \frac{1}{\sqrt{1-\overline{\alpha_t}}}\epsilon_0
+\]</div>
+<p>事实证明，这两项之间存在一个随时间变化的常数因子！得分函数衡量如何在数据空间中移动以最大化对数概率。直观上，由于源噪声被添加到自然图像中以破坏它，因此沿相反方向移动会对图像进行“去噪”，并且将是增加后续对数概率的最佳更新。上面的数学证明已经说明了这一点。</p>
+<p>综合以上，我们有了三个等价的方式来优化一个<span><span class="heti-spacing"> </span>VDM</span>：预测原始图像，预测噪声，预测图像在任意噪声水平下的得分函数。这三种方式都可以通过神经网络来实现。</p>
+<h2 id="score-based-generative-modeling">Score-based Generative Modeling</h2>
+<p>可以在变分扩散模型和基于分数的生成模型之间建立了明确的联系，无论是在训练目标还是抽样过程中。利用朗之万动力学的思想。</p>
+<p>首先任意灵活的概率分布可以写成以下形式：</p>
+<div class="arithmatex">\[
+p_\theta(x) = \frac{1}{Z_\theta}e^{-f_\theta(x)}
+\]</div>
+<p>其中 <span class="arithmatex">\(f_\theta(x)\)</span> 是一个任意自由的参数化的势能函数，<span class="arithmatex">\(Z_\theta\)</span> 是归一化常数。学习这样一个分布的方法可以是最大似然估计，但是这样的方法求解归一化系数依赖于 <span class="arithmatex">\(Z_\theta=\int e^{-f_\theta(x)}dx\)</span>，这对复杂的 <span class="arithmatex">\(f_\theta(x)\)</span> 是很困难的。</p>
+<p>避免建模或计算归一化参数的方法是用神经网络 <span class="arithmatex">\(s_\theta(x)\)</span> 来近似得分函数 <span class="arithmatex">\(\nabla \log p_\theta(x)\)</span>，这里的推导是</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\nabla_x \log p_\theta(x) =&amp; \nabla_x \log(\frac{1}{Z_\theta}e^{-f_\theta(x)}) \\ =&amp; \nabla_x \log \frac{1}{Z_\theta} + \nabla_x \log e^{-f_\theta(x)} \\ =&amp; -\nabla_x \log Z_\theta - \nabla_x f_\theta(x) \\ =&amp; -\nabla_x f_\theta(x) \\
+&amp; \approx s_\theta(x)
+\end{aligned}
+\]</div>
+<p>可以通过使用真实得分函数最小化费舍尔散度来优化得分模型</p>
+<div class="arithmatex">\[
+\mathbb{E}_{p(x)}[\left\|s_\theta(x)-\nabla\log p(x)\right\|_2^2]
+\]</div>
+<p><span>Score function<span class="heti-spacing"> </span></span>意义：对于每个 <span class="arithmatex">\(x\)</span>，取其对数似然相对于 <span class="arithmatex">\(x\)</span> 的梯度本质上描述了数据空间中移动的方向，以进一步增加其似然。直观上，得分函数定义了数据 <span class="arithmatex">\(x\)</span> 所在的整个空间上的向量场，指向众数。然后，通过学习真实数据分布的得分函数，我们可以通过从同一空间中的任意点开始并迭代地跟踪得分直到达到众数来生成样本。该采样过程称为朗之万动力学，在数学上描述为</p>
+<div class="arithmatex">\[
+x_{i+1} = x_i + c\nabla\log p(x_i) + \sqrt{2c}\epsilon_i
+\]</div>
+<p>其中 <span class="arithmatex">\(x_0\)</span> 是从先验分布（比如均匀分布）中随机采样的 <span class="arithmatex">\(\epsilon_i\)</span> 是随机噪声，来确保生成的样本不会总是<span><span class="heti-spacing"> </span>collapse onto a mode</span>，, but hover around it for diversity。此外，由于学习的得分函数是确定性的，因此涉及噪声项的采样增加了生成过程的随机性，使我们能够避免确定性轨迹。当从位于多个模式之间的位置初始化采样时​​，这特别有用。</p>
+<p></p><center><img src="./figures/2024-10-29-01-20-51.png" width="80%"/></center>
+<p>需要注意的是对于复杂的分布，我们没法直接使用<span class="heti-skip"><span class="heti-spacing"> </span>ground-truth<span class="heti-spacing"> </span></span>的得分函数，好在已经衍生出称为<span class="heti-skip"><span class="heti-spacing"> </span>score matching<span class="heti-spacing"> </span></span>的方法，可以在不知道真实分数的情况下最小化费舍尔散度，并且可以通过随机梯度下降进行优化。</p>
+<p>总的来说，学习将分布表示为得分函数，并使用它通过马尔可夫链蒙特卡罗技术（例如朗之万动力学）生成样本，被称为基于得分的生成建模。</p>
+<p><span>vanilla score matching<span class="heti-spacing"> </span></span>存在三个主要的问题</p>
+<ol>
+<li>当<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>位于高维空间中的低维流形上时，得分函数是不明确的。这可以从数学上看出；不在低维流形上的所有点的概率为零，其对数未定义。当尝试学习自然图像的生成模型时，这尤其不方便，因为众所周知，自然图像位于整个环境空间的低维流形上。</li>
+<li>通过普通分数匹配训练的估计分数函数在低密度区域将不准确。因为它是对<span class="heti-skip"><span class="heti-spacing"> </span>p(x)<span class="heti-spacing"> </span></span>的期望，并且对其样本进行显式训练，所以模型将不会收到很少见或未见示例的准确学习信号。这是有问题的，因为我们的采样策略涉及从高维空间中的随机位置（很可能是随机噪声）开始，并根据学习的得分函数移动。由于我们遵循噪声或不准确的分数估计，因此最终生成的样本也可能不是最佳的，或者需要更多的迭代才能收敛到准确的输出。</li>
+<li><span>Langevin<span class="heti-spacing"> </span></span>动态采样可能不会混合，即使它是使用地面实况分数执行的。假设真实的数据分布是两个不相交分布的混合<span><span class="heti-spacing"> </span>:</span></li>
+</ol>
+<div class="arithmatex">\[
+p(x) = c_1p_1(x) + c_2p_2(x)
+\]</div>
+<p>当计算分数时，这些混合系数就会丢失，因为对数运算将系数从分布中分离出来，而梯度运算将其归零<span><span class="heti-spacing"> </span>.</span></p>
+<p>解决方案：通过向数据添加多个级别的高斯噪声可以同时解决这三个缺点。首先，由于高斯噪声分布​​的支持是整个空间，扰动的数据样本将不再局限于低维流形。其次，添加大的高斯噪声将增加数据分布中每种模式覆盖的区域，在低密度区域添加更多的训练信号。最后，添加多个级别的高斯噪声并增加方差将产生尊重地面实况混合系数的中间分布。</p>
+<p>形式上，我们可以选择噪声水平的正序列 <span class="arithmatex">\(\{\sigma_t\}^T_{t=1}\)</span> 并定义逐渐扰动的数据分布序列：</p>
+<div class="arithmatex">\[
+p_{\sigma_t}(x) = \int p(x) \mathcal{N}(x_t;x,\sigma_t^2I)dx
+\]</div>
+<p>然后，使用分数匹配来学习神经网络 <span class="arithmatex">\(s_\theta(x,t)\)</span>，以同时学习所有噪声级别的分数函数：</p>
+<div class="arithmatex">\[
+\argmin_{\theta} \sum_{t=1}^T \lambda(t) \mathbb{E}_{p_{\sigma_t}(x_t)} \left[ \left\| s_{\theta}(x, t) - \nabla \log p_{\sigma_t}(x_t) \right\|_2^2 \right]
+\]</div>
+<p>其中 <span class="arithmatex">\(\lambda(t)\)</span> 是一个以噪声水平<span class="heti-skip"><span class="heti-spacing"> </span>t<span class="heti-spacing"> </span></span>为条件的正加权函数<span class="heti-skip"><span class="heti-spacing"> </span>.<span class="heti-spacing"> </span></span>此外，作者提出将退火朗之万动力学采样作为一种生成过程，其中通过按顺序对每个 <span class="arithmatex">\(t = T, T −1, ..., 2, 1\)</span> 运行朗之万动力学来生成样本。初始化是从一些固定的先验（例如均匀）中选择的，并且每个后续采样步骤都从先前模拟的最终样本开始。因为噪声水平随着时间步长<span class="heti-skip"><span class="heti-spacing"> </span>t<span class="heti-spacing"> </span></span>稳定下降，并且我们随着时间的推移减小步长，所以样本最终收敛到真模式。这直接类似于变分扩散模型的马尔可夫<span class="heti-skip"><span class="heti-spacing"> </span>HVAE<span class="heti-spacing"> </span></span>解释中执行的采样过程，其中随机初始化的数据向量随着噪声水平的降低而迭代细化。</p>
+<p>因此，我们在变分扩散模型和基于分数的生成模型之间建立了明确的联系，无论是在训练目标还是抽样程序上。</p>
+<p>一个问题是如何自然地将扩散模型推广到无限数量的时间步长。在<span class="heti-skip"><span class="heti-spacing"> </span>MHVAE<span class="heti-spacing"> </span></span>观点下，这可以解释为将层次结构的数量扩展到无穷大 <span class="arithmatex">\(T\rightarrow\infty\)</span>。从等效的基于分数的生成模型角度来表示这一点会更清楚；在无限数量的噪声尺度下，图像在连续时间内的扰动可以表示为随机过程，因此可以用随机微分方程（SDE）来描述。然后通过反转<span class="heti-skip"><span class="heti-spacing"> </span>SDE<span class="heti-spacing"> </span></span>来执行采样，这自然需要估计每个连续值噪声级别的得分函 。 <span>SDE<span class="heti-spacing"> </span></span>的不同参数化本质上描述了随时间变化的不同扰动方案，从而实现了噪声过程的灵活建模。</p>
+<h2 id="guidance">Guidance</h2>
+<p><span>guidance<span class="heti-spacing"> </span></span>的目标是控制生成的数据，添加一些自己的条件，数学上就是 <span class="arithmatex">\(p(x|y)\)</span> 这样的条件概率。</p>
+<p>添加条件信息的一种自然方法是在每次迭代时与时间步信息一起添加。形式是：</p>
+<div class="arithmatex">\[
+p(x_{0:T}|y) = p(x_T)\prod_{t=1}^Tp_\theta(x_{t-1}|x_t,y)
+\]</div>
+<p>这里的<span class="heti-skip"><span class="heti-spacing"> </span>y<span class="heti-spacing"> </span></span>可以是图像<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>文本生成中的文本编码，<span>or a low-resolution image in super-resolution tasks.<span class="heti-spacing"> </span></span>因此，我们可以通过预测三个等价形式来学习<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>的核心神经网络对每个所需的解释和实现。</p>
+<p>这种方式的问题是以这种方式训练的条件扩散模型可能会学会忽略或淡化任何给定的条件信息<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（训练的时候就有这些条件）因此，提出了<span class="heti-skip"><span class="heti-spacing"> </span>Guidance<span class="heti-spacing"> </span></span>作为一种更明确地控制模型赋予调节信息的权重的方法，但以样本多样性为代价。两种最流行的指导形式被称为<span class="heti-skip"><span class="heti-spacing"> </span>classifier guidance<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>classier-free guidance</span>。</p>
+<h3 id="classifier-guidance">Classifier Guidance</h3>
+<p>我们的目标是学习到 <span class="arithmatex">\(\nabla \log p(x_t|y)\)</span> 在任意的噪声时间步中</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\nabla \log p(x_t|y) = \nabla \log p(x_t) + \nabla \log p(y|x_t)
+\end{aligned}
+\]</div>
+<p>这是由贝叶斯法则得到的，其中 <span class="arithmatex">\(\nabla \log p(y)\)</span> 在对 <span class="arithmatex">\(x_t\)</span> 的梯度下为<span><span class="heti-spacing"> </span>0</span>。上面的两项分别是无条件的得分函数与分类器 <span class="arithmatex">\(p(y|x_t)\)</span> 的对抗梯度。在<span class="heti-skip"><span class="heti-spacing"> </span>Classifier Guidance<span class="heti-spacing"> </span></span>中，无条件扩散模型的分数是按照先前导出的方式学习的，同时分类器接受任意噪声<span class="heti-skip"><span class="heti-spacing"> </span>xt<span class="heti-spacing"> </span></span>并尝试预测条件信息<span><span class="heti-spacing"> </span>y</span>。然后，在采样过程中，用于退火朗之万动力学的总体条件得分函数被计算为无条件得分函数与噪声分类器的对抗梯度之和。为了提升控制的精细度，引入了超参数 <span class="arithmatex">\(\gamma\)</span>，用于控制分类器梯度的权重。</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\nabla \log p(x_t|y) = \nabla \log p(x_t) + \gamma\nabla \log p(y|x_t)
+\end{aligned}
+\]</div>
+<p>直观上，当<span class="heti-skip"><span class="heti-spacing"> </span>$ \gamma= 0$<span class="heti-spacing"> </span></span>时，条件扩散模型学会完全忽略条件信息，而当 <span class="arithmatex">\(\gamma\)</span> 较大时，条件扩散模型学会生成严重遵循条件信息的样本。这会导致样本多样性下降，因为它只会产生易于重新生成所提供的条件信息的数据。</p>
+<p><span>classifier guidance<span class="heti-spacing"> </span></span>的一个值得注意的缺点是它依赖于单独学习的分类器。由于分类器必须处理任意噪声输入，而大多数现有的预训练分类模型并未对此进行优化，因此必须与扩散模型一起进行临时学习。</p>
+<h3 id="classifier-free-guidance">Classifier-Free Guidance</h3>
+<p>在这里，学者放弃了单独分类器模型的训练，转而采用无条件扩散模型和条件扩散模型。首先</p>
+<div class="arithmatex">\[
+\nabla \log p(y|x_t) = \nabla \log p(x_t|y) - \nabla \log p(x_t)
+\]</div>
+<p>然后在先前超参约束的基础上，我们得到</p>
+<div class="arithmatex">\[
+\nabla \log p(x_t|y) = \gamma \nabla \log p(x_t|y) + (1-\gamma)\nabla \log p(x_t)
+\]</div>
+<p>这里的 <span class="arithmatex">\(\gamma\)</span> 是一个超参数，用于控制条件信息的权重，通俗地说就是对条件信息有多依赖。</p>
+<p>当 <span class="arithmatex">\(\gamma = 0\)</span> 时，学习到的条件模型完全忽略条件并学习无条件扩散模型。
+当 <span class="arithmatex">\(\gamma = 1\)</span> 时，模型无需指导即可显式学习普通条件分布。
+当 <span class="arithmatex">\(\gamma &gt; 1\)</span> 时，扩散模型不仅优先考虑条件得分函数，而且会向远离无条件得分函数的方向移动。</p>
+<p>换句话说，它降低了生成不使用条件信息的样本的概率，有利于明确使用条件信息的样本。这也会降低样本多样性，但代价是生成准确匹配调节信息的样本<span><span class="heti-spacing"> </span>.</span></p>
+<p>由于学习两个单独的扩散模型的成本很高，因此我们可以将条件扩散模型和无条件扩散模型一起学习为单个条件模型；可以通过用固定常数值（例如零）替换条件信息来查询无条件扩散模型。这本质上是对条件信息执行随机丢失。无分类器指导很优雅，因为它使我们能够更好地控制条件生成过程，同时除了训练奇异扩散模型之外不需要任何其他操作。</p>
+<h2 id="summary">Summary</h2>
+<p>首先，我们推导变分扩散模型作为马尔可夫分层变分自动编码器的特例，其中三个关键假设使得<span class="heti-skip"><span class="heti-spacing"> </span>ELBO<span class="heti-spacing"> </span></span>能够进行易于处理的计算和可扩展的优化。</p>
+<p>然后，我们证明优化<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>归结为学习神经网络来预测三个潜在目标之一：来自任意噪声的原始源图像、来自任意任意噪声图像的原始源噪声，或者噪声噪声的得分函数任意噪声水平下的图像。</p>
+<p>然后，我们更深入地探讨学习得分函数的含义，并将其与基于得分的生成建模的角度明确联系起来。</p>
+<p>最后，我们介绍如何使用扩散模型学习条件分布。</p>
+<p>当然，<span>diffusion<span class="heti-spacing"> </span></span>模型仍然有一些缺陷：</p>
+<ul>
+<li>首先往信息中加噪声不太可能是人类自然地建模和生成数据的方式</li>
+<li><span>VDM<span class="heti-spacing"> </span></span>不产生可解释的潜在变量。 <span>VAE<span class="heti-spacing"> </span></span>希望通过编码器的优化来学习结构化的潜在空间，而在<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>中，每个时间步的编码器已经作为线性高斯模型给出，无法灵活优化。因此，中间潜在变量被限制为原始输入的噪声版本。</li>
+<li>潜在的维度被限制为与原始输入相同的维度，这进一步阻碍了学习有意义的、压缩的潜在结构的努力。</li>
+<li>采样是一个昂贵的过程，因为必须在两种公式下运行多个去噪步骤。回想一下，限制之一是选择足够多的时间步<span><span class="heti-spacing"> </span>T</span>，以确保最终的潜伏完全是高斯噪声；在采样过程中，我们必须迭代所有这些时间步来生成样本。</li>
+</ul>
 </article>
 </div>
 </div>
