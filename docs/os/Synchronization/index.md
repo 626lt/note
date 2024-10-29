@@ -164,7 +164,7 @@ mutex 是保护 readcount。第一个 reader 在等到 writer 释放以后，就
 
 如果一个 reader 在 read data 的过程中被 interrupt，下一个进程是一个 writer，但是这个 writer 是在 write.waiting.queue ，所以调度也调不到它。
 
-<center><img src="./figures/2024-10-29-14-58-35.png" width=50% /></center>
+<center><img src="./figures/2024-10-29-15-11-25.png" width=50% /></center>
 
 > 判断一个进程能否被调度，要看在 ready queue 还是 waiting queue。
 
@@ -172,7 +172,7 @@ mutex 是保护 readcount。第一个 reader 在等到 writer 释放以后，就
 
 Philosophers spend their lives thinking and eating, they sit in a round table, but don’t interact with each other.
 
-<center><img src="./figures/2024-10-29-15-03-16.png" width=50% /></center>
+<center><img src="./figures/2024-10-29-15-11-55.png" width=50% /></center>
 
 每次只能拿一根筷子，但是要拿到两只筷子才能吃饭。例如如果每个人都先拿自己右边的筷子，再准备拿左边的筷子，就会卡死。
 
