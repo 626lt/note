@@ -6,6 +6,7 @@
 <meta content="lt's notes" name="description"/>
 <link href="https://626lt.github.io/note/os/Synchronization/" rel="canonical"/>
 <link href="../Threads/" rel="prev"/>
+<link href="../../read/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
 <title>Synchronization - lt's notes</title>
@@ -122,6 +123,11 @@
 <li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../">
         OS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../read/">
+        Read
       </a>
 </li>
 </ul>
@@ -246,8 +252,68 @@
     Race Condition
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#synchornization-examples">
+    Synchornization Examples
+  </a>
+<nav aria-label="Synchornization Examples" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bounded-buffer-problem">
+    Bounded-Buffer Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readers-writers-problem">
+    Readers-writers problem
+  </a>
+<nav aria-label="Readers-writers problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reader-first">
+    Reader first
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#writer-first">
+    Writer first
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dining-philosophers-problem">
+    Dining-philosophers problem
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../read/">Read</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Read" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Read
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/diffusion/">
+        Diffusion
+      </a>
 </li>
 </ul>
 </nav>
@@ -270,6 +336,44 @@
 <a class="md-nav__link" href="#race-condition">
     Race Condition
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#synchornization-examples">
+    Synchornization Examples
+  </a>
+<nav aria-label="Synchornization Examples" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bounded-buffer-problem">
+    Bounded-Buffer Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readers-writers-problem">
+    Readers-writers problem
+  </a>
+<nav aria-label="Readers-writers problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reader-first">
+    Reader first
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#writer-first">
+    Writer first
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dining-philosophers-problem">
+    Dining-philosophers problem
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -324,7 +428,149 @@
 指令会乱序执行。</li>
 </ul>
 <p><span>wait<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>signal<span class="heti-spacing"> </span></span>都要是<span class="heti-skip"><span class="heti-spacing"> </span>automatic<span class="heti-spacing"> </span></span>的，不能被打断。
-linux 内 spinlock 用的多，很多操作都是很短的对一个变量操作。</p>
+linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个变量操作。</p>
+<p>长的用<span><span class="heti-spacing"> </span>semaphore</span>，存在<span><span class="heti-spacing"> </span>context-switch</span>，</p>
+<p>长短用<span class="heti-skip"><span class="heti-spacing"> </span>context-switch<span class="heti-spacing"> </span></span>来比较。</p>
+<h2 id="synchornization-examples">Synchornization Examples</h2>
+<h3 id="bounded-buffer-problem">Bounded-Buffer Problem</h3>
+<p>Two processes, the producer and the consumer share n buffers</p>
+<ul>
+<li>the producer generates data, puts it into the buffer</li>
+<li>the producer won’t try to add data into the buffer if it is full.</li>
+<li>the consumer consumes data by removing it from the buffer.</li>
+<li>the consumer won’t try to remove data from an empty buffer.</li>
+</ul>
+<p>需要定义哪些变量？</p>
+<ul>
+<li>n buffer</li>
+<li>mutex initialized to 1</li>
+<li>full-slots initialized to 0</li>
+<li>empty-slots initialized to n</li>
+</ul>
+<blockquote>
+<p>需要些几条语句，顺序也很关键</p>
+</blockquote>
+<ul>
+<li>
+<p>producer process
+</p><div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">// produce an item</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">...</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">wait</span><span class="p">(</span><span class="n">empty</span><span class="o">-</span><span class="n">slots</span><span class="p">);</span><span class="w"> </span><span class="c1">// 往里面填之前需要拿一个 empty slot</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w"> </span><span class="c1">// 不能调换，调换了就带着锁 sleep，别的 producer 就进不来了</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">// add the item to the buffer</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">...</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="n">signal</span><span class="p">(</span><span class="n">full</span><span class="o">-</span><span class="n">slots</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="n">True</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>consumer process
+</p><div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="c1">//produce an item</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">full</span><span class="o">-</span><span class="n">slots</span><span class="p">);</span><span class="w">   </span><span class="c1">// 把 full-slots 减一</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="c1">//remove the item to the buffer</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">empty</span><span class="o">-</span><span class="n">slots</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">TRUE</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<h3 id="readers-writers-problem">Readers-writers problem</h3>
+<p>A data set is shared among a number of concurrent processes
++ readers: only read the data set; they do not perform any updates
++ writers: can both read and write</p>
+<p><span>Problems:<span class="heti-spacing"> </span></span>多个<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>可以共享，即同时读；但只能有一个<span class="heti-skip"><span class="heti-spacing"> </span>write<span class="heti-spacing"> </span></span>访问数据（写和读也不共享）。</p>
+<p>Solution:</p>
+<ul>
+<li>semaphore mutex initialized to 1</li>
+<li>semaphore write initialized to 1</li>
+<li>
+<p>integer readcount initialized to 0</p>
+</li>
+<li>
+<p>Writer process
+</p><div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="n">wait</span><span class="p">(</span><span class="n">write</span><span class="p">);</span><span class="w"> </span><span class="c1">// 跟所有人互斥</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="c1">// write the shared data</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="n">signal</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">}</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">TRUE</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>Reader process
+</p><div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">readcount</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readcount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 读跟写互斥</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="c1">//reading data</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="n">readcount</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readcount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<p><span>mutex<span class="heti-spacing"> </span></span>是保护<span><span class="heti-spacing"> </span>readcount</span>。第一个<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>在等到<span class="heti-skip"><span class="heti-spacing"> </span>writer<span class="heti-spacing"> </span></span>释放以后，就把<span class="heti-skip"><span class="heti-spacing"> </span>mutex<span class="heti-spacing"> </span></span>释放，后面的<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>由于<span class="heti-skip"><span class="heti-spacing"> </span>readcount<span class="heti-spacing"> </span></span>不为<span><span class="heti-spacing"> </span>1</span>，所以不会再次<span><span class="heti-spacing"> </span>wait(write)</span>，就都可以<span><span class="heti-spacing"> </span>read data</span>。</p>
+<h4 id="reader-first">Reader first</h4>
+<p>如果有<span><span class="heti-spacing"> </span>reader holds data</span>，<span>writer<span class="heti-spacing"> </span></span>永远拿不到锁，要等所有的<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>结束。</p>
+<h4 id="writer-first">Writer first</h4>
+<p>如果<span class="heti-skip"><span class="heti-spacing"> </span>write ready<span class="heti-spacing"> </span></span>了，他就会尽可能早地进行写操作。If reader holds data, new reader will wait for suspended writer.</p>
+<p>上面的<span class="heti-skip"><span class="heti-spacing"> </span>solution<span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>reader first</span>。</p>
+<p>如果一个<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>read data<span class="heti-spacing"> </span></span>的过程中被<span><span class="heti-spacing"> </span>interrupt</span>，下一个进程是一个<span><span class="heti-spacing"> </span>writer</span>，但是这个<span class="heti-skip"><span class="heti-spacing"> </span>writer<span class="heti-spacing"> </span></span>是在<span><span class="heti-spacing"> </span>write.waiting.queue</span> ，所以调度也调不到它。</p>
+<p></p><center><img src="./figures/2024-10-29-15-11-25.png" width="50%"/></center>
+<blockquote>
+<p>判断一个进程能否被调度，要看在<span class="heti-skip"><span class="heti-spacing"> </span>ready queue<span class="heti-spacing"> </span></span>还是<span><span class="heti-spacing"> </span>waiting queue</span>。</p>
+</blockquote>
+<h3 id="dining-philosophers-problem">Dining-philosophers problem</h3>
+<p>Philosophers spend their lives thinking and eating, they sit in a round table, but don’t interact with each other.</p>
+<p></p><center><img src="./figures/2024-10-29-15-11-55.png" width="50%"/></center>
+<p>每次只能拿一根筷子，但是要拿到两只筷子才能吃饭。例如如果每个人都先拿自己右边的筷子，再准备拿左边的筷子，就会卡死。</p>
+<p>Solution: only odd philosophers start left-hand first, and even philosophers start right-hand first. This does not deadlock.</p>
 </article>
 </div>
 </div>
