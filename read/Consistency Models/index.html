@@ -325,6 +325,30 @@
 <a class="md-nav__link" href="#consistency-models_1">
     Consistency Models
   </a>
+<nav aria-label="Consistency Models" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#definition">
+    Definition
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#parameterization">
+    Parameterization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sampling">
+    Sampling
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zero-shot-data-editing">
+    Zero-Shot Data Editing
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training-consistency-models-via-distillation">
@@ -385,6 +409,30 @@
 <a class="md-nav__link" href="#consistency-models_1">
     Consistency Models
   </a>
+<nav aria-label="Consistency Models" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#definition">
+    Definition
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#parameterization">
+    Parameterization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sampling">
+    Sampling
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zero-shot-data-editing">
+    Zero-Shot Data Editing
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training-consistency-models-via-distillation">
@@ -434,9 +482,91 @@ FID of 3.55 on CIFAR-10 and 6.20 on ImageNet 64 x 64 for one-step generation.</p
 <p>两种训练方式都不需要对抗训练。也都对架构的约束很少，可以使用灵活的神经网络来参数化<span><span class="heti-spacing"> </span>consistency model</span>。</p>
 <p>数据集：CIFAR-10, ImageNet 64 x 64, LSUN 256 x 256</p>
 <h2 id="diffusion-models">Diffusion Models</h2>
-<p>扩散模型通过高斯扰动逐步将数据扰动为噪声来生成数据，然后通过顺序去噪步骤从噪声中创建样本</p>
+<p>扩散模型通过高斯扰动逐步将数据扰动为噪声来生成数据，然后通过顺序去噪步骤从噪声中创建样本。用 <span class="arithmatex">\(p_{\text{data}}\)</span> 代表数据分布，<span>Diffusion model<span class="heti-spacing"> </span></span>从用<span class="heti-skip"><span class="heti-spacing"> </span>SDE diffusing<span class="heti-spacing"> </span></span><span class="arithmatex">\(p_{\text{data}}\)</span>开始：</p>
+<div class="arithmatex">\[
+dx_t = \mu(x_t, t)dt + \sigma(x_t, t)dW_t
+\]</div>
+<p>其中 <span class="arithmatex">\(W_t\)</span> 是<span><span class="heti-spacing"> </span>Brownian motion</span>，<span class="arithmatex">\(\mu\)</span> 是<span><span class="heti-spacing"> </span>drift coefficients</span>，<span class="arithmatex">\(\sigma\)</span> 是<span><span class="heti-spacing"> </span>diffusion coefficients</span>。将 <span class="arithmatex">\(x_t\)</span> 的分布表示为 <span class="arithmatex">\(p_t(x)\)</span>，则有<span class="arithmatex">\(p_0(x) = p_{\text{data}}(x)\)</span><span class="heti-skip"><span class="heti-spacing"> </span>.<span class="heti-spacing"> </span></span>这个<span class="heti-skip"><span class="heti-spacing"> </span>SDE<span class="heti-spacing"> </span></span>的显著特征是存在一个称为概率流<span class="heti-skip"><span class="heti-spacing"> </span>(probability Flow)<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>ODE</span>，其<span><span class="heti-spacing"> </span>solution trajectories sampled at t are distributed according to</span><span class="arithmatex">\(p_t(x)\)</span><span><span class="heti-spacing"> </span>.</span></p>
+<div class="arithmatex">\[
+dx_t = (\mu(x_t, t) - \frac{1}{2}\sigma^2(t)\nabla \log p_t(x_t))dt
+\]</div>
+<p>上面<span class="heti-skip"><span class="heti-spacing"> </span>SDE<span class="heti-spacing"> </span></span>的设计使得 <span class="arithmatex">\(P_T(x)\)</span> 接近于易处理的高斯分布 <span class="arithmatex">\(\pi(x)\)</span>，也就是噪声。采用设置 <span class="arithmatex">\(\mu(x,t) = 0,\sigma(t) = \sqrt{2t}\)</span> 在这种设置下，我们有 <span class="arithmatex">\(p_t(x) = p_0(x) \bigotimes \mathcal{N}(0,t^2I)\)</span>，其中 <span class="arithmatex">\(\bigotimes\)</span> 表示卷积。并且 <span class="arithmatex">\(\pi(x) = \mathcal{N}(0,T^2I)\)</span></p>
+<p>对于<span><span class="heti-spacing"> </span>sampling</span>，我们首先训练了一个<span class="heti-skip"><span class="heti-spacing"> </span>score model<span class="heti-spacing"> </span></span><span class="arithmatex">\(s_\Phi(x,t) \approx \nabla\log p_t(x)\)</span>通过<span><span class="heti-spacing"> </span>score mathcing</span>，然后将这个带入到上面的式子就得到<span class="heti-skip"><span class="heti-spacing"> </span>PF ODE<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>empirical estimate</span></p>
+<div class="arithmatex">\[
+\frac{dx_t}{dt}=-ts_\Phi(x_t,t)
+\]</div>
+<p>这个式子被称为<span><span class="heti-spacing"> </span>empirical PF ODE</span>。然后我们<span class="heti-skip"><span class="heti-spacing"> </span>sample<span class="heti-spacing"> </span></span><span class="arithmatex">\(\hat{x}_T \sim \pi = \mathcal{N}(0,T^2I)\)</span>来初始化<span class="heti-skip"><span class="heti-spacing"> </span>empirical PF ODE<span class="heti-spacing"> </span></span>并使用任何数值<span class="heti-skip"><span class="heti-spacing"> </span>ODE<span class="heti-spacing"> </span></span>求解器及时向后求解，such as Euler and Heun solvers to obtain the solution trajectory. <span class="arithmatex">\(\{\hat{x_T}\}_{t\in[0,T]}\)</span>，最后的结果 <span class="arithmatex">\(\hat{x}_0\)</span> 可以被看作原始数据的近似。<span>To avoid numerical instability,<span class="heti-spacing"> </span></span>一个常见的技巧是提早结束求解当<span class="arithmatex">\(t=\epsilon\)</span><span class="heti-skip"><span class="heti-spacing"> </span>, where<span class="heti-spacing"> </span></span><span class="arithmatex">\(\epsilon\)</span><span class="heti-skip"><span class="heti-spacing"> </span>is a small positive number.<span class="heti-spacing"> </span></span>把<span class="arithmatex">\(\hat{x_\epsilon}\)</span>作为最终的样本。在这里设置 <span class="arithmatex">\(\epsilon = 0.002,T=80\)</span></p>
+<p><span>Diffusion Model<span class="heti-spacing"> </span></span>受到采样速度的限制，显然使用<span class="heti-skip"><span class="heti-spacing"> </span>ODE<span class="heti-spacing"> </span></span>求解器采样需要对<span class="heti-skip"><span class="heti-spacing"> </span>score model<span class="heti-spacing"> </span></span><span class="arithmatex">\(s_\Phi(x,t)\)</span>进行迭代评估，计算成本较高。现有的快速采样方法包括更快的数值<span class="heti-skip"><span class="heti-spacing"> </span>ODE<span class="heti-spacing"> </span></span>求解器和蒸馏技术。然而<span class="heti-skip"><span class="heti-spacing"> </span>ODE<span class="heti-spacing"> </span></span>求解器仍然需要至少<span class="heti-skip"><span class="heti-spacing"> </span>10<span class="heti-spacing"> </span></span>个步骤来生成高质量的样本，而蒸馏技术依赖于在蒸馏之前从扩散模型中收集大量样本数据，这本身在计算上是昂贵的。只有<span class="heti-skip"><span class="heti-spacing"> </span>progressive distillation<span class="heti-spacing"> </span></span>的方法不受到这个缺陷的约束。</p>
 <h2 id="consistency-models_1">Consistency Models</h2>
+<h3 id="definition">Definition</h3>
+<p>给定<span><span class="heti-spacing"> </span>solution trajectory</span> <span class="arithmatex">\(\{x_t\}_{t\in[0,T]}\)</span>，定义 <em>consistency function</em> <span class="arithmatex">\(f:(x_t,t) \longmapsto x_\epsilon\)</span>，一个<span class="heti-skip"><span class="heti-spacing"> </span>consistency function<span class="heti-spacing"> </span></span>有 <em>self-consistency</em> property </p>
+<div class="admonition note self-consistency">
+<p class="admonition-title">Note</p>
+<p>对于任意 <span class="arithmatex">\(t\in[0,T]\)</span>，<span class="arithmatex">\(f(x_t,t) = x_\epsilon\)</span> 对于 <span class="arithmatex">\((x_t,t)\)</span> 属于同一个<span class="heti-skip"><span class="heti-spacing"> </span>PF ODE trajectory<span class="heti-spacing"> </span></span>是成立的。</p>
+</div>
+<p></p><center><img src="./figures/2024-10-29-22-25-34.png" width="80%"/></center>
+<p>The goal of consistency models , symbolized as <span class="arithmatex">\(f_\theta\)</span> , is to estimate this consistency function f from data by learning to enforce the self-consistency property </p>
+<h3 id="parameterization">Parameterization</h3>
+<p>对任意<span><span class="heti-spacing"> </span>consistency function</span> <span class="arithmatex">\(f(\cdot,\cdot)\)</span>，我们有 <span class="arithmatex">\(f(x_\epsilon,\epsilon) = x_\epsilon\)</span>，其中 <span class="arithmatex">\(f(\cdot,\epsilon)\)</span> 是恒等函数，我们把这个约束称为<span class="heti-skip"><span class="heti-spacing"> </span>boundary condition.<span class="heti-spacing"> </span></span>所有一致性模型都必须满足这个边界条件，因为它对于一致性模型的成功训练起着至关重要的作用。这个边界条件也是一致性模型最严格的架构约束。对基于深度神经网络的<span><span class="heti-spacing"> </span>consistency model</span>，本文讨论了两种几乎免费实现此边界条件的方法。</p>
+<p>假设有一个<span class="heti-skip"><span class="heti-spacing"> </span>free-form<span class="heti-spacing"> </span></span>深度神经网络 <span class="arithmatex">\(F_\theta(x,t)\)</span>，输出与 <span class="arithmatex">\(x\)</span> 在同一个维度，第一个方法是简单的参数化这个神经网络：</p>
+<div class="arithmatex">\[
+f_{\theta}(\mathbf{x}, t) = 
+\begin{cases}
+    \mathbf{x} &amp; t = \epsilon \\
+    F_{\theta}(\mathbf{x}, t) &amp; t \in (\epsilon, T]
+\end{cases}.
+\]</div>
+<p>The second method is to parameterize the consistency model using skip connections, that is</p>
+<div class="arithmatex">\[
+f_{\theta}(\mathbf{x}, t) = c_{\text{skip}}(t)\mathbf{x} + c_{\text{out}}(t)F_{\theta}(\mathbf{x}, t),
+\]</div>
+<p><span class="arithmatex">\(c_{\text{skip}}(\mathbf{x}, t)\)</span> 和 <span class="arithmatex">\(c_{\text{out}}(t)\)</span> 是可微函数满足 <span class="arithmatex">\(c_{\text{skip}}(\epsilon) = 1\)</span> 和 <span class="arithmatex">\(c_{\text{out}}(\epsilon) = 0\)</span>。这种方法下，<span>consistency model is differentiable at<span class="heti-spacing"> </span></span><span class="arithmatex">\(t = \epsilon\)</span><span>,which is critical for training continuous-time consistency models.<span class="heti-spacing"> </span></span>第二种参数化方法与许多成功的生成模型类似，使得更容易借用强大的扩散模型架构来构建一致性模型。因此，我们在所有实验中都遵循第二个参数化。</p>
+<h3 id="sampling">Sampling</h3>
+<p>对一个<span><span class="heti-spacing"> </span>well-trained consistency model</span> <span class="arithmatex">\(f_\theta(\cdot,\cdot)\)</span>，我们可以从初始分布<span class="arithmatex">\(\hat{x_T}\sim\mathcal{N}(0,T^2I)\)</span>中采样，然后<span><span class="heti-spacing"> </span>evaluating the consistency model for</span> <span class="arithmatex">\(\hat{x_\epsilon}=f_\theta(\hat{x_T},T)\)</span>。这里只包含了一次<span><span class="heti-spacing"> </span>forward pass</span>，因此 <em>generates samples in a single step</em><span>.Importantly, one can also evaluate the consistency model multiple times by alternating denoising and noise injection steps for improved sample quality.<span class="heti-spacing"> </span></span>这种多步采样过程提供了以计算换取样本质量的灵活性。它在<span class="heti-skip"><span class="heti-spacing"> </span>zero shot editing<span class="heti-spacing"> </span></span>中也有重要的应用</p>
+<div class="admonition note fid">
+<p class="admonition-title">Note</p>
+<p><span>FID<span class="heti-spacing"> </span></span>是基于弗里歇距离（Frechet Distance）的一种距离度量，用于比较两个高维分布之间的相似性。在图像生成任务中，这两个分布通常是：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>•   生成图像的特征分布（由生成模型生成的样本）。
+•   真实图像的特征分布（来自真实数据集的样本）。
+</code></pre></div></td></tr></table></div>
+</div>
+<p>在实验中，我们用贪心算法找到时间点 <span class="arithmatex">\(\{\mathcal{T}_1,\mathcal{T}_2,\cdots,\mathcal{T}_{N-1}\}\)</span>，其中使用三元搜索<span class="heti-skip"><span class="heti-spacing"> </span>(ternary search)<span class="heti-spacing"> </span></span>一次精确定位一个时间点，以优化从算法<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>获得的样本的<span><span class="heti-spacing"> </span>FID</span>。这假设给定先前时间点，<span>FID<span class="heti-spacing"> </span></span>是下一个时间点的单峰函数。</p>
+<p></p><center><img src="./figures/2024-10-30-00-35-28.png" width="80%"/></center>
+<p>上面算法就是反复去噪和注入噪声的过程，随着<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>增大，加的噪声越小</p>
+<h3 id="zero-shot-data-editing">Zero-Shot Data Editing</h3>
+<p><span>Consistency models<span class="heti-spacing"> </span></span>也可以用于<span><span class="heti-spacing"> </span>zero-shot data editing</span>，<span>they do not require explicit training to perform these tasks,<span class="heti-spacing"> </span></span>例如，一致性模型定义从高斯噪声向量到数据样本的一对一映射。</p>
 <h2 id="training-consistency-models-via-distillation">Training Consistency Models via Distillation</h2>
+<p>这种方法是基于<span class="heti-skip"><span class="heti-spacing"> </span>pre-trained diffusion model,<span class="heti-spacing"> </span></span>考虑将时间范围 <span class="arithmatex">\([\epsilon,T]\)</span> 划分成<span class="heti-skip"><span class="heti-spacing"> </span>N-1<span class="heti-spacing"> </span></span>个字区间，边界 <span class="arithmatex">\(t_1 = \epsilon &lt; t_2 &lt; \cdots &lt; t_N = T\)</span>，这里定义<span class="heti-skip"><span class="heti-spacing"> </span>boundary<span class="heti-spacing"> </span></span>的方式遵循了 <a href="https://arxiv.org/abs/2206.00364">这里的</a> 设置。 <span class="arithmatex">\(t_i = \left( \epsilon^{1/\rho} + \frac{i - 1}{N - 1} \left( T^{1/\rho} - \epsilon^{1/\rho} \right) \right)^{\rho}\)</span> 这里 <span class="arithmatex">\(\rho = 7\)</span>。当<span class="heti-skip"><span class="heti-spacing"> </span>N<span class="heti-spacing"> </span></span>充分大时，我们可以通过运行数值<span class="heti-skip"><span class="heti-spacing"> </span>ODE solver<span class="heti-spacing"> </span></span>的一个离散化步骤来从 <span class="arithmatex">\(x_{t_{n+1}}\)</span> 获得 <span class="arithmatex">\(x_{t_n}\)</span> 的<span><span class="heti-spacing"> </span>accuracy estimate,</span> <span class="arithmatex">\(\hat{x}^\phi_{t_n}\)</span>，其定义是</p>
+<div class="arithmatex">\[
+\hat{x}^\phi_{t_n}:= x_{t_{n+1}} + (t_{n} - t_{n+1})\Phi(x_{t_{n+1}},t_{n+1};\phi)
+\]</div>
+<p>其中 <span class="arithmatex">\(\Phi(\cdots;\phi)\)</span>代表<span><span class="heti-spacing"> </span>update function of one-step ODE solver applied to the empirical PF ODE</span>。</p>
+<p>比如在用<span class="heti-skip"><span class="heti-spacing"> </span>Euler Solver<span class="heti-spacing"> </span></span>时，相应的<span class="heti-skip"><span class="heti-spacing"> </span>update rule<span class="heti-spacing"> </span></span>变成</p>
+<div class="arithmatex">\[
+\hat{x}^\phi_{t_n} = x_{t_{n+1}} - (t_{n} - t_{n+1})s_\Phi(x_{t_{n+1}},t_{n+1})
+\]</div>
+<p>由于<span class="heti-skip"><span class="heti-spacing"> </span>PF ODE<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>SDE<span class="heti-spacing"> </span></span>之间的联系，我们可以首先采样 <span class="arithmatex">\(x\sim p_{\text{data}}\)</span> 然后将高斯噪声添加到<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>来沿<span class="heti-skip"><span class="heti-spacing"> </span>ODE trajectory<span class="heti-spacing"> </span></span>的分布进行采样。具体来说，给定<span class="heti-skip"><span class="heti-spacing"> </span>data point x,<span class="heti-spacing"> </span></span>我们可以高效地生成一对在<span class="heti-skip"><span class="heti-spacing"> </span>PF ODE<span class="heti-spacing"> </span></span>轨迹上的相邻点 <span class="arithmatex">\((\hat{x}^\phi_{t_n},x_{t_{n+1}})\)</span>，通过</p>
+<ul>
+<li>在数据集中采样<span><span class="heti-spacing"> </span>x</span></li>
+<li>从<span class="heti-skip"><span class="heti-spacing"> </span>the transition density of SDE<span class="heti-spacing"> </span></span><span class="arithmatex">\(N(x,t^2_{n+1}I)\)</span>中采样 <span class="arithmatex">\(x_{t_{n+1}}\)</span> </li>
+<li>通过上面的<span class="heti-skip"><span class="heti-spacing"> </span>one discretization step of the numerical ODE solver<span class="heti-spacing"> </span></span>生成 <span class="arithmatex">\(\hat{x}^\phi_{t_n}\)</span></li>
+</ul>
+<p>接着，用这个<span class="heti-skip"><span class="heti-spacing"> </span>pair<span class="heti-spacing"> </span></span>与 模型输出之间的<span class="heti-skip"><span class="heti-spacing"> </span>difference<span class="heti-spacing"> </span></span>来训练<span><span class="heti-spacing"> </span>consistency model</span>。</p>
+<p>The consistency distillation loss is defined as</p>
+<div class="arithmatex">\[
+\mathcal{L}_{CD}^N(\theta, \theta^- ; \phi) := \mathbb{E}\left[ \lambda(t_n) d\left(f_{\theta}(\mathbf{x}_{t_{n+1}}, t_{n+1}), f_{\theta^-}(\hat{\mathbf{x}}_{t_n}^{\phi}, t_n)\right) \right],
+\]</div>
+<p>这里的期望是关于<span class="arithmatex">\(x\sim p_{\text{data}},n\sim\mathcal{U}[1,N-1],x_{t_{n+1}}\sim\mathcal{N}(x;t^2_{n+1}I)\)</span><span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span><span class="arithmatex">\(\lambda(\cdot)\)</span>是一个正权重函数。<span class="arithmatex">\(\hat{\mathbf{x}}_{t_n}^{\phi}\)</span> 是由前面的<span class="heti-skip"><span class="heti-spacing"> </span>ODE solver<span class="heti-spacing"> </span></span>生成的。<span class="arithmatex">\(\theta^-\)</span> 表示优化过程中过去 <span class="arithmatex">\(\theta\)</span> 值的运行平均值，<span class="arithmatex">\(d(\cdot,\cdot)\)</span> 是度量函数满足<span class="arithmatex">\(\forall\mathbf{x},\mathbf{y}:d(\mathbf{x},\mathbf{y})\geqslant0\)</span><span><span class="heti-spacing"> </span>and</span><span class="arithmatex">\(d(x,y) = 0\)</span><span><span class="heti-spacing"> </span>if and only if</span> <span class="arithmatex">\(x=y\)</span></p>
+<div class="arithmatex">\[
+\theta^- \leftarrow \text{stopgrad}(\mu\theta^- + (1-\mu)\theta)
+\]</div>
+<p></p><center><img src="./figures/2024-10-30-01-42-06.png" width="80%"/></center>
+<p>根据深度学习的惯例，我们称 <span class="arithmatex">\(f_{\theta^-}\)</span> 为<span><span class="heti-spacing"> </span>"target network"</span>， <span class="arithmatex">\(f_{\theta}\)</span> 为<span class="heti-skip"><span class="heti-spacing"> </span>"Online network",<span class="heti-spacing"> </span></span>我们发现，与简单设置 <span class="arithmatex">\(\theta^- = \theta\)</span> 相比<span class="heti-skip"><span class="heti-spacing"> </span>,EMA<span class="heti-spacing"> </span></span>更新和“stopgrad”算子<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>可以极大地稳定训练过程，提高一致性模型的最终性能</p>
+<div class="admonition note stopgrad">
+<p class="admonition-title">Note</p>
+<p>在机器学习或深度学习中，stopgrad（通常表示 “stop gradient” 或 “detach”）用于阻止梯度的反向传播。这意味着计算图中的这一部分不会计算或传播梯度，即使在优化过程中也不会影响参数的更新。这种方法通常用于更新目标网络的参数（例如在深度强化学习中的目标网络更新），以使目标网络的参数逐步追随主网络的参数，而不干扰主网络的训练。</p>
+</div>
 <h2 id="training-consistency-models-in-isolation">Training Consistency Models in Isolation</h2>
 <h2 id="cm-distillation">CM Distillation</h2>
 </article>
