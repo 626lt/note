@@ -104,7 +104,10 @@ nav:
     - Threads: os/Threads/index.md
     - Synchronization: os/Synchronization/index.md
     - Deadlock: os/Deadlock/index.md
-  # - Read:
-  #   - read/index.md
-  #   - Diffusion: read/diffusion/index.md
+  - ML:
+    - ml/index.md
+    - probability graph: ml/probability graph/index.md
+  - Read:
+    - read/index.md
+    - Diffusion: read/diffusion/index.md
    
