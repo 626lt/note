@@ -56,4 +56,124 @@ Peterson’s Solution is not guaranteed to work on modern architectures.
 指令会乱序执行。
 
 wait 和 signal 都要是 automatic 的，不能被打断。
-linux 内 spinlock 用的多，很多操作都是很短的对一个变量操作。
+linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个变量操作。
+
+长的用 semaphore，存在 context-switch，
+
+长短用 context-switch 来比较。
+
+## Synchornization Examples
+
+### Bounded-Buffer Problem
+
+Two processes, the producer and the consumer share n buffers
+
++ the producer generates data, puts it into the buffer
+  + the producer won’t try to add data into the buffer if it is full.
++ the consumer consumes data by removing it from the buffer.
+  + the consumer won’t try to remove data from an empty buffer.
+
+需要定义哪些变量？
+
++ n buffer
++ mutex initialized to 1
++ full-slots initialized to 0
++ empty-slots initialized to n
+  
+
+> 需要些几条语句，顺序也很关键
+
++ producer process
+```c
+do {
+// produce an item
+...
+wait(empty-slots); // 往里面填之前需要拿一个 empty slot
+wait(mutex); // 不能调换，调换了就带着锁 sleep，别的 producer 就进不来了
+// add the item to the buffer
+...
+signal(mutex); 
+signal(full-slots);
+} while(True);
+```
+
++ consumer process
+```c
+do {
+    //produce an item
+    ...
+    wait(full-slots);   // 把 full-slots 减一
+    wait(mutex);
+    //remove the item to the buffer
+    ...
+    signal(mutex);
+    signal(empty-slots);
+} while (TRUE)
+```
+
+### Readers-writers problem
+
+A data set is shared among a number of concurrent processes
++ readers: only read the data set; they do not perform any updates
++ writers: can both read and write
+
+Problems:多个 reader 可以共享，即同时读；但只能有一个 write 访问数据（写和读也不共享）。
+
+Solution:
+
++ semaphore mutex initialized to 1
++ semaphore write initialized to 1
++ integer readcount initialized to 0
+
++ Writer process
+```c 
+do {
+  wait(write); // 跟所有人互斥
+  // write the shared data
+  signal(write);
+}while (TRUE);
+```
+
++ Reader process
+```c
+do {
+    wait(mutex); 
+    readcount++;
+    if (readcount == 1) // 读跟写互斥
+        wait(write);
+    signal(mutex)
+    //reading data
+    ...
+    wait(mutex);
+    readcount--;
+    if (readcount == 0) 
+        signal(write);
+    signal(mutex);
+} while(TRUE);
+```
+
+mutex 是保护 readcount。第一个 reader 在等到 writer 释放以后，就把 mutex 释放，后面的 reader 由于 readcount 不为 1，所以不会再次 wait(write)，就都可以 read data。
+
+#### Reader first
+如果有 reader holds data，writer 永远拿不到锁，要等所有的 reader 结束。
+
+#### Writer first
+如果 write ready 了，他就会尽可能早地进行写操作。If reader holds data, new reader will wait for suspended writer.
+
+上面的 solution 是 reader first。
+
+如果一个 reader 在 read data 的过程中被 interrupt，下一个进程是一个 writer，但是这个 writer 是在 write.waiting.queue ，所以调度也调不到它。
+
+<center><img src="./figures/2024-10-29-14-58-35.png" width=50% /></center>
+
+> 判断一个进程能否被调度，要看在 ready queue 还是 waiting queue。
+
+### Dining-philosophers problem
+
+Philosophers spend their lives thinking and eating, they sit in a round table, but don’t interact with each other.
+
+<center><img src="./figures/2024-10-29-15-03-16.png" width=50% /></center>
+
+每次只能拿一根筷子，但是要拿到两只筷子才能吃饭。例如如果每个人都先拿自己右边的筷子，再准备拿左边的筷子，就会卡死。
+
+Solution: only odd philosophers start left-hand first, and even philosophers start right-hand first. This does not deadlock.
