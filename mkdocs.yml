@@ -110,4 +110,6 @@ nav:
   - Read:
     - read/index.md
     - Diffusion: read/diffusion/index.md
+    - Consistency Models: read/Consistency Models/index.md
+    - SDE: read/SDE/index.md
    

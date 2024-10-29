@@ -25,37 +25,30 @@
 马尔可夫链：系统下一时刻的状态仅由当前状态决定，不依赖于以往的任何状态。基于这种依赖关系，所有变量的联合概率分布为
 
 $$
-P(x_1, x_2, \cdots, x_n,y_n) = P(x_1|y_1)\prods_{i=2}^n P(x_i|y_i)P(y_i|y_{i-1})
+P(x_1, x_2, \cdots, x_n,y_n) = P(x_1|y_1)\prod_{i=2}^n P(x_i|y_i)P(y_i|y_{i-1})
 $$
 
 是一种现在决定未来的模型
 
-<center>
-    <img src="./figures/2024-10-29-17-23-20.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-23-20.png" width=80%></center>
 
-<center>
-    <img src="./figures/2024-10-29-17-24-02.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-24-02.png" width=80%></center>
 
 观测训练产生：
+
 1. 设置 $t=1$，并根据初始状态概率$\pi$选择初始状态 $y_1$
 2. 根据状态 $y_t$ 的概率分布和输出观测概率 B 选择观测变量取值 $x_t$
 3. 根据状态 $y_t$ 的概率分布和状态转移概率 A 选择下一状态 $y_{t+1}$
 4. 若 $t<T$，则 $t=t+1$，转步骤 2；否则结束
 
-<center>
-    <img src="./figures/2024-10-29-17-26-05.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-26-05.png", width=80%></center>
 
 ## 马尔可夫随机场
 markov random field (MRF)
 
 典型的马尔可夫网，这是一种著名的无向图模型。图中每个结点 表示一个或一组变量，结点之间的边表示两个变量之间的依赖关 系。马尔可夫随机场有二组势函数，亦称“因子”，这是定义在变 量子集上的非负实函数，主要用于定义概率分布函数。
 
-<center>
-    <img src="./figures/2024-10-29-17-26-51.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-26-51.png", width=80%></center>
 
 对于图中结点的一个子集，若其中任意两结点间都有边连接，则 称该结点子集为一个“ 团” 。 若在一个团中加入另外任何一个结点 都不再形成团，则称该团为“极大团”;换言之，极大团就是不能 被其他团所包含的团。
 
@@ -67,34 +60,30 @@ $$
 
 基于极大团定义
 
-<center>
-    <img src="./figures/2024-10-29-17-32-08.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-32-08.png", width=80%></center>
 
 分离集:若从结点集 A 中的结点到 B 中的结点都必须经过结点集 C 中的结点，则称结点集 A 和 B 被结点集 C 分离
 
 全局马尔可夫性:给定两个变量子集的分离集，则这两个变量子 集条件独立。
 
-<center>
-    <img src="./figures/2024-10-29-17-33-30.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-33-30.png", width=80%></center>
 
 基于条件概率的定义可得：
 
 $$
-\begin{align*}
+\begin{aligned}
 P(x_A, x_B \mid x_C) &= \frac{P(x_A, x_B, x_C)}{P(x_C)} = \frac{P(x_A, x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} P(x'_A, x'_B, x_C)} \\
 &= \frac{\frac{1}{Z} \psi_{AC}(x_A, x_C) \psi_{BC}(x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} \frac{1}{Z} \psi_{AC}(x'_A, x_C) \psi_{BC}(x'_B, x_C)} \\
 &= \frac{\psi_{AC}(x_A, x_C)}{\sum_{x'_A} \psi_{AC}(x'_A, x_C)} \cdot \frac{\psi_{BC}(x_B, x_C)}{\sum_{x'_B} \psi_{BC}(x'_B, x_C)}.
-\end{align*}
+\end{aligned}
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 P(x_A \mid x_C) &= \frac{P(x_A, x_C)}{P(x_C)} = \frac{\sum_{x'_B} P(x_A, x'_B, x_C)}{\sum_{x'_A} \sum_{x'_B} P(x'_A, x'_B, x_C)} \\
 &= \frac{\sum_{x_B} \frac{1}{Z} \psi_{AC}(x_A, x_C) \psi_{BC}(x_B, x_C)}{\sum_{x'_A} \sum_{x'_B} \frac{1}{Z} \psi_{AC}(x'_A, x_C) \psi_{BC}(x'_B, x_C)} \\
 &= \frac{\psi_{AC}(x_A, x_C)}{\sum_{x'_A} \psi_{AC}(x'_A, x_C)}.
-\end{align*}
+\end{aligned}
 $$
 
 因此我们有 $P(x_A,x_B|x_C)=P(x_A|x_C)P(x_B|x_C)$
@@ -103,8 +92,7 @@ $$
 + 局部马尔可夫性:给定某变量的邻接变量，则该变量条件独立于其他变量
 + 成立对马尔可夫性:给定所有其他变量，两个非邻接变量条件独立
 
-<center>
-    <img src="./figures/2024-10-29-17-40-55.png", width=80%>
+<center><img src="./figures/2024-10-29-17-40-55.png", width=80%></center>
 
 ## 条件随机场
 
@@ -113,18 +101,14 @@ $$
 若图 G 的每个变量 $y_v$ 都满足马尔可夫性，即
 
 $$
-P(y_v|x,y_{V\\{v\\}}) = P(y_v|x,y_{N(v)})
+P(y_v|x,y_{V-\{v\}}) = P(y_v|x,y_{N(v)})
 $$
 
-则 $\(y,x\)$ 构成一个条件随机场
+则 $(y,x)$ 构成一个条件随机场
 
-<center>
-    <img src="./figures/2024-10-29-17-43-08.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-43-08.png", width=80%></center>
 
-<center>
-    <img src="./figures/2024-10-29-17-43-39.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-43-39.png", width=80%></center>
 
 ## 学习与推断
 
@@ -136,9 +120,7 @@ $$
 
 变量消去就是对无关变量都做求和，将与之相关的项相加就得到了与之无关的项。
 
-<center>
-    <img src="./figures/2024-10-29-17-50-02.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-50-02.png", width=80%></center>
 
 ### 信念传播
 
@@ -154,9 +136,7 @@ $$
 + 指定一个根结点，从所有叶结点开始向根结点传递消息，直到根结点收到所有邻接结点的消息
 + 从根结点开始向叶结点传递消息，直到所有叶结点均收到消息
 
-<center>
-    <img src="./figures/2024-10-29-17-53-27.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-17-53-27.png", width=80%></center>
 
 ## 近似推断
 
@@ -185,21 +165,15 @@ $$
 
 Metropolis-Hastings 算法 (MH) 算法
 
-<center>
-    <img src="./figures/2024-10-29-18-30-16.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-18-30-16.png", width=80%></center>
 
-<center>
-    <img src="./figures/2024-10-29-18-30-49.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-18-30-49.png", width=80%></center>
 
 ### 变分推断
 
 + 盘式记法
 
-<center>
-    <img src="./figures/2024-10-29-18-31-33.png", width=80%>
-</center>
+<center><img src="./figures/2024-10-29-18-31-33.png", width=80%></center>
 
 所有能观察到的变量x的联合分布的概率密度函数是
 
@@ -219,5 +193,31 @@ $$
 \begin{aligned}
 \Theta^{t+1} &= \argmax_{\Theta} Q(\Theta;\Theta^t)\\
 &= \argmax_{\Theta} \sum_{z} p(z|x,\Theta^t) \ln p(x,z|\Theta)
+\end{aligned}
+$$
 
-## 话题模拟
+对数似然可以分解成 ELBO 和 KL 散度:
+
+$$
+\begin{aligned}
+\ln p(x|\Theta) = ELBO + KL(q||p) \\
+ELBO = \int q(z) \ln \frac{p(x,z)}{q(z)} dz \\
+KL(q||p) = -\int q(z) \ln \frac{p(z|x)}{q(z)} dz
+\end{aligned}
+$$
+
+<center><img src="./figures/2024-10-29-18-51-33.png", width=80%></center>
+
+<center><img src="./figures/2024-10-29-19-00-03.png", width=80%></center>
+
+## 话题模型
+
+话题模型是一族生成式有向图模型，主要用于处理离散型的数据（如文本集合），在信息检索，自然语言处理等领域有广泛应用。代表有潜在狄利克雷分配模型（LDA）。
+
+"词"是待处理数据的基本离散单元，例如在文本处理任务中，一个词就是一个英文单词或有独立意义的中文词
+“文档”是待处理的数据对象，它由一组词组成，这些词在文档中是不计顺序的，例如一篇论文、一个网页都可看作一个文档:这样的表示方式称为"词袋" 
+数据对象只要能用词袋描述，就可使用话题模型“话题”表示一个概念，具体表示为一系列相关的词，以及它们在该概念下出现的概率。
+
+<center><img src="./figures/2024-10-29-19-03-58.png", width=80%></center>
+
+<center><img src="./figures/2024-10-29-19-04-16.png", width=80%></center>
