@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/os/Deadlock/" rel="canonical"/>
+<link href="https://626lt.github.io/os/Deadlock/" rel="canonical"/>
 <link href="../Synchronization/" rel="prev"/>
 <link href="../../ml/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
@@ -14,12 +14,11 @@
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&amp;display=fallback" rel="stylesheet"/>
 <link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/counter.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="../../css/counter.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
@@ -471,12 +470,12 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="deadlock">Deadlock</h1>
-<h2 id="deadlock-problem">Deadlock problem</h2>
+<h1 id="deadlock">Deadlock<a class="headerlink" href="#deadlock" title="Permanent link">¶</a></h1>
+<h2 id="deadlock-problem">Deadlock problem<a class="headerlink" href="#deadlock-problem" title="Permanent link">¶</a></h2>
 <p>Deadlock problem: a set of block processes each holding a resource and waiting to acquire a resource held by another process in the set.</p>
 <p>Note: most OSes do not prevent or deal with deadlocks.</p>
 <p>Can be illustrated by a resource allocation graph.</p>
-<h2 id="system-model-of-deadlock">System Model of deadlock</h2>
+<h2 id="system-model-of-deadlock">System Model of deadlock<a class="headerlink" href="#system-model-of-deadlock" title="Permanent link">¶</a></h2>
 <ul>
 <li>Resources: each represents a different resource type e.g. CPU cycles, memory space, I/O devices</li>
 <li>each resource type <span class="arithmatex">\(R_i\)</span> has <span class="arithmatex">\(W_i\)</span> instances</li>
@@ -485,7 +484,7 @@
 <li>use</li>
 <li>release</li>
 </ul>
-<h3 id="four-conditions-of-deadlock">Four Conditions of Deadlock</h3>
+<h3 id="four-conditions-of-deadlock">Four Conditions of Deadlock<a class="headerlink" href="#four-conditions-of-deadlock" title="Permanent link">¶</a></h3>
 <ol>
 <li>Mutual exclusion: a resource can only be used by one process at a time.</li>
 <li>Hold and wait: a process holding at least one resource is waiting to acquire additional resources held by other processes.</li>
@@ -496,7 +495,7 @@
 <p class="admonition-title">Example</p>
 <p></p><center><img src="./figures/2024-10-30-16-18-42.png" width="80%"/></center>
 </div>
-<h2 id="how-to-handle-deadlock">How to handle deadlock</h2>
+<h2 id="how-to-handle-deadlock">How to handle deadlock<a class="headerlink" href="#how-to-handle-deadlock" title="Permanent link">¶</a></h2>
 <p>Ensure the system will never enter a deadlock state.</p>
 <ul>
 <li>Prevention</li>
@@ -507,7 +506,7 @@
 <li>Detection</li>
 </ul>
 <p>Ignore the problem and pretend that deadlocks never occur in the system; used by most OSes.</p>
-<h3 id="deadlock-prevention">Deadlock Prevention</h3>
+<h3 id="deadlock-prevention">Deadlock Prevention<a class="headerlink" href="#deadlock-prevention" title="Permanent link">¶</a></h3>
 <ul>
 <li>prevent mutual exclusion</li>
 <li>not required for sharable resources</li>
@@ -528,9 +527,9 @@
 <li>require that each process requests resources in an increasing order of enumeration</li>
 <li>many OSes adopt this strategy for some locks.</li>
 </ul>
-<h3 id="deadlock-avoidance">Deadlock Avoidance</h3>
+<h3 id="deadlock-avoidance">Deadlock Avoidance<a class="headerlink" href="#deadlock-avoidance" title="Permanent link">¶</a></h3>
 <p><span>avoidance<span class="heti-spacing"> </span></span>用了一些算法，在分配资源之前，先判断是否会死锁，如果会死锁就不分配。</p>
-<h4 id="safe-state">Safe State</h4>
+<h4 id="safe-state">Safe State<a class="headerlink" href="#safe-state" title="Permanent link">¶</a></h4>
 <p>序列里的每一个进程都可以被满足<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（空闲的资源和之前的进程释放的资源）
 Safe state can guarantee no deadlock.
 Deadlock avoidance ensure a system never enters an unsafe state.</p>
@@ -542,7 +541,7 @@ Deadlock avoidance ensure a system never enters an unsafe state.</p>
 <p class="admonition-title">Example</p>
 <p></p><center><img src="./figures/2024-10-30-16-19-28.png" width="80%"/></center>
 </div>
-<h4 id="bankers-algorithm">banker's algorithm</h4>
+<h4 id="bankers-algorithm">banker's algorithm<a class="headerlink" href="#bankers-algorithm" title="Permanent link">¶</a></h4>
 <ul>
 <li><span>claim edge:<span class="heti-spacing"> </span></span>某个<span class="heti-skip"><span class="heti-spacing"> </span>process<span class="heti-spacing"> </span></span>可能需要<span><span class="heti-spacing"> </span>resource</span>，用<span class="heti-skip"><span class="heti-spacing"> </span>dashed line<span class="heti-spacing"> </span></span>表示</li>
 <li>
@@ -563,9 +562,9 @@ Deadlock avoidance ensure a system never enters an unsafe state.</p>
 </ul>
 <p>我们通过<span><span class="heti-spacing"> </span>available</span>（当前还没有被分配的空闲资源）, max（进程所需要的资源）, allocation（已经分配的资源）, need（还需要分配多少资源） 这四个矩阵刻画一个时间内各个进程对各种资源的持有和需求情况。</p>
 <p>选取一个<span><span class="heti-spacing"> </span>need</span>（的每一项都对应地）小于<span><span class="heti-spacing"> </span>available</span>（的对应项）的进程，其运行完后会将<span class="heti-skip"><span class="heti-spacing"> </span>allocation<span class="heti-spacing"> </span></span>释放回<span><span class="heti-spacing"> </span>work</span>（前面的进程执行完毕后，空闲的资源），以此类推。事实上并不<span><span class="heti-spacing"> </span>work</span>，因为并不知道需要多少资源。</p>
-<h2 id="deadlock-detection">Deadlock Detection</h2>
+<h2 id="deadlock-detection">Deadlock Detection<a class="headerlink" href="#deadlock-detection" title="Permanent link">¶</a></h2>
 <p>用<span class="heti-skip"><span class="heti-spacing"> </span>process<span class="heti-spacing"> </span></span>做<span class="heti-skip"><span class="heti-spacing"> </span>node<span class="heti-spacing"> </span></span>画<span><span class="heti-spacing"> </span>wait-for graph</span>，如果有环就有<span><span class="heti-spacing"> </span>deadlock</span>。</p>
-<h2 id="deadlock-recovery">Deadlock Recovery</h2>
+<h2 id="deadlock-recovery">Deadlock Recovery<a class="headerlink" href="#deadlock-recovery" title="Permanent link">¶</a></h2>
 <ul>
 <li>Terminate deadlocked processes options</li>
 <li>abort all deadlocked processes</li>
@@ -597,9 +596,40 @@ Deadlock avoidance ensure a system never enters an unsafe state.</p>
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Synchronization" class="md-footer__link md-footer__link--prev" href="../Synchronization/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Synchronization
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Index" class="md-footer__link md-footer__link--next" href="../../ml/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Index
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023-2024 <a href="https://github.com/626lt" rel="noopener" target="_blank">626lt</a>
+</div>
   
   
     Made with
@@ -614,7 +644,7 @@ Deadlock avoidance ensure a system never enters an unsafe state.</p>
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
 <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
 <script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>

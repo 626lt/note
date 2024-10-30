@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/cg/OpenGL/" rel="canonical"/>
+<link href="https://626lt.github.io/cg/OpenGL/" rel="canonical"/>
 <link href="../2D%20Graphics/" rel="prev"/>
 <link href="../Geometric%20Transformation/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
@@ -14,12 +14,11 @@
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&amp;display=fallback" rel="stylesheet"/>
 <link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/counter.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="../../css/counter.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
@@ -377,10 +376,10 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="opengl">OpenGL</h1>
+<h1 id="opengl">OpenGL<a class="headerlink" href="#opengl" title="Permanent link">¶</a></h1>
 <p><span>key task:<span class="heti-spacing"> </span></span>将三维的物体投影到二维的屏幕上</p>
 <div align="center"> <img src="./figures/2024-09-22-16-34-11.png" width="60%"/> </div>
-<h2 id="opengl-toolchain">OpenGL toolchain</h2>
+<h2 id="opengl-toolchain">OpenGL toolchain<a class="headerlink" href="#opengl-toolchain" title="Permanent link">¶</a></h2>
 <ul>
 <li>OpenGL <code>#include &lt;GL/gl.h&gt;</code></li>
 <li>Platform-independent “core” library</li>
@@ -393,7 +392,7 @@
 + Define Objects in World Space
 + Set Modeling and Viewing Transformations
 + Render the Scene</p>
-<h2 id="how-it-work">How it work</h2>
+<h2 id="how-it-work">How it work<a class="headerlink" href="#how-it-work" title="Permanent link">¶</a></h2>
 <ul>
 <li>OpenGL is a state machine</li>
 <li>Give orders to set the current state of any one of its internal variables, or to query its current status</li>
@@ -401,7 +400,7 @@
 <li>if you set the current color to Red, everything you draw will be painted Red until you change the color explicitly</li>
 <li>Each of the system’s state variables has a default value</li>
 </ul>
-<h2 id="opengl-primitives">OpenGL Primitives</h2>
+<h2 id="opengl-primitives">OpenGL Primitives<a class="headerlink" href="#opengl-primitives" title="Permanent link">¶</a></h2>
 <ul>
 <li>GL_POINTS</li>
 <li>GL_LINES</li>
@@ -423,9 +422,40 @@
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 2D Graphics" class="md-footer__link md-footer__link--prev" href="../2D%20Graphics/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                2D Graphics
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Geometric Transformation" class="md-footer__link md-footer__link--next" href="../Geometric%20Transformation/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Geometric Transformation
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023-2024 <a href="https://github.com/626lt" rel="noopener" target="_blank">626lt</a>
+</div>
   
   
     Made with
@@ -440,7 +470,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
 <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
 <script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>

@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/os/Synchronization/" rel="canonical"/>
+<link href="https://626lt.github.io/os/Synchronization/" rel="canonical"/>
 <link href="../Threads/" rel="prev"/>
 <link href="../Deadlock/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
@@ -14,12 +14,11 @@
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&amp;display=fallback" rel="stylesheet"/>
 <link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/counter.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="../../css/counter.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
@@ -433,8 +432,8 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="synchronization">Synchronization</h1>
-<h2 id="race-condition">Race Condition</h2>
+<h1 id="synchronization">Synchronization<a class="headerlink" href="#synchronization" title="Permanent link">¶</a></h1>
+<h2 id="race-condition">Race Condition<a class="headerlink" href="#race-condition" title="Permanent link">¶</a></h2>
 <p>Several processes (or threads) access and manipulate the same data concurrently and the outcome of the execution depends on the particular order in which the access takes place, is called a race-condition.
 多个进程并行地写数据，结果取决于写的先后顺序，这就是竞争条件。</p>
 <p><span>kernel<span class="heti-spacing"> </span></span>里面<span class="heti-skip"><span class="heti-spacing"> </span>race<span class="heti-spacing"> </span></span>经常发生，在内核中，比如两个进程同时<span><span class="heti-spacing"> </span>fork</span>，子进程可能拿到一样的<span><span class="heti-spacing"> </span>pid</span>。</p>
@@ -482,8 +481,8 @@
 linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个变量操作。</p>
 <p>长的用<span><span class="heti-spacing"> </span>semaphore</span>，存在<span><span class="heti-spacing"> </span>context-switch</span>，</p>
 <p>长短用<span class="heti-skip"><span class="heti-spacing"> </span>context-switch<span class="heti-spacing"> </span></span>来比较。</p>
-<h2 id="synchornization-examples">Synchornization Examples</h2>
-<h3 id="bounded-buffer-problem">Bounded-Buffer Problem</h3>
+<h2 id="synchornization-examples">Synchornization Examples<a class="headerlink" href="#synchornization-examples" title="Permanent link">¶</a></h2>
+<h3 id="bounded-buffer-problem">Bounded-Buffer Problem<a class="headerlink" href="#bounded-buffer-problem" title="Permanent link">¶</a></h3>
 <p>Two processes, the producer and the consumer share n buffers</p>
 <ul>
 <li>the producer generates data, puts it into the buffer</li>
@@ -549,7 +548,7 @@ linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个�
 </span></code></pre></div></td></tr></table></div>
 </li>
 </ul>
-<h3 id="readers-writers-problem">Readers-writers problem</h3>
+<h3 id="readers-writers-problem">Readers-writers problem<a class="headerlink" href="#readers-writers-problem" title="Permanent link">¶</a></h3>
 <p>A data set is shared among a number of concurrent processes
 + readers: only read the data set; they do not perform any updates
 + writers: can both read and write</p>
@@ -607,9 +606,9 @@ linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个�
 </li>
 </ul>
 <p><span>mutex<span class="heti-spacing"> </span></span>是保护<span><span class="heti-spacing"> </span>readcount</span>。第一个<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>在等到<span class="heti-skip"><span class="heti-spacing"> </span>writer<span class="heti-spacing"> </span></span>释放以后，就把<span class="heti-skip"><span class="heti-spacing"> </span>mutex<span class="heti-spacing"> </span></span>释放，后面的<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>由于<span class="heti-skip"><span class="heti-spacing"> </span>readcount<span class="heti-spacing"> </span></span>不为<span><span class="heti-spacing"> </span>1</span>，所以不会再次<span><span class="heti-spacing"> </span>wait(write)</span>，就都可以<span><span class="heti-spacing"> </span>read data</span>。</p>
-<h4 id="reader-first">Reader first</h4>
+<h4 id="reader-first">Reader first<a class="headerlink" href="#reader-first" title="Permanent link">¶</a></h4>
 <p>如果有<span><span class="heti-spacing"> </span>reader holds data</span>，<span>writer<span class="heti-spacing"> </span></span>永远拿不到锁，要等所有的<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>结束。</p>
-<h4 id="writer-first">Writer first</h4>
+<h4 id="writer-first">Writer first<a class="headerlink" href="#writer-first" title="Permanent link">¶</a></h4>
 <p>如果<span class="heti-skip"><span class="heti-spacing"> </span>write ready<span class="heti-spacing"> </span></span>了，他就会尽可能早地进行写操作。If reader holds data, new reader will wait for suspended writer.</p>
 <p>上面的<span class="heti-skip"><span class="heti-spacing"> </span>solution<span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>reader first</span>。</p>
 <p>如果一个<span class="heti-skip"><span class="heti-spacing"> </span>reader<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>read data<span class="heti-spacing"> </span></span>的过程中被<span><span class="heti-spacing"> </span>interrupt</span>，下一个进程是一个<span><span class="heti-spacing"> </span>writer</span>，但是这个<span class="heti-skip"><span class="heti-spacing"> </span>writer<span class="heti-spacing"> </span></span>是在<span><span class="heti-spacing"> </span>write.waiting.queue</span> ，所以调度也调不到它。</p>
@@ -617,7 +616,7 @@ linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个�
 <blockquote>
 <p>判断一个进程能否被调度，要看在<span class="heti-skip"><span class="heti-spacing"> </span>ready queue<span class="heti-spacing"> </span></span>还是<span><span class="heti-spacing"> </span>waiting queue</span>。</p>
 </blockquote>
-<h3 id="dining-philosophers-problem">Dining-philosophers problem</h3>
+<h3 id="dining-philosophers-problem">Dining-philosophers problem<a class="headerlink" href="#dining-philosophers-problem" title="Permanent link">¶</a></h3>
 <p>Philosophers spend their lives thinking and eating, they sit in a round table, but don’t interact with each other.</p>
 <p></p><center><img src="./figures/2024-10-29-15-11-55.png" width="50%"/></center>
 <p>每次只能拿一根筷子，但是要拿到两只筷子才能吃饭。例如如果每个人都先拿自己右边的筷子，再准备拿左边的筷子，就会卡死。</p>
@@ -631,9 +630,40 @@ linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个�
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Threads" class="md-footer__link md-footer__link--prev" href="../Threads/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Threads
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Deadlock" class="md-footer__link md-footer__link--next" href="../Deadlock/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Deadlock
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023-2024 <a href="https://github.com/626lt" rel="noopener" target="_blank">626lt</a>
+</div>
   
   
     Made with
@@ -648,7 +678,7 @@ linux 内 spinlock(mutexlock) 用的多，很多操作都是很短的对一个�
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
 <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
 <script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
