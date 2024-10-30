@@ -205,6 +205,11 @@
         View
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Antialiasing/">
+        Antialiasing
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -457,11 +462,15 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="consistency-models">Consistency Models</h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><img alt=":material-circle-edit-outline:" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/None.svg" title=":material-circle-edit-outline:"/> 约<span class="heti-skip"><span class="heti-spacing"> </span>2403<span class="heti-spacing"> </span></span>个字 <img alt=":material-clock-time-two-outline:" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/None.svg" title=":material-clock-time-two-outline:"/> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>8<span class="heti-spacing"> </span></span>分钟</p>
+</div>
 <p><a href="https://arxiv.org/abs/2303.01469">Arxiv</a></p>
 <h2 id="abstract">Abstract</h2>
 <ul>
 <li>问题：<span>Diffusion<span class="heti-spacing"> </span></span>的效果很好，但是依赖于迭代采样过程，这使得生成缓慢</li>
 <li>解决：<span>consistency Models--<span class="heti-spacing"> </span></span>直接将噪声映射到数据来生成高质量的样本</li>
+<li><span>idea:<span class="heti-spacing"> </span></span>通过<span class="heti-skip"><span class="heti-spacing"> </span>enforcing self-consistency property<span class="heti-spacing"> </span></span>来训练<span><span class="heti-spacing"> </span>consistency models</span>；为什么能<span><span class="heti-spacing"> </span>single-step</span>：满足<span><span class="heti-spacing"> </span>consistency property</span>，在轨迹上任何一点都可以映射到初始点即原始的数据空间。</li>
 </ul>
 <p><span>Consistency Model<span class="heti-spacing"> </span></span><strong>既支持快速一步生成，也支持多步生成高质量样本</strong>。They also support zero-shot data editing, such as image inpainting, colorization, and super-resolution, without requiring explicit training on these tasks.
 既能用 single-step 生成样本，也能多次迭代来提高样本质量。</p>
@@ -567,6 +576,12 @@ f_{\theta}(\mathbf{x}, t) = c_{\text{skip}}(t)\mathbf{x} + c_{\text{out}}(t)F_{\
 <p class="admonition-title">Note</p>
 <p>在机器学习或深度学习中，stopgrad（通常表示 “stop gradient” 或 “detach”）用于阻止梯度的反向传播。这意味着计算图中的这一部分不会计算或传播梯度，即使在优化过程中也不会影响参数的更新。这种方法通常用于更新目标网络的参数（例如在深度强化学习中的目标网络更新），以使目标网络的参数逐步追随主网络的参数，而不干扰主网络的训练。</p>
 </div>
+<p>学习一致性函数的理论：</p>
+<p>Let <span class="arithmatex">\(\Delta t := \max_{n \in \llbracket 1, N-1 \rrbracket} \{ |t_{n+1} - t_n| \}\)</span>, and <span class="arithmatex">\(\mathbf{f}(\cdot, \cdot; \phi)\)</span> be the consistency function of the empirical PF ODE in Eq. (3). Assume <span class="arithmatex">\(\mathbf{f}_{\theta}\)</span> satisfies the Lipschitz condition: there exists <span class="arithmatex">\(L &gt; 0\)</span> such that for all <span class="arithmatex">\(t \in [\epsilon, T]\)</span>, <span class="arithmatex">\(\mathbf{x}\)</span>, and <span class="arithmatex">\(\mathbf{y}\)</span>, we have <span class="arithmatex">\(\| \mathbf{f}_{\theta}(\mathbf{x}, t) - \mathbf{f}_{\theta}(\mathbf{y}, t) \|_2 \leq L \| \mathbf{x} - \mathbf{y} \|_2\)</span>. Assume further that for all <span class="arithmatex">\(n \in \llbracket 1, N-1 \rrbracket\)</span>, the ODE solver called at <span class="arithmatex">\(t_{n+1}\)</span> has local error uniformly bounded by <span class="arithmatex">\(O((t_{n+1} - t_n)^{p+1})\)</span> with <span class="arithmatex">\(p \geq 1\)</span>. Then, if <span class="arithmatex">\(\mathcal{L}_{CD}^N(\theta, \theta^-; \phi) = 0\)</span>, we have</p>
+<div class="arithmatex">\[
+\sup_{n, \mathbf{x}} \| \mathbf{f}_{\theta}(\mathbf{x}, t_n) - \mathbf{f}(\mathbf{x}, t_n; \phi) \|_2 = O((\Delta t)^p).
+\]</div>
+<p>这个定理说明了如果<span class="heti-skip"><span class="heti-spacing"> </span>consistency model<span class="heti-spacing"> </span></span>达到了<span><span class="heti-spacing"> </span>zero distillation loss</span>，那么只要<span><span class="heti-spacing"> </span>step size sufficiently small</span>，<span>consistency model<span class="heti-spacing"> </span></span>任意精确。</p>
 <h2 id="training-consistency-models-in-isolation">Training Consistency Models in Isolation</h2>
 <h2 id="cm-distillation">CM Distillation</h2>
 </article>
