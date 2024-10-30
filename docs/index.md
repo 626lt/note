@@ -1,5 +1,5 @@
 ---
-comments: true
+comments: True
 ---
 
 # Hi!

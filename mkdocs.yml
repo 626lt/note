@@ -1,12 +1,15 @@
 site_name: lt's notes
-site_url: https://626lt.github.io/note/
+site_url: https://626lt.github.io/
 repo_name: 626lt/note
 repo_url: https://github.com/626lt/note
 site_description: "lt's notes"
+dev_addr: '127.0.0.1:8001'
+copyright: Copyright &copy; 2023-2024 <a href="https://github.com/626lt" target="_blank" rel="noopener">626lt</a>
+
 
 theme: 
   name: 'material'
-  custon_dir: overrides
+  custom_dir: overrides
   language: 'zh'
   icon: 
     logo: material/notebook-outline
@@ -30,9 +33,13 @@ theme:
     - navigation.tabs
     - navigation.indexes
     - navigation.top
+    - navigation.footer
   font: false
 
 markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 4
   - admonition # mkdocs warning
   - md_in_html # footnote
   - meta # metadata
@@ -43,6 +50,20 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.critic
+  - def_list
+  - attr_list
+  - md_in_html
+  - sane_lists
+  - admonition
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
   - pymdownx.arithmatex: # TeX support for math formula
       generic: true
   - pymdownx.emoji: # emoji support
@@ -72,12 +93,11 @@ markdown_extensions:
 
 extra_css:
   - https://cdn.tonycrane.cc/utils/katex.min.css
-  - https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&display=fallback
   - css/custom.css
+  - css/counter.css
   - https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
-  - css/counter.css
 
 extra_javascript:
   - https://cdn.tonycrane.cc/utils/katex.min.js
@@ -88,7 +108,6 @@ extra_javascript:
 plugins:
   - search
   - statistics:
-      # page_statistics:: false
       page_check_metadata: counter
   - heti:
       extra_skipped_class:
