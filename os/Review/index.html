@@ -4,12 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/note/os/Threads/" rel="canonical"/>
-<link href="../structures/" rel="prev"/>
-<link href="../Synchronization/" rel="next"/>
+<link href="https://626lt.github.io/note/os/Review/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
-<title>Threads - lt's notes</title>
+<title>Half review - lt's notes</title>
 <link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
@@ -28,7 +26,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#thread-definition">
+<a class="md-skip" href="#half-review">
           跳转至
         </a>
 </div>
@@ -52,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Threads
+              Half review
             
           </span>
 </div>
@@ -125,7 +123,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../">
+<a class="md-tabs__link" href="../">
         OS
       </a>
 </li>
@@ -217,8 +215,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">OS</a>
 <label for="__nav_3">
@@ -241,77 +239,10 @@
         structures
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Threads
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Threads/">
         Threads
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-definition">
-    Thread Definition
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#user-threads-vs-kernel-threads">
-    User Threads vs. Kernel Threads
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-libraries">
-    Thread Libraries
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#threading-issues">
-    Threading Issues
-  </a>
-<nav aria-label="Threading Issues" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#semantics-of-fork-and-exec">
-    Semantics of fork() and exec()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#signals">
-    Signals
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#safe-thread-cancellation">
-    Safe Thread Cancellation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-scheduling">
-    Thread scheduling
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#linux-threads">
-    Linux Threads
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#user-thread-to-kernel-thread-mapping">
-    User thread to kernel thread mapping
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Synchronization/">
@@ -389,308 +320,28 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-definition">
-    Thread Definition
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#user-threads-vs-kernel-threads">
-    User Threads vs. Kernel Threads
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-libraries">
-    Thread Libraries
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#threading-issues">
-    Threading Issues
-  </a>
-<nav aria-label="Threading Issues" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#semantics-of-fork-and-exec">
-    Semantics of fork() and exec()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#signals">
-    Signals
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#safe-thread-cancellation">
-    Safe Thread Cancellation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thread-scheduling">
-    Thread scheduling
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#linux-threads">
-    Linux Threads
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#user-thread-to-kernel-thread-mapping">
-    User thread to kernel thread mapping
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Threads</h1>
-<h2 id="thread-definition">Thread Definition</h2>
+<h1 id="half-review">Half review</h1>
 <ul>
-<li><span>A thread is a basic unit of execution within a process<span class="heti-spacing"> </span></span>基本的执行单元</li>
-<li>Each thread has its own</li>
-<li>thread ID</li>
-<li>program counter</li>
-<li>register set</li>
-<li>stack</li>
-<li>It shares the following with other threads in the same process</li>
-<li>code section</li>
-<li>data section</li>
-<li>the heap (dynamically allocated memory)</li>
-<li>open files and signals</li>
-<li>
-<p>Concurrency: A multi-threaded process can do multiple things at once</p>
-</li>
-<li>
-<p>Advantages of Threads</p>
-</li>
-<li>Responsiveness</li>
-<li>Resource Sharing</li>
-<li>Economy</li>
-<li>Scalability</li>
-<li>Drawbacks of Threads</li>
-<li>隔离性变差了，一个线程挂了整个进程都会挂</li>
-<li>Typical challenges of multi-threaded programming</li>
+<li>Arch -&gt; Bit</li>
+<li><span>Intro -&gt; What is OS? Process_event;<span class="heti-spacing"> </span></span>资源抽象与分配</li>
+<li>Structure -&gt; Syscall;linker and loaders</li>
+<li>Process -&gt; States, PCB, Context switch,scheduling</li>
+<li>IPC -&gt; Shared memory, message passing</li>
+<li>Thread -&gt; execution units</li>
+<li>Synchornoization</li>
+<li>Deadlock</li>
 </ul>
-<h2 id="user-threads-vs-kernel-threads">User Threads vs. Kernel Threads</h2>
-<p><span>CPU + mode bit<span class="heti-spacing"> </span></span>分为<span class="heti-skip"><span class="heti-spacing"> </span>user mode<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>kernel mode</span>。
-现代的加两位，分为四种模式</p>
-<ul>
-<li>Many-to-One Model</li>
-<li><span>Advantages:multi-threading is efficient and low-overhead,<span class="heti-spacing"> </span></span>如果没有用<span class="heti-skip"><span class="heti-spacing"> </span>syscall<span class="heti-spacing"> </span></span>效率很高</li>
-<li><span>Major Drawback:cannot take advantage of a multi-core architecture!if one threads blocks, then all the others do!<span class="heti-spacing"> </span></span>只有一个<span><span class="heti-spacing"> </span>kernel thread</span>，所以只能在一个核上运行，需要<span class="heti-skip"><span class="heti-spacing"> </span>syscall<span class="heti-spacing"> </span></span>的时候效率低</li>
-</ul>
-<p><img src="./figures/2024-10-22-13-35-25.png" width="50%"/></p>
-<ul>
-<li>One-to-One Model</li>
-<li>Removes both drawbacks of the Many-to-One Model</li>
-<li>Creating a new threads requires work by the kernel<ul>
-<li>Not as fast as in the Many-to-One Model</li>
-</ul>
-</li>
-<li><span>Example:Linux, Windows, Solaris 9 and later<span class="heti-spacing"> </span></span>这种情况现在用的多是因为硬件便宜了，所以采用效率更高的方式</li>
-</ul>
-<p><img src="./figures/2024-10-22-13-40-22.png" width="50%"/></p>
-<ul>
-<li>Many-to-Many Model</li>
-<li>A compromise</li>
-<li>If a user thread blocks, the kernel can create a new kernel threads to avoid blocking all user threads</li>
-<li>A new user thread doesn’t necessarily require the creation of a new kernel thread</li>
-<li>
-<p>True concurrency can be achieved on a multi-core machine</p>
-</li>
-<li>
-<p>Two-Level Model</p>
-</li>
-<li>The user can say: “Bind this thread to its own kernel thread”</li>
-</ul>
-<h2 id="thread-libraries">Thread Libraries</h2>
-<ul>
-<li>Thread libraries provide users with ways to create threads in their own programs</li>
-<li>In C/C++: pthreads and Win32 threads<ul>
-<li>Implemented by the kernel</li>
-</ul>
-</li>
-<li><span>In C/C++: OpenMP(<span class="heti-spacing"> </span></span>并行计算<span><span class="heti-spacing"> </span>)</span><ul>
-<li>A layer above pthreadsfor convenient multithreading in “easy” cases</li>
-</ul>
-</li>
-<li>In Java: Java Threads<ul>
-<li>Implemented by the JVM, which relies on threads implemented by the kernel</li>
-</ul>
-</li>
-</ul>
-<p>只要符合接口的定义，就可以叫<span><span class="heti-spacing"> </span>pthreads</span>。
-+ Pthreads
-  + May be provided either as user-level or kernel-level
-  + A POSIX standard (IEEE 1003.1c) API for thread creation and synchronization
-  + Specification, not implementation
-  + API specifies behavior of the thread library, implementation is up to development of the library
-  + Common in UNIX operating systems</p>
-<ul>
-<li>OpenMP</li>
-<li>
-<p>Identifies parallel regions – blocks of code that can run in parallel
-<code>#pragma omp parallel</code>
-使用之后编译器会为我们切分出若干个并行块，创造出对应的线程，最后使用 join 把线程合并。</p>
-</li>
-<li>
-<p>Java Threads</p>
-</li>
-<li>最多用的，小白友好</li>
-<li>Green threads have all the disadvantages of user-level threads</li>
-<li>早期<span class="heti-skip"><span class="heti-spacing"> </span>JVM<span class="heti-spacing"> </span></span>用的是<span><span class="heti-spacing"> </span>green threads(many-to-one)</span>，现在提供了<span><span class="heti-spacing"> </span>native threads(one-to-one)</span></li>
-</ul>
-<h2 id="threading-issues">Threading Issues</h2>
-<p>线程的加入让进程的操作变得更复杂。</p>
-<h3 id="semantics-of-fork-and-exec">Semantics of <code>fork()</code> and <code>exec()</code></h3>
-<p>Thread calls <code>fork()</code> </p>
-<ul>
-<li>Two possibilities:</li>
-<li>A new process is created that has only one thread (the copy of the thread that called fork()), or</li>
-<li>A new process is created with all threads of the original process (a copy of all the threads, including the one that called fork())</li>
-<li>Linux use the first option</li>
-</ul>
-<p>If one calls exec() after fork(), all threads are “wiped out” anyway</p>
-<h3 id="signals">Signals</h3>
-<p>We’ve talked about signals for processes
-+ Signal handlers are either default or user-specified
-+ signal() and kill() are the system calls
-+ In a multi-threaded program, what happens?
-  + Deliver the signal to the thread to which the signal applies
-  + Deliver the signal to every thread in the process
-  + Deliver the signal to certain threads in the process
-  + Assign a specific thread to receive all signals
-+ Most UNIX versions: a thread can say which signals it accepts and which signals it doesn’t accept
-+ On Linux: dealing with threads and signals is tricky but well understood with many tutorials on the matter and man pages，交给开发者选择</p>
-<h3 id="safe-thread-cancellation">Safe Thread Cancellation</h3>
-<p>把一个线程的工作取消掉，如何保证取消后不影响系统的稳定性。
-+ One potentially useful feature would be for a thread to simply terminate another thread
-+ Two possible approaches:
-  + Asynchronous cancellation 立即终止。
-    + One thread <strong>immediately</strong> terminates another
-    + The terminated thread does not get to clean up after itself
-    + The terminated thread does not get to unlock any mutexes it has locked
-  + Deferred cancellation 线程会自己进行周期性检查，如果取消掉不会影响系统的稳定性，就把自己取消掉。
-    + The thread is marked for cancellation
-    + The thread periodically checks if it has been marked for cancellation
-    + The thread can clean up and unlock mutexes before it terminates
-    + The thread can refuse to be cancelled</p>
-<p>Default type is deferred</p>
-<p><img src="./figures/2024-10-22-13-55-28.png" width="50%"/></p>
-<ul>
-<li>The problem with asynchronous cancellation: </li>
-<li>立即取消<span><span class="heti-spacing"> </span>may lead to an inconsistent state or to a synchronization problem if the thread was in the middle of "something important"</span></li>
-<li>Absolutely terrible bugs lurking in the shadows</li>
-</ul>
-<p>带来很多问题：比如一个线程正在写变量，值还没有同步到内存或者<span><span class="heti-spacing"> </span>cache</span>，这个<span class="heti-skip"><span class="heti-spacing"> </span>bug<span class="heti-spacing"> </span></span>很难被复现。
-如何 debug 这种问题？需要先复现 reproduce。</p>
-<ul>
-<li><span>The problem with deferred cancellation: the code is cumbersome due to multiple cancellation points,<span class="heti-spacing"> </span></span>代码不好看，很笨重</li>
-<li><span>In Java, the Thread.stop() method is deprecated, and so cancellation has to be deferred<span class="heti-spacing"> </span></span>目前没有一个很理想的方案</li>
-</ul>
-<h3 id="thread-scheduling">Thread scheduling</h3>
-<ul>
-<li>Distinction between user-level and kernel-level threads</li>
-<li>When threads supported, threads scheduled, not processes</li>
-<li>Many-to-one and many-to-many models, thread library schedules user-level threads to run on LWP</li>
-<li><span>Known as process-contention scope (PCS) since scheduling competition is within the process<span class="heti-spacing"> </span></span>进程粒度调度，进程分配的时间都一样，每个线程竞争进程的时间</li>
-<li>Typically done via priority set by programmer</li>
-<li>Kernel thread scheduled onto available CPU is system-contention scope(SCS) –<span>competition among all threads in system<span class="heti-spacing"> </span></span>线程粒度调度，每个线程分配的时间一样</li>
-</ul>
-<p><img src="/figures/2024-10-22-14-05-34.png" width="50%"/></p>
-<h3 id="linux-threads">Linux Threads</h3>
-<ul>
-<li>In Linux, a thread is also called a light-weight process (LWP)</li>
-<li>The clone() syscallis used to create a thread or a process，底下的一些参数告诉线程有哪些信心</li>
-<li>Shares execution context with its parent</li>
-<li>pthreadlibrary uses clone() to implement threads.</li>
-</ul>
-<p><img src="./figures/2024-10-22-14-07-20.png" width="50%"/></p>
-<p><code>clone()</code> 有一个参数 <code>CLONE_VM</code>，如果设置了这个参数，那么父子进程会共享内存，否则不会共享内存。</p>
-<ul>
-<li>Linux does not distinguish between PCB and TCB</li>
-<li>Kernel data structure: task_struct</li>
-</ul>
-<p><img src="./figures/2024-10-22-14-17-03.png" width="50%"/></p>
-<p>Single-threaded process vs multi-threaded process</p>
-<p><img src="./figures/2024-10-22-14-18-05.png" width="50%"/></p>
-<p>最开始线程创建时
-</p><div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span>
-<span class="normal"><a href="#__codelineno-0-6">6</a></span>
-<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">task_struct</span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span><span class="c1">// thread ID</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">stack</span><span class="p">;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">mm_struct</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="n">files</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span>
-</span></code></pre></div></td></tr></table></div>
-后面的线程创建时只创建 pid，stack，剩余的都指向开始的线程，这就实现了共享。
-<p>后面的<span class="heti-skip"><span class="heti-spacing"> </span>PID<span class="heti-spacing"> </span></span>都是<span><span class="heti-spacing"> </span>leading Thread PID</span></p>
-<p>一个进程里面有许多线程，<span>task_struck<span class="heti-spacing"> </span></span>内有<span class="heti-skip"><span class="heti-spacing"> </span>thread_group<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>list_head</span>，用来串起所有线程</p>
-<p>线程是<span class="heti-skip"><span class="heti-spacing"> </span>16K(0x4000)<span class="heti-spacing"> </span></span>对齐的，是因为至少是<span class="heti-skip"><span class="heti-spacing"> </span>1 page(0x1000)<span class="heti-spacing"> </span></span>对齐，又因为<span class="heti-skip"><span class="heti-spacing"> </span>kernel<span class="heti-spacing"> </span></span>的原因是要<span class="heti-skip"><span class="heti-spacing"> </span>4 page<span class="heti-spacing"> </span></span>对齐。目的是为了减少碎片化空间。</p>
-<p><img src="./figures/2024-10-22-14-29-59.png" width="50%"/></p>
-<h3 id="user-thread-to-kernel-thread-mapping">User thread to kernel thread mapping</h3>
-<p>Process = Thread + Address Space</p>
-<ul>
-<li>One task in Linux</li>
-<li>Same task_struct(PCB) means same thread<ul>
-<li>Also viewed as 1:1 mapping</li>
-<li>One user thread maps to one kernel thread</li>
-<li>But actually, they are the same thread</li>
-</ul>
-</li>
-<li>Can be executed in user space<ul>
-<li>User code, user space stack</li>
-</ul>
-</li>
-<li>Can be executed in kernel space<ul>
-<li>Kernel code, kernel space stack</li>
-</ul>
-</li>
-</ul>
-<p><img src="./figures/2024-10-22-14-40-56.png" width="50%"/></p>
-<p><span>user space stack<span class="heti-spacing"> </span></span>不固定，<span>kernel space stack<span class="heti-spacing"> </span></span>固定大小<span><span class="heti-spacing"> </span>16k(Linux)</span>。</p>
-<ul>
-<li>One task</li>
-<li>Can be a single-threaded process<ul>
-<li>One task_struct–PCB</li>
-<li>PIDisthreadID</li>
-</ul>
-</li>
-<li>Can be a multi-threaded process<ul>
-<li>Multiple task_struct</li>
-<li><span>PID<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>leading thread<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>PID</span></li>
-</ul>
-</li>
-<li>Can be executed in user space<ul>
-<li>User code, user space stack</li>
-</ul>
-</li>
-<li>Can be executed in kernel space<ul>
-<li>Such as calls a system call</li>
-<li>Execution flow traps to kernel</li>
-<li>Execute kernel code, use kernel space stack</li>
-</ul>
-</li>
-</ul>
-<p><img src="./figures/2024-10-22-14-47-07.png" width="50%"/></p>
+<p>x86-32 mt 80
+x86-64 syscall
+Arm64 svc
+Riscv ecall</p>
+<p>Stack（执行的草稿纸） 比较快引入两个寄存器，一个栈顶一个栈底，<span>heap<span class="heti-spacing"> </span></span>比较慢，得用指针访问，要<span class="heti-skip"><span class="heti-spacing"> </span>load<span class="heti-spacing"> </span></span>寄存器里，不在<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>里</p>
 </article>
 </div>
 </div>
