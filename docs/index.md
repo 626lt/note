@@ -1,6 +1,5 @@
 ---
 comments: true
-counter: true
 ---
 
 # Hi!
