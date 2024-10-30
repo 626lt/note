@@ -7,7 +7,7 @@ site_description: "lt's notes"
 theme: 
   name: 'material'
   custon_dir: overrides
-  language: 'en'
+  language: 'zh'
   icon: 
     logo: material/notebook-outline
     repo: fontawesome/brands/github
@@ -47,7 +47,7 @@ markdown_extensions:
       generic: true
   - pymdownx.emoji: # emoji support
       emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
@@ -74,14 +74,22 @@ extra_css:
   - https://cdn.tonycrane.cc/utils/katex.min.css
   - https://fonts.googleapis.com/css?family=Roboto:500,500i,600,600i&display=fallback
   - css/custom.css
+  - https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  - css/counter.css
 
 extra_javascript:
   - https://cdn.tonycrane.cc/utils/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
   - js/katex.js
   - js/heti.js
 
 plugins:
   - search
+  - statistics:
+      # page_statistics:: false
+      page_check_metadata: counter
   - heti:
       extra_skipped_class:
         - arithmatex
@@ -97,6 +105,7 @@ nav:
     - OpenGL: cg/OpenGL/index.md
     - Geometric Transformation: cg/Geometric Transformation/index.md
     - View: cg/View/index.md
+    - Antialiasing: cg/Antialiasing/index.md
   - OS:
     - os/index.md
     - intro: os/intro/index.md
@@ -111,5 +120,5 @@ nav:
     - read/index.md
     - Diffusion: read/diffusion/index.md
     - Consistency Models: read/Consistency Models/index.md
-    - SDE: read/SDE/index.md
+    - SDE-Diffusion: read/SDE-diffusion/index.md
    

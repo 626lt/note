@@ -1,3 +1,8 @@
+---
+comments: true
+counter: true
+---
+
 # Diffusion
 
 ## Latent

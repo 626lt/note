@@ -1,9 +1,15 @@
+---
+comments: true
+counter: true
+---
+
 # Consistency Models
 [Arxiv](https://arxiv.org/abs/2303.01469)
 ## Abstract
 
 + 问题：Diffusion 的效果很好，但是依赖于迭代采样过程，这使得生成缓慢
 + 解决：consistency Models--直接将噪声映射到数据来生成高质量的样本
++ idea: 通过 enforcing self-consistency property 来训练 consistency models；为什么能 single-step：满足 consistency property，在轨迹上任何一点都可以映射到初始点即原始的数据空间。
 
 Consistency Model **既支持快速一步生成，也支持多步生成高质量样本**。They also support zero-shot data editing, such as image inpainting, colorization, and super-resolution, without requiring explicit training on these tasks.
 既能用 single-step 生成样本，也能多次迭代来提高样本质量。
@@ -157,6 +163,17 @@ $$
 
 !!! note stopgrad
     在机器学习或深度学习中，stopgrad（通常表示 “stop gradient” 或 “detach”）用于阻止梯度的反向传播。这意味着计算图中的这一部分不会计算或传播梯度，即使在优化过程中也不会影响参数的更新。这种方法通常用于更新目标网络的参数（例如在深度强化学习中的目标网络更新），以使目标网络的参数逐步追随主网络的参数，而不干扰主网络的训练。
+
+学习一致性函数的理论：
+
+Let $\Delta t := \max_{n \in \llbracket 1, N-1 \rrbracket} \{ |t_{n+1} - t_n| \}$, and $\mathbf{f}(\cdot, \cdot; \phi)$ be the consistency function of the empirical PF ODE in Eq. (3). Assume $\mathbf{f}_{\theta}$ satisfies the Lipschitz condition: there exists $L > 0$ such that for all $t \in [\epsilon, T]$, $\mathbf{x}$, and $\mathbf{y}$, we have $\| \mathbf{f}_{\theta}(\mathbf{x}, t) - \mathbf{f}_{\theta}(\mathbf{y}, t) \|_2 \leq L \| \mathbf{x} - \mathbf{y} \|_2$. Assume further that for all $n \in \llbracket 1, N-1 \rrbracket$, the ODE solver called at $t_{n+1}$ has local error uniformly bounded by $O((t_{n+1} - t_n)^{p+1})$ with $p \geq 1$. Then, if $\mathcal{L}_{CD}^N(\theta, \theta^-; \phi) = 0$, we have
+
+$$
+\sup_{n, \mathbf{x}} \| \mathbf{f}_{\theta}(\mathbf{x}, t_n) - \mathbf{f}(\mathbf{x}, t_n; \phi) \|_2 = O((\Delta t)^p).
+$$
+
+这个定理说明了如果 consistency model 达到了 zero distillation loss，那么只要 step size sufficiently small，consistency model 任意精确。
+
 
 ## Training Consistency Models in Isolation
 

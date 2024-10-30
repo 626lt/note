@@ -1,3 +1,8 @@
+---
+comments: true
+counter: true
+---
+
 # SCORE-BASED GENERATIVE MODELING THROUGH STOCHASTIC DIFFERENTIAL EQUATIONS
 
 [pdf](https://openreview.net/pdf?id=PxTIG12RRHS)
