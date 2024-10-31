@@ -564,7 +564,7 @@ f_{\theta}(\mathbf{x}, t) = c_{\text{skip}}(t)\mathbf{x} + c_{\text{out}}(t)F_{\
 <li>从<span class="heti-skip"><span class="heti-spacing"> </span>the transition density of SDE<span class="heti-spacing"> </span></span><span class="arithmatex">\(N(x,t^2_{n+1}I)\)</span>中采样 <span class="arithmatex">\(x_{t_{n+1}}\)</span> </li>
 <li>通过上面的<span class="heti-skip"><span class="heti-spacing"> </span>one discretization step of the numerical ODE solver<span class="heti-spacing"> </span></span>生成 <span class="arithmatex">\(\hat{x}^\phi_{t_n}\)</span></li>
 </ul>
-<p>接着，用这个<span class="heti-skip"><span class="heti-spacing"> </span>pair<span class="heti-spacing"> </span></span>与 模型输出之间的<span class="heti-skip"><span class="heti-spacing"> </span>difference<span class="heti-spacing"> </span></span>来训练<span><span class="heti-spacing"> </span>consistency model</span>。</p>
+<p>接着，用模型在这个<span class="heti-skip"><span class="heti-spacing"> </span>pair<span class="heti-spacing"> </span></span>上输出的<span class="heti-skip"><span class="heti-spacing"> </span>difference<span class="heti-spacing"> </span></span>来训练<span><span class="heti-spacing"> </span>consistency model</span>。</p>
 <p>The consistency distillation loss is defined as</p>
 <div class="arithmatex">\[
 \mathcal{L}_{CD}^N(\theta, \theta^- ; \phi) := \mathbb{E}\left[ \lambda(t_n) d\left(f_{\theta}(\mathbf{x}_{t_{n+1}}, t_{n+1}), f_{\theta^-}(\hat{\mathbf{x}}_{t_n}^{\phi}, t_n)\right) \right],

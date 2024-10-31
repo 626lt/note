@@ -624,7 +624,7 @@ q(x_t|x_{t-1})=\mathcal{N}(x_t;\sqrt{\alpha_t}x_{t-1},(1-\alpha_t)I)
 \]</div>
 <p>从第三个假设中可以知道，加噪过程的最终结果是将<span class="heti-skip"><span class="heti-spacing"> </span>latent<span class="heti-spacing"> </span></span>变为高斯噪声。那么<span class="heti-skip"><span class="heti-spacing"> </span>VDM<span class="heti-spacing"> </span></span>的联合分布可以写成：</p>
 <div class="arithmatex">\[
-p(x_{0:T} = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1}|x_t))
+p(x_{0:T}) = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1}|x_t)
 \]</div>
 <p>其中 <span class="arithmatex">\(p(x_T) = \mathcal{N}(X_T;0,I)\)</span></p>
 <p>这组假设描述的是图像输入随时间的稳定噪声；我们通过添加高斯噪声逐渐破坏图像，直到最终它变得与纯高斯噪声完全相同。</p>
