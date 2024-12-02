@@ -425,8 +425,22 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#image-magnification">
-    Image magnification.
+    Image magnification. 图像缩放
   </a>
+<nav aria-label="Image magnification. 图像缩放" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    放大
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    缩小
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -534,7 +548,8 @@
   1. Convolve image with low-pass filter(e.g., Gaussian) 
   2. Sample it with a Nyquist rate</li>
 </ul>
-<h2 id="image-magnification">Image magnification.<a class="headerlink" href="#image-magnification" title="Permanent link">¶</a></h2>
+<h2 id="image-magnification"><span>Image magnification.<span class="heti-spacing"> </span></span>图像缩放<a class="headerlink" href="#image-magnification" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="_1">放大<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>插值：通过已知的点估计未知的点
 + 最近邻插值：Nearest-neighbor interpolation：不连续不光滑
 + 线性插值：Linear interpolation：连续但是不光滑
@@ -544,6 +559,25 @@
 <li>Bilinear interpolation：在两个方向上做线性插值（计算快很多，大部分时候足够好了）</li>
 <li>Bicubic interpolation：在两个方向上做三次插值</li>
 </ul>
+<h3 id="_2">缩小<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li><span>Basic idea<span class="heti-spacing"> </span></span>去掉相对不重要的像素，比如连续的没有变化的像素</li>
+<li>Importance of pixels：像素的重要性，如何衡量？</li>
+</ul>
+<div class="arithmatex">\[
+E(I) = \left|\frac{\partial I}{\partial x} + \frac{\partial I}{\partial y}\right|
+\]</div>
+<p>实现使用卷积核，然后找到每一个行最小的点，<strong>但是这每一行的点是不连续的</strong>，会导致图像变混乱。所以需要<span><span class="heti-spacing"> </span>Seam carving</span>：可以理解为最短路径算法，从上至下找一条 <span class="arithmatex">\(E(I)\)</span> 最小的路径。可以用动态规划实现。</p>
+<div class="admonition seam carving">
+<p class="admonition-title">Seam</p>
+<p>Going from top to bottom
++ <span class="arithmatex">\(M(i,j) =\)</span> minimal energy of a seam going through <span class="arithmatex">\((i,j)\)</span>
++ <span class="arithmatex">\(M(i,j) = E(i,j) + \min(M(i-1,j-1), M(i-1,j), M(i-1,j+1))\)</span>
++ Solved by dynamic programming</p>
+</div>
+<p>这样可以较完整地保留图像信息，并且把图像变小。</p>
+<p>那么对应的，扩大图像也是找到这样的最短路，然后插值即可</p>
+<p></p><center><img src="./figures/2024-11-30-20-30-19.png" width="60%"/></center>
 </article>
 </div>
 </div>

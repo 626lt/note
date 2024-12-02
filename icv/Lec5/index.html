@@ -4,10 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/icv/Lec4/" rel="canonical"/>
+<link href="https://626lt.github.io/icv/Lec5/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
-<title>Lec.04: Model Fitting and Optimization - lt's notes</title>
+<title>Image Matching and Motion Estimation - lt's notes</title>
 <link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
@@ -25,7 +25,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lec04-model-fitting-and-optimization">
+<a class="md-skip" href="#image-matching-and-motion-estimation">
           跳转至
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lec.04: Model Fitting and Optimization
+              Image Matching and Motion Estimation
             
           </span>
 </div>
@@ -372,100 +372,104 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#optimization">
-    Optimization
+<a class="md-nav__link" href="#image-matching">
+    Image Matching
   </a>
-<nav aria-label="Optimization" class="md-nav">
+<nav aria-label="Image Matching" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#model-fitting">
-    Model Fitting
+<a class="md-nav__link" href="#detection">
+    Detection
+  </a>
+<nav aria-label="Detection" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principal-component-analysis">
+    principal Component Analysis 主成分分析
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#corner-detection">
+    Corner Detection 角点检测
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blob-detectior">
+    Blob detectior
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#numerical-methods">
-    Numerical Methods
+<a class="md-nav__link" href="#difference-of-gaussian-dog">
+    Difference of Gaussian (DoG)
   </a>
-<nav aria-label="Numerical Methods" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#descriptions">
+    Descriptions
+  </a>
+<nav aria-label="Descriptions" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#steepest-descent-method">
-    Steepest descent method 最速梯度下降法
-  </a>
-<nav aria-label="Steepest descent method 最速梯度下降法" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#step-size">
-    step size
+<a class="md-nav__link" href="#sift-descriptor">
+    SIFT descriptor
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#newton-method">
-    Newton method 牛顿法
+<a class="md-nav__link" href="#matching">
+    Matching
   </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#gauss-newton-method">
-    Gauss-Newton method 高斯牛顿法
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#levenberg-marquardt-method-">
-    Levenberg-Marquardt method 莱文贝格-马夸特法
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#local-minimum-and-global-minimum">
-    Local minimum and global minimum 局部最小值和全局最小值
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#robust-estimation">
-    Robust estimation
-  </a>
-<nav aria-label="Robust estimation" class="md-nav">
+<nav aria-label="Matching" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#outliers">
-    Outliers 异常值
+<a class="md-nav__link" href="#feature-distance">
+    Feature distance
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ransac">
-    RANSAC
+<a class="md-nav__link" href="#ratio-test">
+    Ratio Test
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ill-posed-problem">
-    ill-posed problem
+<a class="md-nav__link" href="#mutual-nearest-neighbors">
+    Mutual Nearest Neighbors 相互最近邻
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#l2-regularization">
-    L2 regularization
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#l1-regularization">
-    L1 regularization
+<a class="md-nav__link" href="#learning-based-local-features">
+    Learning-based local features
   </a>
 </li>
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#graphcut">
-    Graphcut
+<a class="md-nav__link" href="#motion-estimation">
+    Motion Estimation
   </a>
+<nav aria-label="Motion Estimation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lucas-kanade-method">
+    Lucas-Kanade method
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#errors-in-lucas-kanade">
+    Errors in Lucas-Kanade
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -474,230 +478,280 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lec04-model-fitting-and-optimization">Lec.04: Model Fitting and Optimization<a class="headerlink" href="#lec04-model-fitting-and-optimization" title="Permanent link">¶</a></h1>
-<h2 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">¶</a></h2>
-<p></p><center><img src="./figures/2024-11-30-20-31-44.png" width="60%"/></center>
+<h1 id="image-matching-and-motion-estimation">Image Matching and Motion Estimation<a class="headerlink" href="#image-matching-and-motion-estimation" title="Permanent link">¶</a></h1>
+<h2 id="image-matching">Image Matching<a class="headerlink" href="#image-matching" title="Permanent link">¶</a></h2>
+<div class="admonition exampe applications of feature matching">
+<p class="admonition-title">Exampe</p>
 <ul>
-<li>优化变量：<span class="arithmatex">\(x\)</span></li>
-<li>目标函数：<span class="arithmatex">\(f_0(x)\)</span></li>
-<li>不等约束：<span class="arithmatex">\(f_i(x) \le 0\; i=1,\dots,m\)</span></li>
-<li>等式约束：<span class="arithmatex">\(g_i(x) = 0\; i=1,\dots,p\)</span></li>
+<li>Image alignment</li>
+<li>Image Stitching</li>
+<li>3D reconstruction</li>
+<li>Motion Tracking</li>
+<li>Object recognition</li>
+<li>Indexing and database retrieval</li>
+<li>Robot navigation</li>
 </ul>
-<div class="admonition example image deblurring">
-<p class="admonition-title">Example</p>
-<p></p><center><img src="./figures/2024-11-30-20-36-36.png" width="60%"/></center>
 </div>
-<h3 id="model-fitting">Model Fitting<a class="headerlink" href="#model-fitting" title="Permanent link">¶</a></h3>
+<p>整体步骤：</p>
+<p></p><center><img src="./figures/2024-12-01-22-03-38.png" width="60%"/></center>
+<h3 id="detection">Detection<a class="headerlink" href="#detection" title="Permanent link">¶</a></h3>
 <ul>
-<li>数学模型 <span class="arithmatex">\(b = f_x(a)\)</span> 描述了输入 <span class="arithmatex">\(a\)</span> 和输出 <span class="arithmatex">\(b\)</span> 之间的关系，其中 <span class="arithmatex">\(x\)</span> 是模型参数。</li>
-<li>例如线性模型 <span class="arithmatex">\(b = a^Tx\)</span>。</li>
-<li>那么如何从数据中估计模型参数 <span class="arithmatex">\(x\)</span> 呢<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（这通常叫做<span><span class="heti-spacing"> </span>learning</span>）</li>
-<li>经典的方法是<span class="heti-skip"><span class="heti-spacing"> </span>Minimize the Mean Square Error (MSE)<span class="heti-spacing"> </span></span>均方差</li>
-<li><span class="arithmatex">\(\hat{x}=\arg \min_x \sum_i(b_i-a_i^Tx)^2\)</span> 模型的输出与<span class="heti-skip"><span class="heti-spacing"> </span>ground truth<span class="heti-spacing"> </span></span>之间的差异。 </li>
-<li>为什么<span><span class="heti-spacing"> </span>MSE?</span> </li>
-</ul>
-<div class="admonition note 统计解释">
-<p class="admonition-title">Note</p>
-<p>均方误差<span class="heti-skip"><span class="heti-spacing"> </span>(MSE) =<span class="heti-spacing"> </span></span>最大似然估计<span class="heti-skip"><span class="heti-spacing"> </span>(MLE) +<span class="heti-spacing"> </span></span>高斯噪声假设
-最大似然估计：找到一组模型参数，使得观察到的数据的概率最大。
-+ 我们假设数据中存在高斯噪声</p>
-<div class="arithmatex">\[
-b_i = a_i^T + n, n\sim G(0,\sigma)
-\]</div>
-<ul>
-<li>对于给定<span><span class="heti-spacing"> </span>x</span>，<span>likelihood of observing<span class="heti-spacing"> </span></span><span class="arithmatex">\((a_i,b_i)\)</span>是观察到这组数据的概率</li>
-</ul>
-<div class="arithmatex">\[
-P[(a_i,b_i)|x] = P[b_i - a_i^Tx] \propto \exp-\frac{(b_i-a_i^Tx)^2}{2\sigma^2}\end{aligned}
-\]</div>
-<ul>
-<li>假设数据是相互独立的</li>
-</ul>
-<div class="arithmatex">\[
-\begin{aligned}
-&amp;P[(a_1,b_1)(a_2,b_2)...|x] \\
-&amp;\Large=\prod_iP[(a_i,b_i)|x] \\
-&amp;\begin{aligned}=\prod_iP[b_i-a_i^Tx]\end{aligned} \\
-&amp;\begin{aligned}\propto\exp-\frac{\sum_i(b_i-a_i^Tx)^2}{2\sigma^2}=\exp-\frac{\|Ax-b\|_2^2}{2\sigma^2}\end{aligned}
-\end{aligned}
-\]</div>
-<ul>
-<li>残差向量 <span class="arithmatex">\(r = Ax-b\)</span></li>
-<li>最大似然估计<span><span class="heti-spacing"> </span>(MLE) = Maximize the likelihood to find the best x</span></li>
-</ul>
-<div class="arithmatex">\[
-\begin{aligned}
-\hat{x} &amp;= \arg\max_x P[(a_1, b_1)(a_2, b_2) \dots | x]\\
-&amp;= \arg\max_x \exp\left(-\frac{\|Ax - b\|_2^2}{2\sigma^2}\right)\\
-&amp;= \arg\min_x \|Ax - b\|_2^2
-\end{aligned}
-\]</div>
-<p>等价于最小化均方误差<span><span class="heti-spacing"> </span>(MSE)</span>。
-+ MSE = MLE with Gaussian noise assumption</p>
-</div>
-<h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">¶</a></h2>
-<ul>
-<li><span>Some problems have analytical solution<span class="heti-spacing"> </span></span>一些问题有解析解，可以得到解的数学表达式</li>
-<li>Linear MSE <span class="arithmatex">\(A^TAx = A^Tb\)</span></li>
-<li>如果没有解析解</li>
-<li>找到近似解——solution path<ul>
-<li><span class="arithmatex">\(F(x_0) &gt; F(x_1) &gt; \dots &gt; F(x_k) &gt; \dots\)</span></li>
+<li>Feature points or interest points</li>
+<li>uniqueness<ul>
+<li>如何描述？</li>
 </ul>
 </li>
 </ul>
-<p></p><center><img src="./figures/2024-11-30-20-59-50.png" width="60%"/></center>
-<p>梯度下降法<span><span class="heti-spacing"> </span>Gradient Descent</span></p>
-<p></p><center><img src="./figures/2024-11-30-21-00-19.png" width="60%"/></center>
-<div class="admonition note taylor expansion">
-<p class="admonition-title">Note</p>
-<p></p><center><img src="./figures/2024-11-30-21-03-28.png" width="60%"/></center>
-<center><img src="./figures/2024-11-30-21-03-41.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-01-22-07-34.png" width="60%"/></center>
+<center><img src="./figures/2024-12-01-22-07-45.png" width="60%"/></center>
+<h4 id="principal-component-analysis"><span>principal Component Analysis<span class="heti-spacing"> </span></span>主成分分析<a class="headerlink" href="#principal-component-analysis" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p></p><center><img src="./figures/2024-12-01-22-08-30.png" width="60%"/></center>
+<p>上图中绿色的就是协方差矩阵对应的特征向量</p>
+<h4 id="corner-detection"><span>Corner Detection<span class="heti-spacing"> </span></span>角点检测<a class="headerlink" href="#corner-detection" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<ol>
+<li>Compute the covariance matrix at each point</li>
+</ol>
+<p></p><center><img src="./figures/2024-12-01-22-09-46.png" width="60%"/></center>
+<ol start="2">
+<li>Compute the eigenvalues of the covariance matrix</li>
+</ol>
+<p></p><center><img src="./figures/2024-12-01-22-09-59.png" width="60%"/></center>
+<ol start="3">
+<li>Classify points using eigenvalues of H:</li>
+</ol>
+<p></p><center><img src="./figures/2024-12-01-22-10-51.png" width="60%"/></center>
+<h5 id="harris-operator">Harris Operator<a class="headerlink" href="#harris-operator" title="Permanent link">¶</a></h5>
+<p>计算更加简化，不用求出特征值具体的值</p>
+<p></p><center><img src="./figures/2024-12-01-22-11-15.png" width="60%"/></center>
+<p>Harris detector</p>
+<ol>
+<li>Compute derivatives at each pixel</li>
+<li>Compute covariance matrix H om a Gaussian window around each pixel</li>
+<li>Compute corner response function f</li>
+<li><span>Threshold f (<span class="heti-spacing"> </span></span>阈值化，相当于激活函数<span><span class="heti-spacing"> </span>)</span></li>
+<li><span>Find local maxima of response function(Non-maximum suppression)<span class="heti-spacing"> </span></span>只保留最大的</li>
+</ol>
+<p>现在检测出了特征点，要保证特征点在两个图中可重复。在数学上定义就是</p>
+<ul>
+<li>我们希望<span><span class="heti-spacing"> </span>response value f at the corresponding pixesl to be invaraint to image transformations</span>
+对于图像的变换，我们希望特征点的响应值是不变的</li>
+</ul>
+<h5 id="image-transformations">Image transformations<a class="headerlink" href="#image-transformations" title="Permanent link">¶</a></h5>
+<p></p><center><img src="./figures/2024-12-01-22-19-20.png" width="60%"/></center>
+<ul>
+<li>Invariance properties</li>
+<li>photometric transformation</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-01-22-21-07.png" width="60%"/></center>
+<ul>
+<li>Image translation，平移具有不变性</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-01-22-21-39.png" width="60%"/></center>
+<ul>
+<li>Image rotation，旋转也具有不变性</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-01-22-21-55.png" width="60%"/></center>
+<ul>
+<li>Image scaling，缩放不是无关的</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-01-22-22-53.png" width="60%"/></center>
+<p>如何找到合适的<span><span class="heti-spacing"> </span>scale</span>，对每一张图，去尝试不同大小的尺度，然后找到最大的响应值<span><span class="heti-spacing"> </span>f</span>。
++ scale 是指角点检测的尺度，框的大小 </p>
+<p></p><center><img src="./figures/2024-12-01-22-33-35.png" width="60%"/></center>
+<h6 id="automatic-scale-selection">Automatic Scale Selection<a class="headerlink" href="#automatic-scale-selection" title="Permanent link">¶</a></h6>
+<p></p><center><img src="./figures/2024-12-01-22-34-01.png" width="60%"/></center>
+<p>这个曲线是不同的窗口大小对应的相应值，两张图得到两个曲线，对应的峰值就是对应的<span><span class="heti-spacing"> </span>scale</span></p>
+<p></p><center><img src="./figures/2024-12-01-22-35-34.png" width="60%"/></center>
+<p>以上是一种实现方式，但是实际上我们往往不去变窗口的大小而是图像的大小，这样就可以用图像金字塔，这样更高校</p>
+<p>we can implement using a fixed window size with an image pyramid</p>
+<p></p><center><img src="./figures/2024-12-01-22-37-20.png" width="60%"/></center>
+<p>两种方式是等价的。</p>
+<div class="admonition abstract 角点检测">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>如何描述角点</li>
+<li>整个计算过程</li>
+<li>对哪些性质具有很好的不变性</li>
+<li>对缩放不具有不变性但是可以通过尺度的选择，也具有不变性</li>
+</ul>
 </div>
-<p></p><center><img src="./figures/2024-11-30-21-03-59.png" width="60%"/></center>
-<h3 id="steepest-descent-method"><span>Steepest descent method<span class="heti-spacing"> </span></span>最速梯度下降法<a class="headerlink" href="#steepest-descent-method" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="blob-detectior">Blob detectior<a class="headerlink" href="#blob-detectior" title="Permanent link">¶</a></h4>
+<p>斑点检测，斑点也是很好的特征，斑点在两个方向的二阶导都很大</p>
+<p></p><center><img src="./figures/2024-12-01-22-41-48.png" width="60%"/></center>
+<p>!!! note Laplacian of Gaussian (LoG)
+    </p><center><img src="./figures/2024-12-01-22-43-11.png" width="60%"/></center>
+    由于二阶导对噪声敏感，所以在做 Laplacian 算子卷积之前要先做高斯滤波来平滑一下噪声
+    <center><img src="./figures/2024-12-01-22-43-31.png" width="60%"/></center>
+    由于卷积的结合律，可以先把卷积核和高斯核结合在一起(LoG)，然后再卷积。
+    但同样也有尺度的问题，尺度受高斯函数的 <span class="arithmatex">\(\sigma\)</span> 控制，尺度的选择与前面类似
+    <center><img src="./figures/2024-12-01-22-46-38.png" width="60%"/></center>
+<h3 id="difference-of-gaussian-dog">Difference of Gaussian (DoG)<a class="headerlink" href="#difference-of-gaussian-dog" title="Permanent link">¶</a></h3>
+<p>由于<span class="heti-skip"><span class="heti-spacing"> </span>LoG<span class="heti-spacing"> </span></span>的计算量大，所以我们可以用<span class="heti-skip"><span class="heti-spacing"> </span>DoG<span class="heti-spacing"> </span></span>来近似，<span>DoG<span class="heti-spacing"> </span></span>是两个高斯核的差</p>
+<p></p><center><img src="./figures/2024-12-01-22-50-11.png" width="60%"/></center>
+<p>用不同的高斯核去卷积图像等价于用同一个高斯核去卷积不同大小的图像，本质上就是图像金字塔对同一个高斯核做卷积然后两两相减就得到了<span><span class="heti-spacing"> </span>DoG</span></p>
+<p></p><center><img src="./figures/2024-12-01-22-52-34.png" width="60%"/></center>
+<p>因为本来也要做高斯滤波，只要对图形金字塔做差分就可以了，所以计算量会小很多</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <ul>
-<li><span class="arithmatex">\(x_{k+1} = x_k - \alpha_k \nabla f(x_k)\)</span></li>
-<li><span class="arithmatex">\(\alpha_k\)</span> 是步长</li>
-<li><span class="arithmatex">\(\nabla f(x_k)\)</span> 是梯度</li>
-<li>下降的方向是梯度的负方向</li>
+<li>什么是好的<span><span class="heti-spacing"> </span>feature point</span></li>
+<li>unique</li>
+<li>Invariant to transformations</li>
+<li>Popular detectors</li>
+<li>Harris conner detector</li>
+<li>Blob detector(LoG, DoG)</li>
 </ul>
-<h4 id="step-size">step size<a class="headerlink" href="#step-size" title="Permanent link">¶</a></h4>
-<p></p><center><img src="./figures/2024-11-30-21-14-48.png" width="60%"/></center>
-<p>转化为步长 <span class="arithmatex">\(\alpha\)</span> 的单变量函数，找到的方法有</p>
+</div>
+<h3 id="descriptions">Descriptions<a class="headerlink" href="#descriptions" title="Permanent link">¶</a></h3>
+<p>现在我们能够<span><span class="heti-spacing"> </span>detect good points</span>，下一个问题是如何匹配他们？
+答案是：从每一个点中分离出一个 descriptor，在两张图片中找到相似的 descriptor</p>
+<p>对于<span class="heti-skip"><span class="heti-spacing"> </span>descriptor<span class="heti-spacing"> </span></span>的要求：
++ Patches with similar content should have similar descriptors.</p>
+<div class="admonition note raw patches">
+<p class="admonition-title">Note</p>
+<p>The simplest way to describe the neighborhood around an interest point is to write down the list of intensities to form a feature vector.
+But this is very sensitive (not invariant) to even small shifts, rotations.
+</p><center><img src="./figures/2024-12-01-23-25-48.png" width="60%"/></center>
+之前的不变性是对 f 而言的，f是通过梯度得到的，所以我们可以考虑用梯度分布来描述
+</div>
+<h4 id="sift-descriptor">SIFT descriptor<a class="headerlink" href="#sift-descriptor" title="Permanent link">¶</a></h4>
+<p>Scale Invariant Feature Transform (SIFT)</p>
+<p></p><center><img src="./figures/2024-12-01-23-28-45.png" width="60%"/></center>
+<p>只考虑梯度方向的分布，用直方图作为描述子
++ 平移不变性
++ 旋转；<strong>分布会平移一部分，但是总体的分布不变，为了保持这一不变性，用直方图归一化即可</strong>
++ 对亮度变化不敏感，因为是梯度
++ 对于缩放是会变化的，<strong>但是可以通过尺度选择（即上一步骤的 DoG detector）来保持不变性。</strong>所以 SIFT 是尺度不变的</p>
 <ul>
-<li><span>Exact line search<span class="heti-spacing"> </span></span>精确线搜索</li>
-<li><span>Backtracking algorithm<span class="heti-spacing"> </span></span>回溯算法（理解即可）</li>
-<li>Ininialize <span class="arithmatex">\(\alpha\)</span> with a big value</li>
-<li>Decrease <span class="arithmatex">\(\alpha\)</span> until </li>
+<li><span>SIFT<span class="heti-spacing"> </span></span>是两部分</li>
+<li>Detection</li>
+<li>Description</li>
 </ul>
+<p>综合以上可以看到，这是一个非常鲁棒的特征描述子</p>
+<p></p><center><img src="./figures/2024-12-01-23-31-20.png" width="60%"/></center>
+<p>!!! note Lowe’s SIFT algorithm
+    + Run DoG detector
+      + Find maxima in location/scale space
+    + Find dominate orientation
+    + For each (x,y,scale,orientation), create descriptor</p>
+<p>Properties of SIFT</p>
+<ul>
+<li>Extraordinarily robust matching technique</li>
+<li>Can handle changes in viewpoint<ul>
+<li><span>Theoretically invariant to scale and rotation(<span class="heti-spacing"> </span></span>上一部分解释了<span><span class="heti-spacing"> </span>)</span></li>
+</ul>
+</li>
+<li>Can handle significant changes in illumination<ul>
+<li><span>Sometimes even day vs. night<span class="heti-spacing"> </span></span>因为对亮度不敏感</li>
+</ul>
+</li>
+<li>Fast and efficient—can run in real time</li>
+<li>Lots of code available</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-01-23-39-31.png" width="60%"/></center>
+<h3 id="matching">Matching<a class="headerlink" href="#matching" title="Permanent link">¶</a></h3>
+<p>Feature Matching: Given two sets of feature descriptors, find the best matching pairs.
+对于低维的情况用一些方法可以加速，但对高维的情况就很难了，基本上就是两两算一遍，对目前的算力不成问题</p>
+<p>Given a feature in <span class="arithmatex">\(I_1\)</span>, how to find the best match in <span class="arithmatex">\(I_2\)</span>?
+1. Define distance function that compares two descriptors
+2. Test all the features in <span class="arithmatex">\(I_2\)</span>, find the one with min distance</p>
+<h4 id="feature-distance">Feature distance<a class="headerlink" href="#feature-distance" title="Permanent link">¶</a></h4>
+<p>How to define the difference between two features f1, f2?
++ Simple approach: L2 distance ||f1 - f2|| 欧氏距离
++ Can give small distances for ambiguous (incorrect) matches 有时候会具有歧义性</p>
+<h4 id="ratio-test">Ratio Test<a class="headerlink" href="#ratio-test" title="Permanent link">¶</a></h4>
+<ul>
+<li>Ratio score = 1<sup>st</sup> best distance / 2<sup>nd</sup> best distance</li>
+<li><span>Ambiguous matches have large ratio scores<span class="heti-spacing"> </span></span>歧义性越大，这个比值越大</li>
+</ul>
+<h4 id="mutual-nearest-neighbors"><span>Mutual Nearest Neighbors<span class="heti-spacing"> </span></span>相互最近邻<a class="headerlink" href="#mutual-nearest-neighbors" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<ul>
+<li>Another strategy: find mutual nearest neighbors</li>
+<li>f2 is the nearest neighbor of f1 in I2</li>
+<li>f1 is the nearest neighbor of f2 in I1</li>
+</ul>
+<h4 id="learning-based-local-features">Learning-based local features<a class="headerlink" href="#learning-based-local-features" title="Permanent link">¶</a></h4>
+<p></p><center><img src="./figures/2024-12-02-00-23-22.png" width="60%"/></center>
+<h2 id="motion-estimation">Motion Estimation<a class="headerlink" href="#motion-estimation" title="Permanent link">¶</a></h2>
+<p>两类问题</p>
+<ul>
+<li>Feature-tracking</li>
+<li>Extract feature(interest) points and track them over multiple frames</li>
+<li><span>Output: displacement of sparse point<span class="heti-spacing"> </span></span>稀疏点的跟踪</li>
+<li>Optical flow</li>
+<li>Recover image motion at each pixel</li>
+<li><span>Output: dense displacement field (optical flow)<span class="heti-spacing"> </span></span>稠密的光流</li>
+</ul>
+<p>一个方法：Lucas-Kanade method</p>
+<p></p><center><img src="./figures/2024-12-02-12-58-49.png" width="60%"/></center>
+<p>与特征匹配的区别：
++ 特征匹配是从图像中找特征再去做匹配
++ 运动估计的点是已经给定的，可能不是特征点</p>
+<p>Key assumptions of Lucas-Kanade
+1. Small motion: points do not move very far away
+2. Brigntness constancy: same point looks the same in every frame
+3. Spatial coherence: points move like their neighbors</p>
+<h3 id="lucas-kanade-method">Lucas-Kanade method<a class="headerlink" href="#lucas-kanade-method" title="Permanent link">¶</a></h3>
+<p></p><center><img src="./figures/2024-12-02-13-19-57.png" width="60%"/></center>
+<p>首先利用假设<span><span class="heti-spacing"> </span>2 Brightness constancy</span>，我们可以得到一个方程</p>
 <div class="arithmatex">\[
-\psi(\alpha) \leq \psi(0) + \gamma \psi'(0)\alpha
+I(x,y,t)=I(x+u,y+v,t+1)
 \]</div>
-<p><span class="arithmatex">\(\gamma \in (0,1)\)</span> 是预先设定的参数</p>
-<p></p><center><img src="./figures/2024-11-30-21-18-20.png" width="60%"/></center>
-<p>总结最速梯度下降法
-+ advantage 优点
-  + Easy to implement
-  + Perform well when far from the minimum
-+ disadvantage 缺点
-  + Converge slowly when near the minimum
-  + Waste a lot of computation
-+ 为什么收敛慢
-  + 只是用了一阶导数信息
-  + Does not use curvature</p>
-<h3 id="newton-method"><span>Newton method<span class="heti-spacing"> </span></span>牛顿法<a class="headerlink" href="#newton-method" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<p>做二阶泰勒展开</p>
+<p>再利用假设<span><span class="heti-spacing"> </span>1 Small motion</span>，我们可以对上式进行泰勒展开</p>
 <div class="arithmatex">\[
-F(x_k+\delta x) \approx F(x_k) + J_F\delta x + \frac{1}{2}\delta x^TH_F\delta x
+I(x+u,y+v,t+1) \approx I(x,y,t) + \frac{\partial I}{\partial x}u + \frac{\partial I}{\partial y}v + \frac{\partial I}{\partial t}
 \]</div>
-<p>找到最小的 <span class="arithmatex">\(\delta x\)</span></p>
+<p>结合两式我们有：</p>
 <div class="arithmatex">\[
-H_F\delta x + -J_F = 0
+I_xu + I_yv + I_t = 0 \rightarrow \nabla I \cdot [u,v]^T = -I_t
 \]</div>
-<p>所以优化的方向（Newton step）</p>
-<div class="arithmatex">\[
-\delta x = -H_F^{-1}J_F
-\]</div>
-<p>相当于用二阶导去调整梯度下降的方向。</p>
+<p>以上等式存在两个未知数，有无穷解，所以需要更多的等式，利用第三个假设<span><span class="heti-spacing"> </span>Spatial coherence</span>，我们可以得到更多的等式</p>
 <ul>
-<li><span>Advantage<span class="heti-spacing"> </span></span>优点</li>
-<li>Fast convergence near the minimum</li>
-<li><span>Disadvantage<span class="heti-spacing"> </span></span>缺点</li>
-<li>Hessian requires a lot of computation</li>
-<li>Can we approximate Hessian?</li>
+<li>Assume the pixel’s neighbors have the same(u,v)</li>
+<li>If we use a 5x5 window,that gives us 25 equations per pixel</li>
 </ul>
-<h3 id="gauss-newton-method"><span>Gauss-Newton method<span class="heti-spacing"> </span></span>高斯牛顿法<a class="headerlink" href="#gauss-newton-method" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<p></p><center><img src="./figures/2024-12-02-13-24-09.png" width="60%"/></center>
 <ul>
-<li><span>Useful for solving nonlinear least squares problems<span class="heti-spacing"> </span></span>对非线性最小二乘问题很有效</li>
+<li>More equations than variables</li>
+<li>所以转化为优化问题 <span class="arithmatex">\(\min_d \|Ad-b\|^2\)</span></li>
+<li>Least squares solution for d given by</li>
 </ul>
-<p></p><center><img src="./figures/2024-11-30-21-24-50.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-02-13-25-20.png" width="60%"/></center>
+<p>但是上面方程的可解性与 <span class="arithmatex">\(A^TA\)</span> 有关，如果 <span class="arithmatex">\(A^TA\)</span> 不可逆，那么就无解，不可逆意味着不满秩
++ 也就是说特征值 <span class="arithmatex">\(\lambda_1\)</span> 和 <span class="arithmatex">\(\lambda_2\)</span> 不能够太小
+  + 回忆前面特征提取的部分，特征值比较小对应图像的什么情况？
+    + 根据 Harris corner detector，对于平坦的区域 flag 和边缘 edge，即非角点的区域，特征值比较小
+    + 这意味着光流估计的效果不好，这与直觉是符合的，对于平坦和边缘一般很难分辨这个点是否运动了</p>
+<p></p><center><img src="./figures/2024-12-02-13-30-51.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-02-13-31-04.png" width="60%"/></center>
+<p>纹理比较丰富的区域能够比较好的估计
+</p><center><img src="./figures/2024-12-02-13-32-31.png" width="60%"/></center>
+<div class="admonition example the aperture problem">
+<p class="admonition-title">Example</p>
+<p></p><center><img src="./figures/2024-12-02-13-31-48.png" width="60%"/></center>
+<center><img src="./figures/2024-12-02-13-31-38.png" width="60%"/></center>
+</div>
+<h3 id="errors-in-lucas-kanade">Errors in Lucas-Kanade<a class="headerlink" href="#errors-in-lucas-kanade" title="Permanent link">¶</a></h3>
 <ul>
-<li>展开残差向量 <span class="arithmatex">\(R(x)\)</span> 而不是目标函数 <span class="arithmatex">\(F(x)\)</span>，近似的方式是对里面的进行一阶展开，再取平方，近似二阶展开</li>
+<li>假设 <span class="arithmatex">\(A^TA\)</span> 是可逆的</li>
+<li>假设图像中没有很多的噪声</li>
 </ul>
-<p></p><center><img src="./figures/2024-11-30-21-26-43.png" width="80%"/></center>
-<ul>
-<li>优化 <span class="arithmatex">\(\Delta x\)</span> 满足</li>
-</ul>
-<div class="arithmatex">\[
-J_R^TJ_R\Delta x + -J_R^TR(x_k) = 0
-\]</div>
-<ul>
-<li>优化方向</li>
-</ul>
-<div class="arithmatex">\[
-\Delta x = -(J_R^TJ_R)^{-1}J_R^TR(x_k)
-\]</div>
-<ul>
-<li>与<span class="heti-skip"><span class="heti-spacing"> </span>Newton method<span class="heti-spacing"> </span></span>比较</li>
-<li>Newton step : <span class="arithmatex">\(\Delta x = -H_F^{-1}J_F = -H_F^{-1}J_R^TR(x_k)\)</span></li>
-<li><span>Gauss-Newton use<span class="heti-spacing"> </span></span><span class="arithmatex">\(J_R^TJ_R\)</span>近似<span><span class="heti-spacing"> </span>Hessian</span> <span class="arithmatex">\(H_F\)</span></li>
-</ul>
-<p>总结
-+ Advantage 优点
-  + Fast convergence
-  + Avoid computing Hessian 用一阶导来近似二阶导，加速计算（）
-+ Disadvantage 缺点
-  + If <span class="arithmatex">\(J_R^TJ_R\)</span> is singular,  the algorithm becomes unstable 如果 <span class="arithmatex">\(J_R^TJ_R\)</span> 是奇异的，即近似的矩阵不可逆，算法会变得不稳定</p>
-<h3 id="levenberg-marquardt-method-"><span>Levenberg-Marquardt method<span class="heti-spacing"> </span></span>莱文贝格<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>马夸特法<a class="headerlink" href="#levenberg-marquardt-method-" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<p>因为 <span class="arithmatex">\(J_R^TJ_R\)</span> 存在不满秩的问题，我们的解决方式是加上一个正则项</p>
-<div class="arithmatex">\[
-\Delta x = -(J_R^TJ_R + \lambda I)^{-1}J_R^TR(x_k)
-\]</div>
-<p>对于所有的 <span class="arithmatex">\(\lambda\)</span>，<span class="arithmatex">\(J_R^TJ_R + \lambda I\)</span> 必须要是正定的</p>
-<ul>
-<li><span class="arithmatex">\(\lambda\)</span> 的作用</li>
-<li>当 <span class="arithmatex">\(\lambda\)</span> 很大时，相当于梯度下降并且<span class="heti-skip"><span class="heti-spacing"> </span>step size<span class="heti-spacing"> </span></span>很小</li>
-<li>当 <span class="arithmatex">\(\lambda\)</span> 很小时，相当于高斯牛顿法 </li>
-</ul>
-<p>总结
-+ Advantage 优点
-  + Start quickly (<span class="arithmatex">\(\lambda\)</span> 增大)
-  + Fast convergence (<span class="arithmatex">\(\lambda\)</span> 减小)
-  + Do not degenerate (<span class="arithmatex">\(J_R^TJ_R + \lambda I\)</span> 必须要是正定的)
-  + LM = Gradient descent + Gauss-Newton</p>
-<h3 id="local-minimum-and-global-minimum"><span>Local minimum and global minimum<span class="heti-spacing"> </span></span>局部最小值和全局最小值<a class="headerlink" href="#local-minimum-and-global-minimum" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<ul>
-<li>梯度下降法<span><span class="heti-spacing"> </span>can only find the local minimum</span></li>
-<li>For some functions, local minimum is global minimum</li>
-<li>构建一个能保证找到最优解的近似问题，来作为初始化<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>或者多初始化几次</li>
-<li>凸优化一定能找到全局最优解（局部最优解<span class="heti-skip"><span class="heti-spacing"> </span>=<span class="heti-spacing"> </span></span>全局最优解）</li>
-</ul>
-<h2 id="robust-estimation">Robust estimation<a class="headerlink" href="#robust-estimation" title="Permanent link">¶</a></h2>
-<h3 id="outliers"><span>Outliers<span class="heti-spacing"> </span></span>异常值<a class="headerlink" href="#outliers" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<ul>
-<li>Inlier: obeys the model assumption</li>
-<li>Outlier: differs significantly from the assumption</li>
-</ul>
-<p>外点对最小二乘法的影响很大，因为它们的残差很大
-+ 使用其他的 Lose fuction:L1,Huber
-+ They are called robust functions</p>
-<p></p><center><img src="./figures/2024-11-30-21-56-49.png" width="60%"/></center>
-<h3 id="ransac">RANSAC<a class="headerlink" href="#ransac" title="Permanent link">¶</a></h3>
-<p>另外一种方法使用<span><span class="heti-spacing"> </span>RANSAC (Random Sample Concensus)</span>
-+ 最有力的处理外点的方法
-+ 核心思想
-  + 内点的分布是相似的，但是外点不是
-  + Use data point pairs to vote</p>
-<p></p><center><img src="./figures/2024-11-30-21-58-21.png" width="60%"/></center>
-<p>先用其中的几个点拟合，看看剩下的点有多少在上面，找到最多的就是最准确的拟合。</p>
-<ul>
-<li>过拟合和欠拟合</li>
-</ul>
-<h3 id="ill-posed-problem">ill-posed problem<a class="headerlink" href="#ill-posed-problem" title="Permanent link">¶</a></h3>
-<ul>
-<li>The solution is not unique</li>
-<li>use prior knowledge to add more constraints to make the solution unique</li>
-</ul>
-<h3 id="l2-regularization">L2 regularization<a class="headerlink" href="#l2-regularization" title="Permanent link">¶</a></h3>
-<ul>
-<li>L2 norm: <span class="arithmatex">\(\|x\|_2 = \sum_i x_i^2\)</span></li>
-<li>L2 regularization: </li>
-</ul>
-<p></p><center><img src="./figures/2024-12-01-21-57-59.png" width="60%"/></center>
-<p>去除掉一些冗余的无用变量</p>
-<h3 id="l1-regularization">L1 regularization<a class="headerlink" href="#l1-regularization" title="Permanent link">¶</a></h3>
-<p></p><center><img src="./figures/2024-12-01-21-58-17.png" width="60%"/></center>
-<h2 id="graphcut">Graphcut<a class="headerlink" href="#graphcut" title="Permanent link">¶</a></h2>
+<p>潜在的可能导致<span class="heti-skip"><span class="heti-spacing"> </span>error<span class="heti-spacing"> </span></span>的问题：</p>
+<p>当我们的推导时的假设不成立时，会导致误差
++ Brightness constancy is not satisfied 亮度有剧烈变化
++ The motion is not small 运动太大
++ A point does not move like its neighbors 空间一致性不成立，遮挡边缘</p>
+<p>现在考虑<span><span class="heti-spacing"> </span>small motion assumption</span>
+如果给定两张图片，但是相对位移比较大，应该如何实现呢？降低分辨率，降低分辨率后运动也变小了。在低分辨率做 LK 算法，再放大回去。</p>
+<p>但是该方法的缺点就是在缩小图片的过程中会丢失信息，这样图像移动距离的精度就无法保证。</p>
+<p>这就涉及到计算机视觉中很重要的思想<span class="heti-skip"><span class="heti-spacing"> </span>Coarse-to-fine strategy<span class="heti-spacing"> </span></span>从粗到细的策略</p>
+<p></p><center><img src="./figures/2024-12-02-21-29-05.png" width="60%"/></center>
+<p>在上层做估计，然后在第二层中恢复这个运动，此时有了第一层粗略估计的结果，再与第二层的<span class="heti-skip"><span class="heti-spacing"> </span>t+1<span class="heti-spacing"> </span></span>时刻的图像进行比较，逐层把上一层的结果传递下去，最终得到最终的结果，提升精度。先做简单的粗略的估计，再在更高分辨率上做更精细的估计。</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>对于特征匹配最重要的是其中具有一些的不变性，在图像之间特征点具有不变性
+这两类问题叫做对应关系问题(correspondence problems)</p>
+</div>
 </article>
 </div>
 </div>

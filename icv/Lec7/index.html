@@ -440,6 +440,11 @@
     Epipolar Geometry 对极几何
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#epipolar-geometry_1">
+    Epipolar Geometry 对极几何
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -450,7 +455,7 @@
 <nav aria-label="Structure from Motion" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#epipolar-geometry_1">
+<a class="md-nav__link" href="#epipolar-geometry_2">
     Epipolar Geometry 对极几何
   </a>
 </li>
@@ -484,31 +489,31 @@
 <h2 id="_1">需要注意的问题<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <ul>
 <li>相机是如何将三维坐标点映射到图像平面上的？(camera model)</li>
-<li>如何计算相机在世界坐标系下的位置和方向<span><span class="heti-spacing"> </span>?(camera calibration and pose estimation)</span></li>
+<li>如何计算相机在世界坐标系下的位置和方向<span class="heti-skip"><span class="heti-spacing"> </span>?(camera calibration and pose estimation)<span class="heti-spacing"> </span></span>标定和位姿估计</li>
 <li>如何从图像中重建出不知道的三维结构？(structure from motion)</li>
 </ul>
 <h2 id="image-formationcamera-model">Image Formation(camera model)<a class="headerlink" href="#image-formationcamera-model" title="Permanent link">¶</a></h2>
 <p>首先回顾一下图像形成的过程
-+ 坐标系变换：把世界坐标系的点变换到相机坐标系
-+ 透视投影：将相机坐标系的点投影到像平面上
-+ 成像平面转化为像素平面</p>
+1. 坐标系变换：把世界坐标系的点变换到相机坐标系
+2. 透视投影：将相机坐标系的点投影到像平面上
+3. 成像平面转化为像素平面</p>
 <h3 id="_2">坐标系转换<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<p></p><center><img src="./figures/2024-11-06-21-30-36.png"/>1-49.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-06-21-30-36.png"/>51-49.png',width=60%&gt;
 <p><span>Extrinsic parameters:<span class="heti-spacing"> </span></span>外参<span class="arithmatex">\((R,c_w)\)</span>分别代表从世界坐标向相机坐标的旋转矩阵和在世界坐标系下相机中心的坐标</p>
-<p></p><center><img src="./figures/2024-11-06-21-49-03.png"/>24-11-07-20-54-41.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-06-21-49-03.png"/>024-11-07-20-54-41.png',width=60%&gt;
 <p>旋转矩阵是标准正交的。变换后的坐标是</p>
 <div class="arithmatex">\[
 x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 \]</div>
-<p></p><center><img src="./figures/2024-11-06-22-03-36.png"/></center>
+<p></p><center><img src="./figures/2024-11-06-22-03-36.png"/>&gt;
 <p>使用其次坐标系，可以将上述变换写成矩阵形式</p>
-<p></p><center><img src="./figures/2024-11-06-22-04-16.png"/></center>
+<p></p><center><img src="./figures/2024-11-06-22-04-16.png"/>&gt;
 <h3 id="_3">透视投影<a class="headerlink" href="#_3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>在之前的课程详细介绍过。小孔成像原理</p>
-<p></p><center><img src="./figures/2024-11-07-20-51-49.png"/></center>
+<p></p><center><img src="./figures/2024-11-07-20-51-49.png"/>&gt;
 <h3 id="_4">成像平面转化为像素平面<a class="headerlink" href="#_4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>首先把长度单位转化为像素单位</p>
-<p></p><center><img src="./figures/2024-11-07-20-54-41.png"/>去求解矩阵的方程。
+<p></p><center><img src="./figures/2024-11-07-20-54-41.png"/>以去求解矩阵的方程。
 <p>具体来做：</p>
 <ul>
 <li>给一个已知形状（世界坐标定义好的）的物体拍一个照，比如标定板</li>
@@ -519,17 +524,19 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 </ul>
 <p></p><center>
 <p>其次，要进行坐标原点的转化。成像平面的原点在相机光轴与平面的交点<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>一般在图像正中间<span class="heti-skip"><span class="heti-spacing"> </span>),<span class="heti-spacing"> </span></span>而我们一般把图像左上角作为像素平面的原点。</p>
-<p></p><center><img src="./figures/2024-11-07-20-55-51.png"/>形状的世界坐标，比如标定板上的格点。
+<p></p><center><img src="./figures/2024-11-07-20-55-51.png"/>知形状的世界坐标，比如标定板上的格点。
 + 对每一个对应的点，我们可以得到一个方程
 + 把这些项重新排列，得到一个线性方程组，每一对点对应两行
 + 最后把这个方程组求解，得到 p
 <p></p><center>
 <p>两者结合起来，就可以用齐次坐标得到相机的内参矩阵</p>
-<p></p><center><img src="./figures/2024-11-07-20-57-04.png"/>解，得到<span><span class="heti-spacing"> </span>p</span>
+<p></p><center><img src="./figures/2024-11-07-20-57-04.png"/>
++ 把这些项重新排列，得到一个线性方程组，每一对点对应两行
++ 最后把这个方程组求解，得到 p
 <p></p><center>
 <h3 id="projection-matrix-p">Projection Matrix P<a class="headerlink" href="#projection-matrix-p" title="Permanent link">¶</a></h3>
 <p>结合内参矩阵和外参矩阵，我们可以得到总的外参矩阵，先乘外参矩阵，再乘内参矩阵</p>
-<p></p><center><img src="./figures/2024-11-07-20-58-22.png"/></center>
+<p></p><center><img src="./figures/2024-11-07-20-58-22.png"/>&gt;
 <h2 id="camera-calibration">Camera Calibration<a class="headerlink" href="#camera-calibration" title="Permanent link">¶</a></h2>
 <p>怎么解相机的内参和外参，世界坐标系一般是人为定义的，我们想要得到这两个矩阵，首先得到两个矩阵的乘积，就是得到关于参数的方程。</p>
 <h3 id="_5">标定板求投影矩阵<a class="headerlink" href="#_5" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
@@ -542,12 +549,12 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <li>把这些项重新排列，得到一个线性方程组，每一对点对应两行</li>
 <li>最后把这个方程组求解，得到<span><span class="heti-spacing"> </span>p</span></li>
 </ul>
-<p></p><center><img src="./figures/2024-11-07-21-05-32.png"/>&gt;
-<p></p><center><img src="./figures/2024-11-07-21-06-36.png"/>阵，是正交矩阵，在线性代数中可以通过<span class="heti-skip"><span class="heti-spacing"> </span>QR<span class="heti-spacing"> </span></span>分解得到这两个矩阵
+<p></p><center><img src="./figures/2024-11-07-21-05-32.png"/>7-21-17-12.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-07-21-06-36.png"/></center>
+<p></p><center><img src="./figures/2024-11-07-21-07-48.png"/>，是正交矩阵，在线性代数中可以通过<span class="heti-skip"><span class="heti-spacing"> </span>QR<span class="heti-spacing"> </span></span>分解得到这两个矩阵
 <p></p><center>
-<p></p><center><img src="./figures/2024-11-07-21-07-48.png"/>&gt;
 <p>因为在齐次坐标下，所以这里的<span class="heti-skip"><span class="heti-spacing"> </span>P<span class="heti-spacing"> </span></span>是一个与尺度无关的矩阵，可以乘以任何的常数，不会改变投影的过程。</p>
-<p></p><center><img src="./figures/2024-11-07-21-10-25.png"/>&gt;
+<p></p><center><img src="./figures/2024-11-07-21-10-25.png"/>11-07-21-19-43.png',width=60%&gt;
 <p>求解的时候有两个选择</p>
 <ul>
 <li>让其中一个量为<span><span class="heti-spacing"> </span>1</span></li>
@@ -556,17 +563,18 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <p>我们希望 <span class="arithmatex">\(Ap\approx 0\)</span>，同时满足 <span class="arithmatex">\(||p||=1\)</span>，这样就是一个优化问题，可以证明 <span class="arithmatex">\(A^TA\)</span> 的最小特征值的特征向量就是我们要求的<span><span class="heti-spacing"> </span>p</span></p>
 <h3 id="_6">分解投影矩阵到外参和内参<a class="headerlink" href="#_6" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>我们把这个投影矩阵表示为内参矩阵和外参矩阵的乘积</p>
-<p></p><center><img src="./figures/2024-11-07-21-17-12.png"/><span>ed 6Dof pose estimation 6<span class="heti-spacing"> </span></span>自由度位姿估计
+<p></p><center><img src="./figures/2024-11-07-21-17-12.png"/> for translation
++ Usually called 6Dof pose estimation 6自由度位姿估计
 <p>按道理只需要<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>对匹配就可以了。</p>
 <p>首先来看<span class="heti-skip"><span class="heti-spacing"> </span>Direct Linear Transform (DLT)<span class="heti-spacing"> </span></span>方法，这种方法是不划算的（不高效的）
 这是用标定的方法去做，去求解投影矩阵，但是我们的内存是已知的，按照这种方法做出来的会有误差，也不高效。</p>
 <p></p><center>
 <p>可以看到实际上前面<span class="heti-skip"><span class="heti-spacing"> </span>3x3<span class="heti-spacing"> </span></span>的矩阵是由内参矩阵的一个上三角矩阵和外参矩阵的前<span class="heti-skip"><span class="heti-spacing"> </span>3x3<span class="heti-spacing"> </span></span>组成的，而外参矩阵的部分是相机的旋转矩阵，是正交矩阵，在线性代数中可以通过<span class="heti-skip"><span class="heti-spacing"> </span>QR<span class="heti-spacing"> </span></span>分解得到这两个矩阵</p>
-<p></p><center><img src="./figures/2024-11-07-21-18-45.png"/>划算的（不高效的）
+<p></p><center><img src="./figures/2024-11-07-21-18-45.png"/>不划算的（不高效的）
 这是用标定的方法去做，去求解投影矩阵，但是我们的内存是已知的，按照这种方法做出来的会有误差，也不高效。
 <p></p><center>
 <p>而对于外参矩阵中的平移项，前面已经得到了内参矩阵，所以有</p>
-<p></p><center><img src="./figures/2024-11-07-21-19-43.png"/>&gt;
+<p></p><center><img src="./figures/2024-11-07-21-19-43.png"/>mg src='./figures/2024-11-07-21-32-34.png',width=60%&gt;
 <p>相机的内参一般在出厂的时候就已经固定好了，但是外参矩阵是一直在变化的。</p>
 <h2 id="visual-localization-problem">Visual Localization Problem<a class="headerlink" href="#visual-localization-problem" title="Permanent link">¶</a></h2>
 <p>给定已知的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点云地图，给一张照片目标是定位相机的位置和方向。通过照片计算出拍摄者的位置<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>即相机的外参<span><span class="heti-spacing"> </span>)</span>。这里我们假定场景的地图和相机的内参都已知。</p>
@@ -582,7 +590,7 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <p>按道理只需要<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>对匹配就可以了。</p>
 <p>首先来看<span class="heti-skip"><span class="heti-spacing"> </span>Direct Linear Transform (DLT)<span class="heti-spacing"> </span></span>方法，这种方法是不划算的（不高效的）
 这是用标定的方法去做，去求解投影矩阵，但是我们的内存是已知的，按照这种方法做出来的会有误差，也不高效。</p>
-<p></p><center><img src="./figures/2024-11-07-21-32-34.png"/> 假设相机的内参矩阵 <span class="arithmatex">\(K\)</span> 已知
+<p></p><center><img src="./figures/2024-11-07-21-32-34.png"/><span>+<span class="heti-spacing"> </span></span>假设相机的内参矩阵 <span class="arithmatex">\(K\)</span> 已知
 + 找到图像之间特征点的对应关系
 + 基于特征匹配关系，估计相机的位置 <span class="arithmatex">\(t\)</span> 和姿态(orientation) <span class="arithmatex">\(R\)</span>
 + 找到每一个点的3D坐标
@@ -590,14 +598,16 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <p>描述同一个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点在两个不同的相机中的投影关系</p>
 <p></p><center>
 <p>另外一种方法，假设我们只有<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>对坐标。这个问题就变成了<span class="heti-skip"><span class="heti-spacing"> </span>P3P<span class="heti-spacing"> </span></span>问题，是一个纯粹的几何问题。</p>
-<p></p><center><img src="./figures/2024-11-07-21-34-53.png"/><span>Epipolar Geometry<span class="heti-spacing"> </span></span>对极几何
+<p></p><center><img src="./figures/2024-11-07-21-34-53.png"/>找到每一个点的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>坐标
+<h3 id="epipolar-geometry_1"><span>Epipolar Geometry<span class="heti-spacing"> </span></span>对极几何<a class="headerlink" href="#epipolar-geometry_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>描述同一个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点在两个不同的相机中的投影关系</p>
 <p></p><center>
-<p></p><center><img src="./figures/2024-11-07-21-33-59.png"/><img src="./figures/2024-11-07-21-48-32.png"/>
-<p></p><center><img src="./figures/2024-11-07-21-35-21.png"/>07-21-48-32.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-07-21-33-59.png"/>投影关系
+<p></p><center>
+<p></p><center><img src="./figures/2024-11-07-21-35-21.png"/>img src='./figures/2024-11-07-21-48-32.png',width=60%&gt;
 <p>这个二元二次方程组有<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>个可能的解，这时候我们用一个额外的点来判断哪个是最可能的解。所以只需要用<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>组点就可以获得一个相对准确的解（一般情况下）。<span>3<span class="heti-spacing"> </span></span>对点不够，只能确定是<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>个解中的一个。</p>
 <p>现在回来看<span class="heti-skip"><span class="heti-spacing"> </span>PnP<span class="heti-spacing"> </span></span>问题，有一种更普遍的解法，转化为优化问题，最小化重投影误差（用已有的投影矩阵对所有的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点做投影，跟实际的<span class="heti-skip"><span class="heti-spacing"> </span>2D<span class="heti-spacing"> </span></span>投影计算误差）。非线形最小二乘。一般用<span class="heti-skip"><span class="heti-spacing"> </span>Levenberg-Marquardt<span class="heti-spacing"> </span></span>算法来求解，用<span class="heti-skip"><span class="heti-spacing"> </span>P3P<span class="heti-spacing"> </span></span>方法来初始化，用高斯牛顿法进行优化。</p>
-<p></p><center><img src="./figures/2024-11-07-21-39-35.png"/>视角下另一个相机在该相机平面的投影点，在图中为 <span class="arithmatex">\(e_l,e_r\)</span>
+<p></p><center><img src="./figures/2024-11-07-21-39-35.png"/>理解为在一个相机视角下另一个相机在该相机平面的投影点，在图中为 <span class="arithmatex">\(e_l,e_r\)</span>
 + 对极平面(Epipolar Plane)：两个相机中心的点和场景点构成的平面
 + 对极线(Epipolar Line)：对极面与像平面的交线
 <p>最重要的<span><span class="heti-spacing"> </span>Epipolar Constraint</span>：</p>
@@ -613,9 +623,9 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <li>基于特征匹配关系，估计相机的位置 <span class="arithmatex">\(t\)</span> 和姿态<span><span class="heti-spacing"> </span>(orientation)</span> <span class="arithmatex">\(R\)</span></li>
 <li>找到每一个点的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>坐标</li>
 </ul>
-<h3 id="epipolar-geometry_1"><span>Epipolar Geometry<span class="heti-spacing"> </span></span>对极几何<a class="headerlink" href="#epipolar-geometry_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="epipolar-geometry_2"><span>Epipolar Geometry<span class="heti-spacing"> </span></span>对极几何<a class="headerlink" href="#epipolar-geometry_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>描述同一个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点在两个不同的相机中的投影关系</p>
-<p></p><center><img src="./figures/2024-11-07-21-48-32.png"/></center>
+<p></p><center><img src="./figures/2024-11-07-21-48-32.png"/>&gt;
 <p>这里有几个参数</p>
 <ul>
 <li>基线：两个相机中心的连线，<span class="arithmatex">\(OO'\)</span></li>
@@ -626,49 +636,53 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <p>最重要的<span><span class="heti-spacing"> </span>Epipolar Constraint</span>：</p>
 <p>推导：</p>
 <p>第一先算出叉乘</p>
-<p></p><center><img src="./figures/2024-11-07-21-57-54.png"/>了已知坐标的等式，假设内参矩阵也是知道的。
+<p></p><center><img src="./figures/2024-11-07-21-57-54.png"/>到了已知坐标的等式，假设内参矩阵也是知道的。
 <p></p><center>
 <p>然后把叉乘展开就得到：</p>
-<p></p><center><img src="./figures/2024-11-07-21-58-35.png"/>束。以下这三个方程是最重要的。
+<p></p><center><img src="./figures/2024-11-07-21-58-35.png"/>约束。以下这三个方程是最重要的。
 <p></p><center>
 <p>同时根据相机的相对位置关系，我们有 <span class="arithmatex">\(x_l = Rx_r + t\)</span>，把右边的 <span class="arithmatex">\(x_l\)</span> 代入上面的方程就得到了</p>
-<p></p><center><img src="./figures/2024-11-07-22-02-05.png"/>igures/2024-11-07-22-12-27.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-07-22-02-05.png"/>figures/2024-11-07-22-12-27.png',width=60%&gt;
 <p><span>Essemtial Matrix<span class="heti-spacing"> </span></span>只跟相机外参有关。这里的 <span class="arithmatex">\(T_x\)</span> 是个反对称矩阵，<span class="arithmatex">\(R\)</span> 是正交矩阵，所以可以通过奇异值分解（SVD） <span class="arithmatex">\(E = T_x R\)</span> 得到 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(t\)</span>。</p>
-<p></p><center><img src="./figures/2024-11-07-22-05-52.png"/>!! note Relative Camera Pose Estimation
+<p></p><center><img src="./figures/2024-11-07-22-05-52.png"/>!!! note Relative Camera Pose Estimation
     <center>
 <p>但是这里的三维坐标是未知的，我们只有二维的像素点，所以我们通过内参矩阵把 <span class="arithmatex">\(x_l,x_r\)</span> 替换为二维坐标。</p>
 <p></p><center><img src="./figures/2024-11-07-22-06-43.png"/>60%&gt;
 <p></p><center><img src="./figures/2024-11-07-22-08-26.png"/>60%&gt;
 <p>这里的 <span class="arithmatex">\(z_l,z_r\)</span> 是齐次坐标下得到的，最后可以去掉不影响，对应的意义就是场景点的深度不影响对极约束。这样一替换就得到了已知坐标的等式，假设内参矩阵也是知道的。</p>
-<p></p><center><img src="./figures/2024-11-07-22-09-51.png"/>!! note Triangulation
+<p></p><center><img src="./figures/2024-11-07-22-09-51.png"/>!!! note Triangulation
     <center>
 <p>一般会把中间的三个矩阵乘到一起，得到了<span><span class="heti-spacing"> </span>Fundamental Matrix</span>，上面是<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>坐标的约束，下面是<span class="heti-skip"><span class="heti-spacing"> </span>2D<span class="heti-spacing"> </span></span>坐标的约束。以下这三个方程是最重要的。</p>
-<p></p><center><img src="./figures/2024-11-07-21-56-58.png"/>07-22-26-18.png',width=60%&gt;
+<p></p><center><img src="./figures/2024-11-07-21-56-58.png"/>-07-22-26-18.png',width=60%&gt;
 <p>如前述，这个矩阵也是与扩张无关的，可以乘以任何常数，所以可以加一个模长为<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>的约束</p>
 <p></p><center><img src="./figures/2024-11-07-22-12-27.png"/>60%&gt;
 <p>现在这里对每一对匹配，都可以得到一个线性方程，那么根据约束，就可以写成下面的矩阵，需要至少<span class="heti-skip"><span class="heti-spacing"> </span>8<span class="heti-spacing"> </span></span>对匹配（加上模长约束）。</p>
 <div class="admonition note relative camera pose estimation">
 <p class="admonition-title">Note</p>
-<p></p><center><img src="./figures/2024-11-07-22-14-05.png"/>-11-07-22-29-04.png',width=60%&gt;
-<center><img src="./figures/2024-11-07-22-14-25.png"/>enter&gt;
-<center><img src="./figures/2024-11-07-22-14-56.png"/>nter&gt;
-<center><img src="./figures/2024-11-07-22-15-13.png"/>Multi-frame Structure from Motion
+<p></p><center><img src="./figures/2024-11-07-22-14-05.png"/>4-11-07-22-29-04.png',width=60%&gt;
+<center><img src="./figures/2024-11-07-22-14-25.png"/>-11-07-22-29-04.png',width=60%&gt;
+<center><img src="./figures/2024-11-07-22-14-56.png"/>enter&gt;
+<center><img src="./figures/2024-11-07-22-15-13.png"/>nter&gt;
 </center></center></center></center></div>
-<p></p><center>
 <p>至此我们已经解出了相机的外参，接下来就是求解三维坐标。</p>
 <h3 id="triangulation"><span>Triangulation<span class="heti-spacing"> </span></span>三角化<a class="headerlink" href="#triangulation" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p><span class="arithmatex">\(x_l,x_r\)</span> 的关系是由相机外参约束的。那么可以通过下面的变换来得到</p>
 <div class="admonition note triangulation">
 <p class="admonition-title">Note</p>
-<p></p><center><img src="./figures/2024-11-07-22-26-18.png"/>化<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>消除累积误差<span><span class="heti-spacing"> </span>)</span>
+<p></p><center><img src="./figures/2024-11-07-22-26-18.png"/>点
 </center></div>
+<ul>
+<li>使用<span class="heti-skip"><span class="heti-spacing"> </span>Bundle Adjustment<span class="heti-spacing"> </span></span>进行优化<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>消除累积误差<span><span class="heti-spacing"> </span>)</span></li>
+</ul>
 <p><span>Bundle Adjustment:<span class="heti-spacing"> </span></span>集束优化，在所有相机坐标系下优化所有点的重投影误差</p>
 <p></p><center>
-<center><img src="./figures/2024-11-07-22-26-30.png"/>下优化所有点的重投影误差
+<center><img src="./figures/2024-11-07-22-26-30.png"/>化<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>消除累积误差<span><span class="heti-spacing"> </span>)</span>
+<p><span>Bundle Adjustment:<span class="heti-spacing"> </span></span>集束优化，在所有相机坐标系下优化所有点的重投影误差</p>
 <p></p><center>
-<center><img src="./figures/2024-11-07-22-26-43.png"/>igures/2024-11-07-22-39-22.png',width=60%&gt;
-    <center><img src="./figures/2024-11-07-22-26-58.png"/>gures/2024-11-07-22-39-22.png',width=60%&gt;
-    <center><img src="./figures/2024-11-07-22-27-17.png"/>enter&gt;
+<center><img src="./figures/2024-11-07-22-26-43.png"/>下优化所有点的重投影误差
+<p></p><center>
+<center><img src="./figures/2024-11-07-22-26-58.png"/>igures/2024-11-07-22-39-22.png',width=60%&gt;
+    <center><img src="./figures/2024-11-07-22-27-17.png"/>gures/2024-11-07-22-39-22.png',width=60%&gt;
 <p>大多数情况下，这两条一维射线在三维坐标中很难严格相交，因此我们使用优化的方法，即四个方程三个未知数，通过最小二乘得到最优解。</p>
 <p>另一个选择是通过优化重投影误差进行求解，这里的变量是三维点的坐标。</p>
 <p></p><center><img src="./figures/2024-11-07-22-29-04.png"/></center>
@@ -683,7 +697,7 @@ x_c = R(x_w - c_w) = R x_w - R c_w = R x_w + t,\quad t = -R c_w
 <p></p><center><img src="./figures/2024-11-07-22-39-22.png"/></center>
 <h2 id="colmap">COLMAP<a class="headerlink" href="#colmap" title="Permanent link">¶</a></h2>
 <p>一个三维重建工具<span><span class="heti-spacing"> </span>COLMAP is a general-purpose Structure-from-Motion (SfM) and Multi-View Stereo (MVS) pipeline with a graphical and command line interface. It offers a wide range of features for reconstruction of ordered and unordered image collections.</span></p>
-</center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></article>
+</center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></center></article>
 </div>
 </div>
 <a class="md-top md-icon" data-md-component="top" hidden="" href="#">
