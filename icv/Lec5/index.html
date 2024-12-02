@@ -5,6 +5,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
 <link href="https://626lt.github.io/icv/Lec5/" rel="canonical"/>
+<link href="../Lec4/" rel="prev"/>
+<link href="../Lec6/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
 <title>Image Matching and Motion Estimation - lt's notes</title>
@@ -137,7 +139,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         ICV
       </a>
 </li>
@@ -335,8 +337,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">ICV</a>
 <label for="__nav_6">
@@ -349,6 +351,149 @@
           ICV
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec2/">
+        Image formation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec3/">
+        Image processing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec4/">
+        Model Fitting and Optimization
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Image Matching and Motion Estimation
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Image Matching and Motion Estimation
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-matching">
+    Image Matching
+  </a>
+<nav aria-label="Image Matching" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#detection">
+    Detection
+  </a>
+<nav aria-label="Detection" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principal-component-analysis">
+    principal Component Analysis 主成分分析
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#corner-detection">
+    Corner Detection 角点检测
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blob-detectior">
+    Blob detectior
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#difference-of-gaussian-dog">
+    Difference of Gaussian (DoG)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#descriptions">
+    Descriptions
+  </a>
+<nav aria-label="Descriptions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sift-descriptor">
+    SIFT descriptor
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#matching">
+    Matching
+  </a>
+<nav aria-label="Matching" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#feature-distance">
+    Feature distance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ratio-test">
+    Ratio Test
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mutual-nearest-neighbors">
+    Mutual Nearest Neighbors 相互最近邻
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learning-based-local-features">
+    Learning-based local features
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#motion-estimation">
+    Motion Estimation
+  </a>
+<nav aria-label="Motion Estimation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lucas-kanade-method">
+    Lucas-Kanade method
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#errors-in-lucas-kanade">
+    Errors in Lucas-Kanade
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec6/">
+        Image Stitching
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec7/">
+        Structure from Motion
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Lec10/">
         Recognition
@@ -761,6 +906,34 @@ I_xu + I_yv + I_t = 0 \rightarrow \nabla I \cdot [u,v]^T = -I_t
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Model Fitting and Optimization" class="md-footer__link md-footer__link--prev" href="../Lec4/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Model Fitting and Optimization
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Image Stitching" class="md-footer__link md-footer__link--next" href="../Lec6/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Image Stitching
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
