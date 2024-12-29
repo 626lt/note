@@ -15,3 +15,5 @@ Arm64 svc
 Riscv ecall
 
 Stack（执行的草稿纸） 比较快引入两个寄存器，一个栈顶一个栈底，heap 比较慢，得用指针访问，要load 寄存器里，不在 cache 里
+
+task struct 在 os kernel 存储

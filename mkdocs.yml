@@ -92,7 +92,7 @@ markdown_extensions:
 #   - sane_lists
 
 extra_css:
-  - https://cdn.tonycrane.cc/utils/katex.min.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css
   - css/custom.css
   - css/counter.css
   - https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css
@@ -100,7 +100,7 @@ extra_css:
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
 
 extra_javascript:
-  - https://cdn.tonycrane.cc/utils/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
   - js/katex.js
   - js/heti.js
@@ -125,6 +125,7 @@ nav:
     - Geometric Transformation: cg/Geometric Transformation/index.md
     - View: cg/View/index.md
     - Antialiasing: cg/Antialiasing/index.md
+    - Color: cg/Color/index.md
   - OS:
     - os/index.md
     - intro: os/intro/index.md
@@ -132,12 +133,26 @@ nav:
     - Threads: os/Threads/index.md
     - Synchronization: os/Synchronization/index.md
     - Deadlock: os/Deadlock/index.md
+    - Memory: os/Memory/index.md
   - ML:
     - ml/index.md
     - probability graph: ml/probability graph/index.md
+  - ICV:
+    - icv/index.md
+    - Image formation: icv/Lec2/index.md
+    - Image processing: icv/Lec3/index.md
+    - Model Fitting and Optimization: icv/Lec4/index.md
+    - Image Matching and Motion Estimation: icv/Lec5/index.md
+    - Image Stitching: icv/Lec6/index.md
+    - Structure from Motion: icv/Lec7/index.md
+    - Recognition: icv/Lec10/index.md
+    - Computational Photography: icv/Lec12/index.md
   - Read:
     - read/index.md
     - Diffusion: read/diffusion/index.md
     - Consistency Models: read/Consistency Models/index.md
     - SDE-Diffusion: read/SDE-diffusion/index.md
+    - PeRflow: read/PeRflow/index.md
+    - Hloc: read/hloc/index.md
+
    

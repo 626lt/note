@@ -203,7 +203,7 @@ $$
 从第三个假设中可以知道，加噪过程的最终结果是将 latent 变为高斯噪声。那么 VDM 的联合分布可以写成：
 
 $$
-p(x_{0:T} = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1}|x_t))
+p(x_{0:T}) = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1}|x_t)
 $$
 
 其中 $p(x_T) = \mathcal{N}(X_T;0,I)$

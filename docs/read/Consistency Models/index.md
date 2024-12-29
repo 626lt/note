@@ -143,7 +143,7 @@ $$
 + 从 the transition density of SDE $N(x,t^2_{n+1}I)$ 中采样 $x_{t_{n+1}}$ 
 + 通过上面的 one discretization step of the numerical ODE solver 生成 $\hat{x}^\phi_{t_n}$
 
-接着，用这个 pair 与 模型输出之间的 difference 来训练 consistency model。
+接着，用模型在这个 pair 上输出的 difference 来训练 consistency model。
 
 The consistency distillation loss is defined as
 
