@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="lt's notes" name="description"/>
+<link href="https://626lt.github.io/icv/Lec12/" rel="canonical"/>
+<link href="../Lec10/" rel="prev"/>
+<link href="../../read/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
+<title>Computational Photography - lt's notes</title>
+<link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link href="../../css/heti.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css" rel="stylesheet"/>
+<link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/counter.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#lec13-computational-photography">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="lt's notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            lt's notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Computational Photography
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="夜间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</label>
+<input aria-label="日间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/626lt/note" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    626lt/note
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../cg/">
+        CG
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../os/">
+        OS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../ml/">
+        ML
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../">
+        ICV
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../read/">
+        Read
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="lt's notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+    lt's notes
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/626lt/note" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    626lt/note
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../cg/">CG</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="CG" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          CG
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Intro/">
+        Introduction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/2D%20Graphics/">
+        2D Graphics
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/OpenGL/">
+        OpenGL
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Geometric%20Transformation/">
+        Geometric Transformation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/View/">
+        View
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Antialiasing/">
+        Antialiasing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Color/">
+        Color
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../os/">OS</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="OS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          OS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/intro/">
+        intro
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/structures/">
+        structures
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Threads/">
+        Threads
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Synchronization/">
+        Synchronization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Deadlock/">
+        Deadlock
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Memory/">
+        Memory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../ml/">ML</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="ML" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          ML
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ml/probability%20graph/">
+        probability graph
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">ICV</a>
+<label for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="ICV" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          ICV
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec2/">
+        Image formation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec3/">
+        Image processing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec4/">
+        Model Fitting and Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec5/">
+        Image Matching and Motion Estimation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec6/">
+        Image Stitching
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec7/">
+        Structure from Motion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec8/">
+        Depth estimate and 3D Reconstruction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec10/">
+        Recognition
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Computational Photography
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Computational Photography
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-dynamic-range-imaginghdr">
+    High Dynamic Range Imaging(HDR)
+  </a>
+<nav aria-label="High Dynamic Range Imaging(HDR)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exposure">
+    Exposure
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dynamic-range">
+    Dynamic range
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-idea">
+    Key Idea
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tone-mapping">
+    Tone mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deblurring">
+    Deblurring
+  </a>
+<nav aria-label="Deblurring" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reason-of-blurring">
+    Reason of blurring
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-a-clear-image">
+    Get a clear image
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-deblurring">
+    Image Deblurring
+  </a>
+<nav aria-label="Image Deblurring" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#non-blind-image-deconvolution-nbid">
+    Non-blind image deconvolution (NBID)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blind-image-deconvolution-bid">
+    Blind image deconvolution (BID)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#colorization">
+    Colorization
+  </a>
+<nav aria-label="Colorization" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-colorization">
+    Image Colorization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modern-colorization">
+    Modern Colorization
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#more-image-synthesis-tasks">
+    More Image Synthesis Tasks
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../read/">Read</a>
+<label for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Read" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Read
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/diffusion/">
+        Diffusion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/Consistency%20Models/">
+        Consistency Models
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/SDE-diffusion/">
+        SDE-Diffusion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/PeRflow/">
+        PeRflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../read/hloc/">
+        Hloc
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-dynamic-range-imaginghdr">
+    High Dynamic Range Imaging(HDR)
+  </a>
+<nav aria-label="High Dynamic Range Imaging(HDR)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exposure">
+    Exposure
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dynamic-range">
+    Dynamic range
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-idea">
+    Key Idea
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tone-mapping">
+    Tone mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deblurring">
+    Deblurring
+  </a>
+<nav aria-label="Deblurring" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reason-of-blurring">
+    Reason of blurring
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-a-clear-image">
+    Get a clear image
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-deblurring">
+    Image Deblurring
+  </a>
+<nav aria-label="Image Deblurring" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#non-blind-image-deconvolution-nbid">
+    Non-blind image deconvolution (NBID)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blind-image-deconvolution-bid">
+    Blind image deconvolution (BID)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#colorization">
+    Colorization
+  </a>
+<nav aria-label="Colorization" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-colorization">
+    Image Colorization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modern-colorization">
+    Modern Colorization
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#more-image-synthesis-tasks">
+    More Image Synthesis Tasks
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="lec13-computational-photography">Lec.13: Computational Photography<a class="headerlink" href="#lec13-computational-photography" title="Permanent link">¶</a></h1>
+<ul>
+<li>Data recorded by sensor is not the final image</li>
+<li>Computational Photography: arbitrary computation to the final image</li>
+</ul>
+<h2 id="high-dynamic-range-imaginghdr">High Dynamic Range Imaging(HDR)<a class="headerlink" href="#high-dynamic-range-imaginghdr" title="Permanent link">¶</a></h2>
+<p></p><center><img src="./figures/2024-12-06-18-56-43.png" width="60%"/></center>
+<h3 id="exposure">Exposure<a class="headerlink" href="#exposure" title="Permanent link">¶</a></h3>
+<p>粗略地讲，曝光是给定场景下被拍到的照片的亮度。</p>
+<p>Exposure = Gain x Irradiance x Time</p>
+<ul>
+<li><span>Gain:<span class="heti-spacing"> </span></span>传感器的增益，由<span class="heti-skip"><span class="heti-spacing"> </span>ISO<span class="heti-spacing"> </span></span>控制，<span>ISO<span class="heti-spacing"> </span></span>越高越灵敏，但是会引入噪声。同样的<span class="heti-skip"><span class="heti-spacing"> </span>ISO<span class="heti-spacing"> </span></span>下，单个像素越大，信噪比越大，噪声就更小</li>
+<li><span>Irradiance:<span class="heti-spacing"> </span></span>光照强度，由光圈<span class="heti-skip"><span class="heti-spacing"> </span>(aperture)<span class="heti-spacing"> </span></span>控制，一般就是<span class="heti-skip"><span class="heti-spacing"> </span>F<span class="heti-spacing"> </span></span>数，<span>F<span class="heti-spacing"> </span></span>数越小，光圈越大，光照越强，景深越小</li>
+<li><span>Time:<span class="heti-spacing"> </span></span>曝光时间由快门速度控制，快门速度还影响图像的模糊程度。</li>
+</ul>
+<p>When taking a photo, the averaged exposure should be at the middle of the sensor’s measurement range. So that the photo has both bright and dark parts with details.</p>
+<p>过亮或过暗会导致却是细节</p>
+<h3 id="dynamic-range">Dynamic range<a class="headerlink" href="#dynamic-range" title="Permanent link">¶</a></h3>
+<p>The ratio between the largest and smallest values of a certain quantity (e.g., brightness)</p>
+<p></p><center><img src="./figures/2024-12-06-19-11-06.png" width="60%"/></center>
+<p>真实世界的动态范围很大，人眼的动态范围也很大，但是传感器的动态范围有限，所以需要<span><span class="heti-spacing"> </span>HDR</span> </p>
+<h3 id="key-idea">Key Idea<a class="headerlink" href="#key-idea" title="Permanent link">¶</a></h3>
+<ol>
+<li>Exposure bracketing: Capture multiple LDR images at different exposures</li>
+<li>Merging: Combine them into a single HDR image</li>
+</ol>
+<p>Suppose scene radiance for image pixel (x, y) is L(x, y)</p>
+<p></p><center><img src="./figures/2024-12-06-19-17-58.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-06-19-19-38.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-06-19-19-53.png" width="60%"/></center>
+<h3 id="tone-mapping">Tone mapping<a class="headerlink" href="#tone-mapping" title="Permanent link">¶</a></h3>
+<p></p><center><img src="./figures/2024-12-06-19-21-45.png" width="60%"/></center>
+<p>调整亮度，使得图像看起来更自然，<span>Tone mapping<span class="heti-spacing"> </span></span>的方法由相机内置，由相机厂商决定</p>
+<h2 id="deblurring">Deblurring<a class="headerlink" href="#deblurring" title="Permanent link">¶</a></h2>
+<h3 id="reason-of-blurring">Reason of blurring<a class="headerlink" href="#reason-of-blurring" title="Permanent link">¶</a></h3>
+<ul>
+<li>Defocus: the subject is not in the depth of view</li>
+<li>Motion blur: moving subjects or unstable camera</li>
+</ul>
+<h3 id="get-a-clear-image">Get a clear image<a class="headerlink" href="#get-a-clear-image" title="Permanent link">¶</a></h3>
+<ul>
+<li>Accurate focus</li>
+<li>Fast shutter speed<ul>
+<li>Large aperture</li>
+<li>High ISO</li>
+<li>One of the reasons for the high price of SLR cameras and lenses</li>
+</ul>
+</li>
+<li>Use hardware<ul>
+<li><span>tripod<span class="heti-spacing"> </span></span>三脚架<ul>
+<li>not portable</li>
+</ul>
+</li>
+<li><span>optical image stabilization<span class="heti-spacing"> </span></span>相机光学防抖<ul>
+<li>expensive</li>
+</ul>
+</li>
+<li><span>IMU (Inertial Measurement Unit)<span class="heti-spacing"> </span></span>加速度计和陀螺仪 比如 云台<ul>
+<li>expensive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="image-deblurring">Image Deblurring<a class="headerlink" href="#image-deblurring" title="Permanent link">¶</a></h3>
+<p>如何对模糊建模呢？模糊其实是一种卷积</p>
+<ul>
+<li>The blurring process can be described by convolution</li>
+<li>The blurred image is called convolution kernel</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-19-54-12.png" width="60%"/></center>
+<p>所以去模糊等于逆卷积</p>
+<p></p><center><img src="./figures/2024-12-06-19-55-27.png" width="60%"/></center>
+<p>任务定义：给定模糊的图像和卷积核，求解原图。</p>
+<h4 id="non-blind-image-deconvolution-nbid">Non-blind image deconvolution (NBID)<a class="headerlink" href="#non-blind-image-deconvolution-nbid" title="Permanent link">¶</a></h4>
+<p></p><center><img src="./figures/2024-12-06-19-59-49.png" width="60%"/></center>
+<p>Frequency Domain deconvolution</p>
+<p>Convolution in the spatial domain = product in the frequency domain</p>
+<p>Spatial deconvolution = division in frequency domain</p>
+<p></p><center><img src="./figures/2024-12-06-20-01-16.png" width="60%"/></center>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p></p><center><img src="./figures/2024-12-06-20-01-39.png" width="60%"/></center>
+<center><img src="./figures/2024-12-06-20-01-55.png" width="60%"/></center>
+</div>
+<p>但是有一个问题，卷积核一般是一个低通滤波器，因此我们在去卷积的过程中，会乘上一个高通滤波器。所以去卷积我们是在放大高频信息，但与此同时也会相应放大高频噪声。</p>
+<p></p><center><img src="./figures/2024-12-06-20-02-49.png" width="60%"/></center>
+<p>解决这一问题的方法就是调整卷积核。即做<span class="heti-skip"><span class="heti-spacing"> </span>inverse fliter<span class="heti-spacing"> </span></span>的同时抑制高频噪声</p>
+<p></p><center><img src="./figures/2024-12-06-20-02-59.png" width="60%"/></center>
+<p>其他方法：优化方法</p>
+<ul>
+<li>Variable to be optimized:<ul>
+<li>image to be recovered</li>
+</ul>
+</li>
+<li>Objective function:<ul>
+<li><span>The similarity of the blurred image and the given blurred image (likelihood)<span class="heti-spacing"> </span></span>模糊得到的图像和给定的模糊图像的相似性</li>
+<li>The recovered image looks real (prior)</li>
+</ul>
+</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-20-09-38.png" width="60%"/></center>
+<p>但是<span><span class="heti-spacing"> </span>Deconvolution is ill-posed</span>，存在<span><span class="heti-spacing"> </span>non-unique solution</span>，所以需要先验信息——自然图像是相对光滑的</p>
+<p></p><center><img src="./figures/2024-12-06-20-11-12.png" width="60%"/></center>
+<ul>
+<li>Natural images are generally smooth in segments</li>
+<li><span>Gradient map is sparse<span class="heti-spacing"> </span></span>也就是说，图像的梯度图是稀疏的</li>
+<li>Adding L1 regularization makes the image gradient sparse</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-20-12-04.png" width="60%"/></center>
+<h4 id="blind-image-deconvolution-bid">Blind image deconvolution (BID)<a class="headerlink" href="#blind-image-deconvolution-bid" title="Permanent link">¶</a></h4>
+<ul>
+<li>The convolution kernel is also unknown</li>
+<li>Obviously more difficult——need more prior knowledge</li>
+</ul>
+<p>这时候就有两个变量需要优化了，一个是图像，一个是卷积核</p>
+<ul>
+<li>Kernel Prior</li>
+<li>Blurn kernel is non-negative and sparse</li>
+<li>Optimized objective function</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-20-14-50.png" width="60%"/></center>
+<h2 id="colorization">Colorization<a class="headerlink" href="#colorization" title="Permanent link">¶</a></h2>
+<h3 id="image-colorization">Image Colorization<a class="headerlink" href="#image-colorization" title="Permanent link">¶</a></h3>
+<p>黑白图像变成彩色图像</p>
+<p>上色是指在电脑的帮助下给单色图片或视频添加色彩的过程</p>
+<p>有两种主要方式给灰度图上色：</p>
+<ul>
+<li><span>Sample-based colorization: use sample image<span class="heti-spacing"> </span></span>给一个样本</li>
+<li><span>Interactive colorization: paint brush interactively<span class="heti-spacing"> </span></span>用户告诉计算机哪些部分应该是什么颜色</li>
+</ul>
+<p>本质上就是根据输入</p>
+<p></p><center><img src="./figures/2024-12-06-20-20-03.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-06-20-25-20.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-06-20-30-51.png" width="60%"/></center>
+<p>权重是灰度图中的像素值差别，约束是用户给定的颜色</p>
+<p><span>Video Colorization is similar to image colorization<span class="heti-spacing"> </span></span>当作<span class="heti-skip"><span class="heti-spacing"> </span>(x, y, t)<span class="heti-spacing"> </span></span>三维数据处理</p>
+<h3 id="modern-colorization">Modern Colorization<a class="headerlink" href="#modern-colorization" title="Permanent link">¶</a></h3>
+<p></p><center><img src="./figures/2024-12-06-20-40-16.png" width="60%"/></center>
+<p>这里的问题是，一种物体不一定只有一种颜色，这个<span class="heti-skip"><span class="heti-spacing"> </span>loss<span class="heti-spacing"> </span></span>不能处理多种颜色可能性</p>
+<p></p><center><img src="./figures/2024-12-06-20-40-38.png" width="60%"/></center>
+<p>解决的方式是使用<span><span class="heti-spacing"> </span>GAN</span>，学习一个<span><span class="heti-spacing"> </span>loss function</span></p>
+<ul>
+<li>先用生成图像和真实图像学一个神经网络（判别网络），用于判断图像是不是真实的</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-20-45-37.png" width="60%"/></center>
+<ul>
+<li><span>G<span class="heti-spacing"> </span></span>尝试生成<span><span class="heti-spacing"> </span>fake images that fool D</span></li>
+<li><span>D<span class="heti-spacing"> </span></span>尝试区分<span><span class="heti-spacing"> </span>real and fake images</span></li>
+</ul>
+<p></p><center><img src="./figures/2024-12-06-20-49-36.png" width="60%"/></center>
+<p></p><center><img src="./figures/2024-12-06-20-49-48.png" width="60%"/></center>
+<p>这种<span class="heti-skip"><span class="heti-spacing"> </span>min-max<span class="heti-spacing"> </span></span>很难收敛，训练<span class="heti-skip"><span class="heti-spacing"> </span>GAN<span class="heti-spacing"> </span></span>非常困难</p>
+<p><span>GAN<span class="heti-spacing"> </span></span>最本质的是学了一个<span class="heti-skip"><span class="heti-spacing"> </span>loss function,<span class="heti-spacing"> </span></span>叫做<span class="heti-skip"><span class="heti-spacing"> </span>adversarial loss,<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>learned<span class="heti-spacing"> </span></span>而不是<span class="heti-skip"><span class="heti-spacing"> </span>hand-crafted loss function,<span class="heti-spacing"> </span></span>可以用在很多图像合成任务上</p>
+<p>如果要考虑用户的输入呢？把用户的输入也作为一个输入</p>
+<p>用<span class="heti-skip"><span class="heti-spacing"> </span>GAN<span class="heti-spacing"> </span></span>还有一个好处是，可以生成多种可能性</p>
+<h2 id="more-image-synthesis-tasks">More Image Synthesis Tasks<a class="headerlink" href="#more-image-synthesis-tasks" title="Permanent link">¶</a></h2>
+<ul>
+<li>Super-resolution</li>
+<li>Image to Image Translation</li>
+<li>style transfer</li>
+<li>Text-to-Image</li>
+<li>Image dehazing</li>
+<li>Pose and garment transfer</li>
+</ul>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Recognition" class="md-footer__link md-footer__link--prev" href="../Lec10/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Recognition
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Index" class="md-footer__link md-footer__link--next" href="../../read/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Index
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023-2024 <a href="https://github.com/626lt" rel="noopener" target="_blank">626lt</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="../../js/katex.js"></script>
+<script src="../../js/heti.js"></script>
+</body>
+</html>

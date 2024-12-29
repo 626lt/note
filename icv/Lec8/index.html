@@ -5,13 +5,15 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
 <link href="https://626lt.github.io/icv/Lec8/" rel="canonical"/>
+<link href="../Lec7/" rel="prev"/>
+<link href="../Lec10/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
-<title>Index - lt's notes</title>
+<title>Depth estimate and 3D Reconstruction - lt's notes</title>
 <link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
-<link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css" rel="stylesheet"/>
 <link href="../../css/custom.css" rel="stylesheet"/>
 <link href="../../css/counter.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
@@ -25,6 +27,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
+<a class="md-skip" href="#depth-estimation-and-3d-reconstruction">
+          跳转至
+        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -46,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Index
+              Depth estimate and 3D Reconstruction
             
           </span>
 </div>
@@ -129,7 +134,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         ICV
       </a>
 </li>
@@ -290,8 +295,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">ICV</a>
 <label for="__nav_5">
@@ -334,9 +339,128 @@
         Structure from Motion
       </a>
 </li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Depth estimate and 3D Reconstruction
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Depth estimate and 3D Reconstruction
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-sensing">
+    Depth sensing
+  </a>
+<nav aria-label="Depth sensing" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#active-depth-sensing">
+    Active depth sensing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#passive-depth-sensing">
+    Passive depth sensing
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-matching">
+    Stereo matching
+  </a>
+<nav aria-label="Stereo matching" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-vision">
+    Stereo vision
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-stereo-matching-algorithm">
+    Basic stereo matching algorithm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-image-rectification">
+    Stereo image rectification
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choose-the-stereo-baseline">
+    Choose the stereo baseline
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-view-stereo">
+    Multi-view stereo
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-reconstruction">
+    3D reconstruction
+  </a>
+<nav aria-label="3D reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-representation">
+    3D Representation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-surface-reconstruction">
+    3D surface reconstruction
+  </a>
+<nav aria-label="3D surface reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#poisson-reconstruction">
+    Poisson reconstruction
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#marching-cubes">
+    Marching cubes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#texture-mapping">
+    Texture mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-scene-representations">
+    Neural Scene Representations
+  </a>
+</li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Lec10/">
         Recognition
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lec12/">
+        Computational Photography
       </a>
 </li>
 </ul>
@@ -393,12 +517,342 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-sensing">
+    Depth sensing
+  </a>
+<nav aria-label="Depth sensing" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#active-depth-sensing">
+    Active depth sensing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#passive-depth-sensing">
+    Passive depth sensing
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-matching">
+    Stereo matching
+  </a>
+<nav aria-label="Stereo matching" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-vision">
+    Stereo vision
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-stereo-matching-algorithm">
+    Basic stereo matching algorithm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-image-rectification">
+    Stereo image rectification
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choose-the-stereo-baseline">
+    Choose the stereo baseline
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-view-stereo">
+    Multi-view stereo
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-reconstruction">
+    3D reconstruction
+  </a>
+<nav aria-label="3D reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-representation">
+    3D Representation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-surface-reconstruction">
+    3D surface reconstruction
+  </a>
+<nav aria-label="3D surface reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#poisson-reconstruction">
+    Poisson reconstruction
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#marching-cubes">
+    Marching cubes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#texture-mapping">
+    Texture mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-scene-representations">
+    Neural Scene Representations
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
+<h1 id="depth-estimation-and-3d-reconstruction">Depth estimation and 3D reconstruction<a class="headerlink" href="#depth-estimation-and-3d-reconstruction" title="Permanent link">¶</a></h1>
+<p><span>SFM<span class="heti-spacing"> </span></span>得到的是稀疏的点云，这次介绍的是三维精细的结构，即稠密的点云，三维网格。这里重要的是要得到每一个点的深度，即深度估计。</p>
+<h2 id="depth-sensing">Depth sensing<a class="headerlink" href="#depth-sensing" title="Permanent link">¶</a></h2>
+<p>深度值用灰度图来表示，深度值越大，灰度值越小。用<span class="heti-skip"><span class="heti-spacing"> </span>1/z<span class="heti-spacing"> </span></span>来表示灰度，离得越远值越小。这里的<span class="heti-skip"><span class="heti-spacing"> </span>z<span class="heti-spacing"> </span></span>是相机到物体的距离。深度也是很多计算机视觉应用的基础，比如虚拟现实，自动驾驶等。</p>
+<p></p><center><img src="./figures/2024-12-29-20-59-30.png" width="80%"/></center>
+<h3 id="active-depth-sensing">Active depth sensing<a class="headerlink" href="#active-depth-sensing" title="Permanent link">¶</a></h3>
+<p>通过主动地向外传递信号来探测深度，比如激光雷达<span><span class="heti-spacing"> </span>(LiDAR)</span>，Active stereo，结构光相机<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>后面两个是通过立体视觉来实现深度估计<span class="heti-skip"><span class="heti-spacing"> </span>)<span class="heti-spacing"> </span></span>等。这些方法都是通过测量光的时间来得到深度信息。</p>
+<p></p><center><img src="./figures/2024-12-29-21-01-57.png" width="80%"/></center>
+<p><span>!!! example<span class="heti-spacing"> </span></span>激光雷达<span><span class="heti-spacing"> </span>(LiDAR)</span>
+</p><center><img src="./figures/2024-12-29-21-03-21.png" width="80%"/></center>
+    首先是360度转动的，然后根据 Time of Flight(ToF) 来计算深度，主要是根据相位差来计算深度。缺点是非常贵，不会特别特别的准确，相对视觉的方案比较准确，分辨率相对较高，但不会特别的高。
+<h3 id="passive-depth-sensing">Passive depth sensing<a class="headerlink" href="#passive-depth-sensing" title="Permanent link">¶</a></h3>
+<p>被动式的，传感器没有发出信号，只是接收信号，比如双目视觉，单目视觉。本章主要介绍视觉的双目深度估计。</p>
+<p></p><center><img src="./figures/2024-12-29-21-06-20.png" width="80%"/></center>
+<h2 id="stereo-matching">Stereo matching<a class="headerlink" href="#stereo-matching" title="Permanent link">¶</a></h2>
+<h3 id="stereo-vision">Stereo vision<a class="headerlink" href="#stereo-vision" title="Permanent link">¶</a></h3>
+<p>单目视觉其实只要相机在动，产生了视差也能够感知到深度，得到位置其实就是通过三角化来得到的。</p>
+<ul>
+<li>一个物体点将投影到图像中的某个点上</li>
+<li>这个像素点对应世界中的一条光线</li>
+<li>两条光线的交点就是这个点的位置，所以我们想要在<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>空间中得到这个点的位置，就需要两个视角。</li>
+</ul>
+<p>与<span class="heti-skip"><span class="heti-spacing"> </span>SFM<span class="heti-spacing"> </span></span>的三角化只是对特征点进行重建不同，这里的三角化要在每一个点上做，得到整张图的深度。这是稠密的深度估计。计算深度需要相机的内参、外参，为了方便我们常使用双目相机来得到深度，这样外参内参都是已知的，只需要进行匹配就可以得到深度。做法就是先做<span class="heti-skip"><span class="heti-spacing"> </span>2D-2D<span class="heti-spacing"> </span></span>的匹配（这等价于光流估计，但是比光流简单，因为存在对极几何的约束，<span class="arithmatex">\(x_L^T\)</span> * Fundamental Matrix * <span class="arithmatex">\(x_R=0\)</span>），然后通过三角化得到深度。</p>
+<div class="admonition note">
+<p class="admonition-title">Epipolar gemoetry</p>
+<p></p><center><img src="./figures/2024-12-29-21-22-10.png" width="80%"/></center>
+<p>这里补充一个<span class="heti-skip"><span class="heti-spacing"> </span>Epipolar lines<span class="heti-spacing"> </span></span>的概念，即两相机中心和三维点平面与像平面的交线，左图中<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>的对应点一定在右图的<span class="heti-skip"><span class="heti-spacing"> </span>Epipolar line<span class="heti-spacing"> </span></span>上，这样就减少了搜索的范围。这条线的方程满足的其实就是 <span class="arithmatex">\(x_R\)</span> 的方程，即 <span class="arithmatex">\(x_L^T * F * x_R=0\)</span>。这里<span class="heti-skip"><span class="heti-spacing"> </span>F<span class="heti-spacing"> </span></span>已知，因为给定了相机的内外参数。</p>
+</div>
+<h3 id="basic-stereo-matching-algorithm">Basic stereo matching algorithm<a class="headerlink" href="#basic-stereo-matching-algorithm" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>对第一张图中的每一个像素点</p>
+<ul>
+<li>找到第二张图中对应的线</li>
+<li>沿着这条线找到最相似的点</li>
+</ul>
+</li>
+<li>
+<p>最简单的情况下<span><span class="heti-spacing"> </span>:epipolar lines fall along the horizontal scan lines of the images</span></p>
+<ul>
+<li><span>Image planes of cameras are parallel to each other and to the baseline(<span class="heti-spacing"> </span></span>相机中心的连线<span><span class="heti-spacing"> </span>)</span></li>
+<li>Camera centers are on the same Height（这个条件让<span class="heti-skip"><span class="heti-spacing"> </span>Epipolar line<span class="heti-spacing"> </span></span>与原像素点同高，对应点匹配点的<span class="heti-skip"><span class="heti-spacing"> </span>y<span class="heti-spacing"> </span></span>值相等）</li>
+<li>Cameras have the same focal length（焦距一致）</li>
+</ul>
+</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-29-21-34-03.png" width="80%"/></center>
+<p>在计算深度之前首先要计算<span class="heti-skip"><span class="heti-spacing"> </span>disparity<span class="heti-spacing"> </span></span>视差</p>
+<p></p><center><img src="./figures/2024-12-29-21-35-13.png" width="80%"/></center>
+<p>注意这里的 <span class="arithmatex">\(x_2,x_1\)</span> 是相对各自的原点的，不是中间这条线的长度</p>
+<p></p><center><img src="./figures/2024-12-29-21-38-07.png" width="80%"/></center>
+<p>我们通过相似三角形很容易得到上面的公式，所以视差和深度是成反比的关系。</p>
+<h3 id="stereo-image-rectification">Stereo image rectification<a class="headerlink" href="#stereo-image-rectification" title="Permanent link">¶</a></h3>
+<p>实际情况中会更复杂一些，相机拍到的图像不满足上面的条件，我们的做法是把拍到的图片投影到一个满足上面条件的平面上，这个过程是两个单应变换（本质上就是调整相机的朝向，相机的中心是不变的），这样就简化到上面的情况。</p>
+<p></p><center><img src="./figures/2024-12-29-21-42-34.png" width="80%"/></center>
+<p>上面是如何找<span class="heti-skip"><span class="heti-spacing"> </span>Epipolar line<span class="heti-spacing"> </span></span>的，下面是如何找对应点的。有很多的方法，最基本的就是比较两个<span class="heti-skip"><span class="heti-spacing"> </span>window<span class="heti-spacing"> </span></span>之间的相似度，这里要选一个窗口，去比较窗口内的相似度，主流的匹配值有：SSD, SAD, NCC。<span>ZNCC<span class="heti-spacing"> </span></span>的好处是不受光照的影响，因为是归一化的，减去均值除以标准差。</p>
+<p></p><center><img src="./figures/2024-12-29-22-08-57.png" width="80%"/></center>
+<p>上面提到的<span class="heti-skip"><span class="heti-spacing"> </span>windows size<span class="heti-spacing"> </span></span>也有影响</p>
+<ul>
+<li>小窗口：细节多，噪声多</li>
+<li>大窗口：细节少，噪声少</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-29-22-11-10.png" width="80%"/></center>
+<p>上面的匹配结果存在很多的噪声，一个直接的想法是做滤波去模糊掉这些噪声，但这又会造成误差，不精确了。其实滤波之所以能生效是因为我们假设了相邻位置的深度是相近的。我们可以在更早的时候就利用这个先验来提高匹配的精度，即马尔可夫随机场。</p>
+<div class="admonition note 马尔可夫随机场">
+<p class="admonition-title">Note</p>
+<p></p><center><img src="./figures/2024-12-29-22-13-42.png" width="80%"/></center>
+<center><img src="./figures/2024-12-29-22-15-24.png" width="80%"/></center>
+<center><img src="./figures/2024-12-29-22-19-51.png" width="80%"/></center>
+<p>上面的公式是一个能量函数，我们的目标是最小化这个能量函数，第一部分就是匹配得到的结果，第二部分是平滑项，利用周围像素的空间一致性关系，来提高匹配的精度。这个问题可以通过动态规划来独立最小化每一行。</p>
+<p></p><center><img src="./figures/2024-12-29-23-13-31.png" width="80%"/></center>
+</div>
+<p>总结<span><span class="heti-spacing"> </span>:Stereo reconstruction pipeline</span></p>
+<ol>
+<li><span>Calibrate cameras<span class="heti-spacing"> </span></span>相机标定</li>
+<li><span>Rectify images<span class="heti-spacing"> </span></span>图像矫正</li>
+<li><span>Compute disparity<span class="heti-spacing"> </span></span>计算视差</li>
+<li><span>Estimate depth<span class="heti-spacing"> </span></span>估计深度</li>
+</ol>
+<h3 id="choose-the-stereo-baseline">Choose the stereo baseline<a class="headerlink" href="#choose-the-stereo-baseline" title="Permanent link">¶</a></h3>
+<p>相机的基线长度对估计的效果也是有影响的</p>
+<ul>
+<li>基线太短了，深度误差很大：目标点实际上就是两个视线的交点，如果基线太短了，这个光线的角度就会很大，一有偏差就会有很大的误差</li>
+<li>基线太长了，视差越大，匹配就会越困难；也会有遮挡的问题</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-00-23-35.png" width="80%"/></center>
+<p>引起误差的原因还有</p>
+<ul>
+<li><span>Camera calibration errors<span class="heti-spacing"> </span></span>相机标定误差</li>
+<li><span>Poor image resolution<span class="heti-spacing"> </span></span>图像分辨率不够高</li>
+<li><span>Occlusions<span class="heti-spacing"> </span></span>遮挡，匹配不上</li>
+<li><span>Violations of brightness constancy (specular reflections)<span class="heti-spacing"> </span></span>违反亮度一致性</li>
+<li><span>Textureless regions<span class="heti-spacing"> </span></span>纹理不够丰富<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>透明的区域</li>
+</ul>
+<p>最后两个是匹配本身造成的问题</p>
+<p>为了解决这些问题，可以<strong>主动</strong>打一个结构光的条纹，这样就有了纹理。这个结构光一般用红外光，因为我们通常希望在得到深度的同时也得到一个<span class="heti-skip"><span class="heti-spacing"> </span>RGB<span class="heti-spacing"> </span></span>的图像。</p>
+<p>另外这时估计深度只用一个红外相机来接受就可以了，因为这里的<span class="heti-skip"><span class="heti-spacing"> </span>projector<span class="heti-spacing"> </span></span>也是一个位姿信息，如果<span class="heti-skip"><span class="heti-spacing"> </span>projector<span class="heti-spacing"> </span></span>和第二个相机完全重合，那他接收到的图也就是打出去的图，那么就不用第二个相机了。所以很多的红外光传感器实际上就是一个<span class="heti-skip"><span class="heti-spacing"> </span>RBG<span class="heti-spacing"> </span></span>相机（获得色彩） <span>+<span class="heti-spacing"> </span></span>一个红外相机（获得深度） <span>+<span class="heti-spacing"> </span></span>一个<span><span class="heti-spacing"> </span>projector</span></p>
+<p></p><center><img src="./figures/2024-12-30-00-33-49.png" width="80%"/></center>
+<ul>
+<li><span>passive stereo<span class="heti-spacing"> </span></span>被动式的，只有相机，被动地接受光信号，只通过拍照来进行立体匹配</li>
+<li><span>Active stereo<span class="heti-spacing"> </span></span>主动式的，会主动打一些光，然后通过这些光来进行立体匹配，精度最高，只要图像分辨率够高，就能得到很高的精度</li>
+<li><span>Lidar(ToF)<span class="heti-spacing"> </span></span>通过激光雷达来进行深度估计，根据光的时间来计算深度，很稳定，但是很难达到亚毫米级</li>
+</ul>
+<h2 id="multi-view-stereo">Multi-view stereo<a class="headerlink" href="#multi-view-stereo" title="Permanent link">¶</a></h2>
+<p><span>MVS<span class="heti-spacing"> </span></span>本质也是<strong>深度估计问题</strong>，但是是在多个视角下进行的，这样可以得到更多的信息，更精确的深度估计。</p>
+<p></p><center><img src="./figures/2024-12-30-00-42-41.png" width="80%"/></center>
+<p>相比双目的优势：</p>
+<ul>
+<li>Can match windows using more than 1 neighbor, giving a stronger constraint
+可以使用多个邻居来匹配窗口，提供更强的约束。</li>
+<li>If you have lots of potential neighbors, can choose the best subset of neighbors to match per reference image
+如果有很多潜在的邻居，可以选择最佳的邻居子集来匹配参考图像，就可以舍弃一部分不好的匹配。</li>
+<li>Can reconstruct a depth map for each reference frame, and the merge into a complete 3D model
+可以为每个参考帧重建深度图，然后合并成完整的3D模型</li>
+</ul>
+<p>基本思想：正确的深度会给出一致的投影
+做法：对参考图中的每一个点的每一个深度计算投影误差，那么误差最小的深度就是正确的深度</p>
+<p></p><center><img src="./figures/2024-12-30-00-44-32.png" width="80%"/></center>
+<p>接下来的问题就是如何高效地计算深度</p>
+<div class="admonition note plane-sweep">
+<p class="admonition-title">Note</p>
+<p></p><center><img src="./figures/2024-12-30-00-46-57.png" width="80%"/></center>
+<p>对于参考图像平面，投影到不同的深度，然后再投影到邻居平面内，计算误差即可</p>
+<p></p><center><img src="./figures/2024-12-30-00-48-38.png" width="80%"/></center>
+<p><span>Cost volume:<span class="heti-spacing"> </span></span>一个三维的矩阵，其中的每一个元素是一个像素点在不同深度下的投影误差
+这种方式求解出来的深度图效果一般比较好，但是开销仍然比较大，本质上是一种穷举法</p>
+</div>
+<p>想要实时地求解深度图，我们会采用<span><span class="heti-spacing"> </span>PatchMatch</span>，这是一种提高效率的方法计算深度图</p>
+<div class="admonition note patchmatch">
+<p class="admonition-title">Note</p>
+<p>这是一种基于随机猜测的算法，基于的假设是大量的随机采样会有一些好的结果；邻居会有相似的移动，也就是一个区域内的像素变换是相近的。</p>
+<p></p><center><img src="./figures/2024-12-30-00-53-07.png" width="80%"/></center>
+<ol>
+<li>random initialization：首先是随机初始化，对每个像素给一个随机的<span class="heti-skip"><span class="heti-spacing"> </span>patch offset<span class="heti-spacing"> </span></span>作为初始化</li>
+<li>propagation：传递，对每个像素的值，查看邻居的<span class="heti-skip"><span class="heti-spacing"> </span>offset<span class="heti-spacing"> </span></span>是不是更好，如果是就把邻居的<span class="heti-skip"><span class="heti-spacing"> </span>offset<span class="heti-spacing"> </span></span>赋值给他。这样对的<span class="heti-skip"><span class="heti-spacing"> </span>offset<span class="heti-spacing"> </span></span>就会传递开</li>
+<li>local search：基于上一步的<span><span class="heti-spacing"> </span>offset</span>，在邻域内进行搜索，查找更好的<span><span class="heti-spacing"> </span>offset</span></li>
+<li>然后不断迭代<span><span class="heti-spacing"> </span>2</span>，<span>3<span class="heti-spacing"> </span></span>步骤，直到收敛</li>
+</ol>
+<p>In MVS, replace patch offsets by depth values in the above algorithm</p>
+</div>
+<h2 id="3d-reconstruction">3D reconstruction<a class="headerlink" href="#3d-reconstruction" title="Permanent link">¶</a></h2>
+<p>pipeline：</p>
+<ol>
+<li><span>Compute depth map per image<span class="heti-spacing"> </span></span>用前面的方法计算深度图</li>
+<li><span>Fuse the depth maps into a 3D surface<span class="heti-spacing"> </span></span>融合深度图到一个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>表面，得到一个稠密的点云</li>
+<li><span>Texture mapping<span class="heti-spacing"> </span></span>纹理映射，把纹理贴到这个表面上</li>
+</ol>
+<h3 id="3d-representation">3D Representation<a class="headerlink" href="#3d-representation" title="Permanent link">¶</a></h3>
+<p></p><center><img src="./figures/2024-12-30-01-09-08.png" width="80%"/></center>
+<ul>
+<li><span>Point cloud<span class="heti-spacing"> </span></span>点云：一堆点的集合，每个点有一个坐标，很粗糙，没有表面信息</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-09-32.png" width="80%"/></center>
+<ul>
+<li>Volume：体素，三维的格子，每个点的信息都有，包括<span><span class="heti-spacing"> </span>Occupancy/signed distance</span>，前面表示这个点有没有被占据这里的值是<span><span class="heti-spacing"> </span>0/1</span>，后面表示三维空间的点到物体表面的距离，是连续的值，带符号的距离<span><span class="heti-spacing"> </span>SDF: Signed Distance Function</span></li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-09-48.png" width="80%"/></center>
+<ul>
+<li>SDF volume:<ul>
+<li><span>Signed Distance Function:<span class="heti-spacing"> </span></span>一个点到物体表面的距离，是连续的值，带符号的距离</li>
+<li>The distance is defined by a metric, usually the Euclidean distance</li>
+<li><span>Truncated SDF(TSDF):<span class="heti-spacing"> </span></span>一个截断的<span><span class="heti-spacing"> </span>SDF</span>，只保留一定范围内的<span><span class="heti-spacing"> </span>SDF</span>，这样可以减少计算量，一般是<span class="heti-skip"><span class="heti-spacing"> </span>-1<span class="heti-spacing"> </span></span>到<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>之间</li>
+</ul>
+</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-10-29.png" width="80%"/></center>
+<ul>
+<li>Mesh：网格，A polygon mesh with vertices and edges，最常用的是三角形网格</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-10-42.png" width="80%"/></center>
+<h3 id="3d-surface-reconstruction">3D surface reconstruction<a class="headerlink" href="#3d-surface-reconstruction" title="Permanent link">¶</a></h3>
+<p><span>MVS<span class="heti-spacing"> </span></span>最后得到的是一个稠密的点云（深度图），我们需要把这个点云转换成一个体素，进而转化为表面<span><span class="heti-spacing"> </span>Mesh</span></p>
+<ol>
+<li>Depth maps -&gt; Occupancy volume
+   + Poisson reconstruction</li>
+<li>Occupancy volume -&gt; mesh
+   + Marching cubes</li>
+</ol>
+<p>做中间这一步转化的好处是可以去到取噪的过程，而且两部分都有成熟的算法</p>
+<h4 id="poisson-reconstruction">Poisson reconstruction<a class="headerlink" href="#poisson-reconstruction" title="Permanent link">¶</a></h4>
+<p>这个算法是把<strong>深度图</strong>变成点云最后变成<strong>体素</strong></p>
+<p></p><center><img src="./figures/2024-12-30-01-16-16.png" width="80%"/></center>
+<ul>
+<li>把深度图转化为点云</li>
+<li>计算每个点的法向量：这个点附近点的分布方差最小的方向就是这个点的法向量</li>
+<li>然后把这个表面恢复转化为优化问题，最小化这个表面的梯度，这样就可以得到一个平滑的表面，这个优化问题实际上是一个泊松方程（也是最小二乘法）</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-18-34.png" width="80%"/></center>
+<center><img src="./figures/2024-12-30-01-19-06.png" width="80%"/></center>
+<h4 id="marching-cubes">Marching cubes<a class="headerlink" href="#marching-cubes" title="Permanent link">¶</a></h4>
+<p>这个算法是把<strong>体素<span class="heti-skip"><span class="heti-spacing"> </span>(Occupancy/SDF)<span class="heti-spacing"> </span></span></strong>变成<strong>网格<span><span class="heti-spacing"> </span>(Mesh)</span></strong></p>
+<p>现在我们有了三维点的表示，要重建出表面，本质上就是在找出表面的顶点，然后把这些顶点连接起来。</p>
+<p></p><center><img src="./figures/2024-12-30-01-31-47.png" width="80%"/></center>
+<ul>
+<li>对每个网格，四个顶点的值如果一致，说明不存在表面</li>
+<li>如果不一致就说明有表面，然后对于每一条边，如果边的两个顶点值不同，说明这条边上有表面的顶点，如果是<span class="heti-skip"><span class="heti-spacing"> </span>occupancy<span class="heti-spacing"> </span></span>就定在中间，如果是<span class="heti-skip"><span class="heti-spacing"> </span>SDF<span class="heti-spacing"> </span></span>就有更加精细的插值方法，然后根据这些点的位置，连接这些点，就得到了表面的边</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-35-10.png" width="80%"/></center>
+<p>对于<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>的情况，我们可以用类似的方法</p>
+<ul>
+<li><span>For each grid cell with a sign change<span class="heti-spacing"> </span></span>对于每个有符号变化的格子<ul>
+<li><span>Create one vertex on each grid edge with a sign change<span class="heti-spacing"> </span></span>在每个有符号变化的格子的边上创建一个顶点</li>
+<li><span>Connect the vertices to form triangles<span class="heti-spacing"> </span></span>连接这些顶点形成三角形</li>
+<li>三角形不应该相交</li>
+<li>比二维的情况要更复杂</li>
+</ul>
+</li>
+</ul>
+<p></p><center><img src="./figures/2024-12-30-01-37-02.png" width="80%"/></center>
+<center><img src="./figures/2024-12-30-01-37-13.png" width="80%"/></center>
+<p>最后就只有<span class="heti-skip"><span class="heti-spacing"> </span>15<span class="heti-spacing"> </span></span>种情况，都存在<span><span class="heti-spacing"> </span>look-up table</span>。</p>
+<p></p><center><img src="./figures/2024-12-30-01-38-11.png" width="80%"/></center>
+<h3 id="texture-mapping">Texture mapping<a class="headerlink" href="#texture-mapping" title="Permanent link">¶</a></h3>
+<p>最后一步就是把纹理贴到这个表面上，就是给表面上色。</p>
+<p></p><center><img src="./figures/2024-12-30-01-40-13.png" width="80%"/></center>
+<center><img src="./figures/2024-12-30-01-40-26.png" width="80%"/></center>
+<ul>
+<li>三维表面上的每个三角形的点都一一对应一个二维的坐标（在纹理图上的<span class="heti-skip"><span class="heti-spacing"> </span>uv<span class="heti-spacing"> </span></span>坐标），通过这个坐标就能把纹理图的三角形映射到三维表面上的三角形上。中间任意一个点的坐标都能通过插值得到，这样就能得到一个纹理映射。</li>
+<li>对于三维物体，我们可以将其表面剪开，铺平成二维图像，就形成了纹理图。但这个纹理图还没有颜色，其实是通过图像得到的，把每一个三角形投影到各个图像中，取最清晰看到这一块的图像，就是这个三角形的颜色。最清晰看到其实是相机的轴和面片的法相是最一致的，就是正面看到最清晰的。</li>
+</ul>
+<h2 id="neural-scene-representations">Neural Scene Representations<a class="headerlink" href="#neural-scene-representations" title="Permanent link">¶</a></h2>
+<p>离散的体素表达存在分辨率问题，但我们实际上需要的是一个对任何一个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>坐标，能给出这个点的体素即可，我们可以用神经网络来做这个事情，这是几何表示，没有颜色。</p>
+<p></p><center><img src="./figures/2024-12-30-01-50-04.png" width="80%"/></center>
+<p></p><center><img src="./figures/2024-12-30-01-51-02.png" width="80%"/></center>
+<p><span>NeRF: Neural Radiance Fields<span class="heti-spacing"> </span></span>神经辐射场，这个模型的输入是三维坐标和视角方向，输出是颜色和密度，这个密度是用来表示这个点是否在表面上的，颜色是这个点的颜色。每个网络对应的是一个辐射场，可以渲染为任意视角的图像（体渲染），渲染为输入视角的图像，然后跟输入图像作<span class="heti-skip"><span class="heti-spacing"> </span>loss<span class="heti-spacing"> </span></span>优化，这样就可以得到一个很好的模型。这是一种端到端的优化，不需要中间的深度图，效果比较好。</p>
+<p></p><center><img src="./figures/2024-12-30-01-52-37.png" width="80%"/></center>
+<p>问题是<span class="heti-skip"><span class="heti-spacing"> </span>NeRF<span class="heti-spacing"> </span></span>对表面的重建比较粗糙，而使用<span class="heti-skip"><span class="heti-spacing"> </span>SDF<span class="heti-spacing"> </span></span>的表示方法会更好，这就是<span><span class="heti-spacing"> </span>Neural SDFs for Surface Reconstruction(NeuS)</span></p>
+<p></p><center><img src="./figures/2024-12-30-01-56-32.png" width="80%"/></center>
 </article>
 </div>
 </div>
@@ -408,6 +862,34 @@
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Structure from Motion" class="md-footer__link md-footer__link--prev" href="../Lec7/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Structure from Motion
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Recognition" class="md-footer__link md-footer__link--next" href="../Lec10/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                Recognition
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -430,7 +912,7 @@
 </div>
 <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
 <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
-<script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script src="../../js/katex.js"></script>
 <script src="../../js/heti.js"></script>
