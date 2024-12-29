@@ -145,6 +145,7 @@ nav:
     - Image Matching and Motion Estimation: icv/Lec5/index.md
     - Image Stitching: icv/Lec6/index.md
     - Structure from Motion: icv/Lec7/index.md
+    - Depth estimate and 3D Reconstruction: icv/Lec8/index.md
     - Recognition: icv/Lec10/index.md
     - Computational Photography: icv/Lec12/index.md
   - Read:
