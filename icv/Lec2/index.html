@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="lt's notes" name="description"/>
-<link href="https://626lt.github.io/icv/Lec2/" rel="canonical"/>
+<link href="https://626lt.github.io/note/icv/Lec2/" rel="canonical"/>
 <link href="../" rel="prev"/>
 <link href="../Lec3/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
@@ -398,7 +398,8 @@
 <a class="md-nav__link" href="#perspective-distortion">
     Perspective distortion
   </a>
-</li>
+<nav aria-label="Perspective distortion" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#radial-distortion">
     Radial distortion
@@ -408,6 +409,9 @@
 <a class="md-nav__link" href="#orthographic-projection">
     Orthographic projection
   </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -617,7 +621,8 @@
 <a class="md-nav__link" href="#perspective-distortion">
     Perspective distortion
   </a>
-</li>
+<nav aria-label="Perspective distortion" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#radial-distortion">
     Radial distortion
@@ -627,6 +632,9 @@
 <a class="md-nav__link" href="#orthographic-projection">
     Orthographic projection
   </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -669,7 +677,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="image-formation">Image formation<a class="headerlink" href="#image-formation" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>1410<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>1381<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>分钟</p>
 </div>
 <h2 id="camera-and-lens">Camera and lens<a class="headerlink" href="#camera-and-lens" title="Permanent link">¶</a></h2>
 <h3 id="pinhole-camera-model">pinhole camera model<a class="headerlink" href="#pinhole-camera-model" title="Permanent link">¶</a></h3>
@@ -722,9 +730,11 @@ u = \dfrac{f}{z}x, \quad v = \dfrac{f}{z}y
 <li>垂直于光轴<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>平行于相面的平行线投影后还是平行线</li>
 </ul>
 <h3 id="vanishing-points">Vanishing points<a class="headerlink" href="#vanishing-points" title="Permanent link">¶</a></h3>
-<p>任何不平行于相面的平行线投影后不再平行，会汇聚到一个点上，这个点就是消失点<span><span class="heti-spacing"> </span>(vanishing point)</span>。
-+ 三维空间内的平行点汇聚到相面上的同一点，这个点与线的位置无关，与朝向有关。消失点告诉我们线的朝向（相对相机），如果消失点在图像内偏上，说明相机是向下倾斜的。
-+ 灭点的位置可能在图像外面或无穷远处，无穷远处说明在图像内还是平行的。</p>
+<ul>
+<li>任何不平行于相面的平行线投影后不再平行，会汇聚到一个点上，这个点就是消失点<span><span class="heti-spacing"> </span>(vanishing point)</span>。</li>
+<li>三维空间内的平行点汇聚到相面上的同一点，这个点与线的位置无关，与朝向有关。消失点告诉我们线的朝向（相对相机），如果消失点在图像内偏上，说明相机是向下倾斜的。</li>
+<li>灭点的位置可能在图像外面或无穷远处，无穷远处说明在图像内还是平行的。</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>二维空间中的点，是三维空间中射线的投影，齐次坐标就是这条线对应的朝向</strong>
@@ -732,11 +742,13 @@ u = \dfrac{f}{z}x, \quad v = \dfrac{f}{z}y
 </div>
 <h3 id="vanishing-lines">Vanishing Lines<a class="headerlink" href="#vanishing-lines" title="Permanent link">¶</a></h3>
 <ul>
-<li>Multiple Vanishing Points</li>
+<li>Multiple Vanishing Points<ul>
 <li>Any set of parallel lines on the plane define a vanishing point</li>
 <li>The union of all of these vanishing points is the vanishing line</li>
 <li>Note that different planes define different vanishing lines<ul>
 <li>The direction of the vanishing line tells us the orientation of the plane</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -749,7 +761,7 @@ u = \dfrac{f}{z}x, \quad v = \dfrac{f}{z}y
 <h3 id="perspective-distortion">Perspective distortion<a class="headerlink" href="#perspective-distortion" title="Permanent link">¶</a></h3>
 <p>透视投影会产生畸变，直线还是直线，解决方案是<span class="heti-skip"><span class="heti-spacing"> </span>lens shifted w.r.t flim<span class="heti-spacing"> </span></span>轴移相机。</p>
 <p>越远离中心，畸变越严重，所以移动相机的时候，要尽量保持相机的中心在物体的中心。</p>
-<h3 id="radial-distortion">Radial distortion<a class="headerlink" href="#radial-distortion" title="Permanent link">¶</a></h3>
+<h4 id="radial-distortion">Radial distortion<a class="headerlink" href="#radial-distortion" title="Permanent link">¶</a></h4>
 <p>透镜的形状不是完美的，会产生径向畸变，这个畸变是非线性的，所以不能用一个矩阵来表示，而是用一个多项式来表示。这种畸变是取决于镜头的，有枕型畸变<span><span class="heti-spacing"> </span>(pincushion distortion</span>，长焦易发生<span class="heti-skip"><span class="heti-spacing"> </span>)<span class="heti-spacing"> </span></span>和桶型畸变<span><span class="heti-spacing"> </span>(barrel distortion</span>，短焦易发生<span><span class="heti-spacing"> </span>)</span>。</p>
 <p></p><center><img src="./figures/2024-11-24-16-04-38.png" width="60%/"/></center>
 <div class="arithmatex">\[
@@ -759,17 +771,11 @@ x_d' &amp;= x_n' \left( 1 + \kappa_1 r^2 + \kappa_2 r^4 \right), \\
 y_d' &amp;= y_n' \left( 1 + \kappa_1 r^2 + \kappa_2 r^4 \right).
 \end{align*}
 \]</div>
-<h3 id="orthographic-projection">Orthographic projection<a class="headerlink" href="#orthographic-projection" title="Permanent link">¶</a></h3>
+<h4 id="orthographic-projection">Orthographic projection<a class="headerlink" href="#orthographic-projection" title="Permanent link">¶</a></h4>
 <ul>
 <li>Special case of perspective projection，最简单的一种做法</li>
 </ul>
 <p></p><center><img src="./figures/2024-11-24-16-09-40.png" width="60%/"/></center>
-<div class="admonition tips">
-<p class="admonition-title">Tips</p>
-</div>
-<ul>
-<li>要注意缩放、旋转、透视投影等矩阵的公式，齐次坐标下的表示，要理解</li>
-</ul>
 <h2 id="photometric-image-formation">Photometric image formation<a class="headerlink" href="#photometric-image-formation" title="Permanent link">¶</a></h2>
 <h3 id="shutter">Shutter<a class="headerlink" href="#shutter" title="Permanent link">¶</a></h3>
 <ul>
