@@ -82,7 +82,7 @@ $$
 
 ### Vanishing points
 
-任何不平行于相面的平行线投影后不再平行，会汇聚到一个点上，这个点就是消失点(vanishing point)。
++ 任何不平行于相面的平行线投影后不再平行，会汇聚到一个点上，这个点就是消失点(vanishing point)。
 + 三维空间内的平行点汇聚到相面上的同一点，这个点与线的位置无关，与朝向有关。消失点告诉我们线的朝向（相对相机），如果消失点在图像内偏上，说明相机是向下倾斜的。
 + 灭点的位置可能在图像外面或无穷远处，无穷远处说明在图像内还是平行的。
 
@@ -93,10 +93,10 @@ $$
 ### Vanishing Lines
 
 + Multiple Vanishing Points
-  + Any set of parallel lines on the plane define a vanishing point
-  + The union of all of these vanishing points is the vanishing line
-  + Note that different planes define different vanishing lines
-    + The direction of the vanishing line tells us the orientation of the plane
+    + Any set of parallel lines on the plane define a vanishing point
+    + The union of all of these vanishing points is the vanishing line
+    + Note that different planes define different vanishing lines
+        + The direction of the vanishing line tells us the orientation of the plane
 
 线对应 vanishing point，面对应 vanishing line
 
@@ -110,7 +110,7 @@ $$
 
 越远离中心，畸变越严重，所以移动相机的时候，要尽量保持相机的中心在物体的中心。
 
-### Radial distortion
+#### Radial distortion
 
 透镜的形状不是完美的，会产生径向畸变，这个畸变是非线性的，所以不能用一个矩阵来表示，而是用一个多项式来表示。这种畸变是取决于镜头的，有枕型畸变(pincushion distortion，长焦易发生)和桶型畸变(barrel distortion，短焦易发生)。
 
@@ -124,14 +124,11 @@ y_d' &= y_n' \left( 1 + \kappa_1 r^2 + \kappa_2 r^4 \right).
 \end{align*}
 $$
 
-### Orthographic projection
+#### Orthographic projection
 
 + Special case of perspective projection，最简单的一种做法
 
 <center><img src=./figures/2024-11-24-16-09-40.png width=60%/></center>
-
-!!! tips
-  + 要注意缩放、旋转、透视投影等矩阵的公式，齐次坐标下的表示，要理解
 
 ## Photometric image formation
 

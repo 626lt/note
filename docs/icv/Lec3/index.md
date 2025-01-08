@@ -3,7 +3,7 @@ counter: true
 ---
 # Lec.03: Image processing
 
-## Image processing basics.(需要清楚这些概念)
+## Image processing basics.
 
 Increasing contrast with "S curve"
 
@@ -39,7 +39,7 @@ $\sigma$ 越小，分布越尖锐，越少模糊
 + 高频成分是 I = I - blur(I)
 + sharpened image = I + I - blur(I)
 
-也就是添加了高频成分，让图像变得更加锐利。
+也就是添加了高频成分（变化剧烈的部分），让图像变得更加锐利。
 
 想检测什么东西，滤波器的矩阵形式就应该是怎么样的
 
@@ -128,7 +128,7 @@ Wagon Wheel Illusion (False Motion)，时域上也会有信号失真
   1. Convolve image with low-pass filter(e.g., Gaussian) 
   2. Sample it with a Nyquist rate
 
-## Image magnification. 图像缩放
+## Image magnification.
 
 ### 放大
 

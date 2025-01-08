@@ -14,10 +14,10 @@ counter: true
 参数化全局变形，即图像的每一个坐标都遵循同一个变换函数，对于这种全局的变化，可以用一个矩阵来描述 
 
 + 线性变换
-  + scale
-  + reflection
-  + rotation
-  + shear
+    + scale
+    + reflection
+    + rotation
+    + shear
 + Affine 仿射变换 = 线性变化 + 平移
 
 <center><img src=./figures/2024-12-02-21-41-55.png width=60% /></center>
@@ -26,13 +26,13 @@ counter: true
 
 <center><img src=./figures/2024-12-02-21-46-31.png width=60% /></center>
 
-单应变换的自由度是 8，因为是在齐次坐标系下 up to scale(can be multiplied by a scalar)
+单应变换（齐次变换）的自由度是 8，因为是在齐次坐标系下 up to scale(can be multiplied by a scalar)
 
 <center><img src=./figures/2024-12-02-21-51-07.png width=60% /></center>
 
 + 什么情况下是单应变换（单应变换要求是一个一一对应的变换）
-  + 相机旋转但是中心不变
-  + 相机中心移动并且 scene 是一个平面
+    + 相机旋转但是中心不变
+    + 相机中心移动并且 scene 是一个平面
 
 <center><img src=./figures/2024-12-02-21-55-18.png width=60% /></center>
 
@@ -57,6 +57,7 @@ Send each pixel $f(x)$ to its corresponding location $(x’,y’) = T(x,y)$ in $
 ## Image Stitching
 
 如何计算变换：
+
 1. Image matching(each match gives an equation)
 2. Solve T from the obtained matches
 
@@ -88,20 +89,21 @@ Send each pixel $f(x)$ to its corresponding location $(x’,y’) = T(x,y)$ in $
 
 + 换目标函数
 + RANSAC
-  + 每次随机选取 4 对匹配进行拟合得到矩阵
+    + 每次随机选取 4 对匹配进行拟合得到矩阵
 + Idea
-  + All the inliers will agree with each other on the translation vector;
-  + The outliers will disagree with each other
-    + RANSAC **only has guarantees** if there are < 50% outliers
-  +  “All good matches are alike; every bad match is bad in its own way.”
+    + All the inliers will agree with each other on the translation vector;
+    + The outliers will disagree with each other
+        + RANSAC **only has guarantees** if there are < 50% outliers
+    +  “All good matches are alike; every bad match is bad in its own way.”
 + General version
-1. Randomly choose s samples
-   + Typically s = minimum sample size that lets you fit a model
-2. Fit a model(e.g.,transformation matrix)to those samples
-3. Count the number of inliers that approximately fit the model
-4. Repeat N times
-5. Choose the model that has the largest set of inliers
-6. Final step: least squares fit to all inliers（对于所有投票的点，都进行一次拟合）
+
+    1. Randomly choose s samples
+        + Typically s = minimum sample size that lets you fit a model
+    2. Fit a model(e.g.,transformation matrix)to those samples
+    3. Count the number of inliers that approximately fit the model
+    4. Repeat N times
+    5. Choose the model that has the largest set of inliers
+    6. Final step: least squares fit to all inliers（对于所有投票的点，都进行一次拟合）
 
 ### Image Stitching
 

@@ -14,7 +14,7 @@ SFM 得到的是稀疏的点云，这次介绍的是三维精细的结构，即�
 
 <center><img src=./figures/2024-12-29-21-01-57.png width="80%"></center>
 
-!!! example 激光雷达(LiDAR)
+!!! example "激光雷达(LiDAR)"
     <center><img src=./figures/2024-12-29-21-03-21.png width="80%"></center>
     首先是360度转动的，然后根据 Time of Flight(ToF) 来计算深度，主要是根据相位差来计算深度。缺点是非常贵，不会特别特别的准确，相对视觉的方案比较准确，分辨率相对较高，但不会特别的高。
 

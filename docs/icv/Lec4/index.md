@@ -63,6 +63,7 @@ counter: true
     $$
 
     等价于最小化均方误差(MSE)。
+    
     + MSE = MLE with Gaussian noise assumption
 
 ## Numerical Methods
@@ -100,8 +101,8 @@ counter: true
 
 + Exact line search 精确线搜索
 + Backtracking algorithm 回溯算法（理解即可）
-  + Ininialize $\alpha$ with a big value
-  + Decrease $\alpha$ until 
+    + Ininialize $\alpha$ with a big value
+    + Decrease $\alpha$ until 
 
 $$
 \psi(\alpha) \leq \psi(0) + \gamma \psi'(0)\alpha
@@ -112,42 +113,43 @@ $\gamma \in (0,1)$ 是预先设定的参数
 <center><img src=./figures/2024-11-30-21-18-20.png width=60% ></center>
 
 总结最速梯度下降法
+
 + advantage 优点
-  + Easy to implement
-  + Perform well when far from the minimum
+    + Easy to implement
+    + Perform well when far from the minimum
 + disadvantage 缺点
-  + Converge slowly when near the minimum
-  + Waste a lot of computation
+    + Converge slowly when near the minimum
+    + Waste a lot of computation
 + 为什么收敛慢
-  + 只是用了一阶导数信息
-  + Does not use curvature
+    + 只用了一阶导数信息
+    + Does not use curvature
 
 ### Newton method 牛顿法
 
 做二阶泰勒展开
 
 $$
-F(x_k+\delta x) \approx F(x_k) + J_F\delta x + \frac{1}{2}\delta x^TH_F\delta x
+F(x_k+\Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^TH_F\Delta x
 $$
 
-找到最小的 $\delta x$
+找到最小的 $\Delta x$
 
 $$
-H_F\delta x + -J_F = 0
+H_F\Delta x + -J_F = 0
 $$
 
 所以优化的方向（Newton step）
 
 $$
-\delta x = -H_F^{-1}J_F
+\Delta x = -H_F^{-1}J_F
 $$
 
 相当于用二阶导去调整梯度下降的方向。
 
 + Advantage 优点
-  + Fast convergence near the minimum
+    + Fast convergence near the minimum
 + Disadvantage 缺点
-  + Hessian requires a lot of computation
+    + Hessian requires a lot of computation
 + Can we approximate Hessian?
 
 ### Gauss-Newton method 高斯牛顿法
@@ -177,11 +179,12 @@ $$
   + Gauss-Newton use $J_R^TJ_R$ 近似 Hessian $H_F$
 
 总结
+
 + Advantage 优点
-  + Fast convergence
-  + Avoid computing Hessian 用一阶导来近似二阶导，加速计算（）
+    + Fast convergence
+    + Avoid computing Hessian 用一阶导来近似二阶导，加速计算
 + Disadvantage 缺点
-  + If $J_R^TJ_R$ is singular,  the algorithm becomes unstable 如果 $J_R^TJ_R$ 是奇异的，即近似的矩阵不可逆，算法会变得不稳定
+    + If $J_R^TJ_R$ is singular,  the algorithm becomes unstable 如果 $J_R^TJ_R$ 是奇异的，即近似的矩阵不可逆，算法会变得不稳定
 
 ### Levenberg-Marquardt method 莱文贝格-马夸特法 
 
@@ -194,15 +197,16 @@ $$
 对于所有的 $\lambda$，$J_R^TJ_R + \lambda I$ 必须要是正定的
 
 + $\lambda$ 的作用
-  + 当 $\lambda$ 很大时，相当于梯度下降并且 step size 很小
-  + 当 $\lambda$ 很小时，相当于高斯牛顿法 
+    + 当 $\lambda$ 很大时，相当于梯度下降并且 step size 很小
+    + 当 $\lambda$ 很小时，相当于高斯牛顿法 
 
 总结
+
 + Advantage 优点
-  + Start quickly ($\lambda$ 增大)
-  + Fast convergence ($\lambda$ 减小)
-  + Do not degenerate ($J_R^TJ_R + \lambda I$ 必须要是正定的)
-  + LM = Gradient descent + Gauss-Newton
+    + Start quickly ($\lambda$ 增大)
+    + Fast convergence ($\lambda$ 减小)
+    + Do not degenerate ($J_R^TJ_R + \lambda I$ 必须要是正定的)
+    + LM = Gradient descent + Gauss-Newton
 
 ### Local minimum and global minimum 局部最小值和全局最小值
 
@@ -219,6 +223,7 @@ $$
 + Outlier: differs significantly from the assumption
 
 外点对最小二乘法的影响很大，因为它们的残差很大
+
 + 使用其他的 Lose fuction:L1,Huber
 + They are called robust functions
 
@@ -227,10 +232,11 @@ $$
 ### RANSAC
 
 另外一种方法使用 RANSAC (Random Sample Concensus)
+
 + 最有力的处理外点的方法
 + 核心思想
-  + 内点的分布是相似的，但是外点不是
-  + Use data point pairs to vote
+    + 内点的分布是相似的，但是外点不是
+    + Use data point pairs to vote
 
 <center><img src=./figures/2024-11-30-21-58-21.png width=60% ></center>
 

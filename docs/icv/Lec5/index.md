@@ -88,6 +88,7 @@ Harris detector
 <center><img src=./figures/2024-12-01-22-22-53.png width=60%></center>
 
 如何找到合适的scale，对每一张图，去尝试不同大小的尺度，然后找到最大的响应值 f。
+
 + scale 是指角点检测的尺度，框的大小 
 
 <center><img src=./figures/2024-12-01-22-33-35.png width=60%></center>
@@ -100,7 +101,7 @@ Harris detector
 
 <center><img src=./figures/2024-12-01-22-35-34.png width=60%></center>
 
-以上是一种实现方式，但是实际上我们往往不去变窗口的大小而是图像的大小，这样就可以用图像金字塔，这样更高校
+以上是一种实现方式，但是实际上我们往往不去变窗口的大小而是图像的大小，这样就可以用图像金字塔，这样更高效
 
 we can implement using a fixed window size with an image pyramid
 
@@ -120,7 +121,7 @@ we can implement using a fixed window size with an image pyramid
 
 <center><img src=./figures/2024-12-01-22-41-48.png width=60%></center>
 
-!!! note Laplacian of Gaussian (LoG)
+!!! note "Laplacian of Gaussian (LoG)"
     <center><img src=./figures/2024-12-01-22-43-11.png width=60%></center>
     由于二阶导对噪声敏感，所以在做 Laplacian 算子卷积之前要先做高斯滤波来平滑一下噪声
     <center><img src=./figures/2024-12-01-22-43-31.png width=60%></center>
@@ -154,6 +155,7 @@ we can implement using a fixed window size with an image pyramid
 答案是：从每一个点中分离出一个 descriptor，在两张图片中找到相似的 descriptor
 
 对于 descriptor 的要求：
+
 + Patches with similar content should have similar descriptors.
 
 !!! note Raw patches
@@ -169,20 +171,21 @@ Scale Invariant Feature Transform (SIFT)
 <center><img src=./figures/2024-12-01-23-28-45.png width=60%></center>
 
 只考虑梯度方向的分布，用直方图作为描述子
+
 + 平移不变性
 + 旋转；**分布会平移一部分，但是总体的分布不变，为了保持这一不变性，用直方图归一化即可**
 + 对亮度变化不敏感，因为是梯度
 + 对于缩放是会变化的，**但是可以通过尺度选择（即上一步骤的 DoG detector）来保持不变性。**所以 SIFT 是尺度不变的
 
 + SIFT 是两部分
-  + Detection
-  + Description
+    + Detection
+    + Description
 
 综合以上可以看到，这是一个非常鲁棒的特征描述子
 
 <center><img src=./figures/2024-12-01-23-31-20.png width=60%></center>
 
-!!! note Lowe’s SIFT algorithm
+!!! note "Lowe’s SIFT algorithm"
     + Run DoG detector
       + Find maxima in location/scale space
     + Find dominate orientation
@@ -191,12 +194,12 @@ Scale Invariant Feature Transform (SIFT)
 Properties of SIFT
 
 + Extraordinarily robust matching technique
-  + Can handle changes in viewpoint
-    + Theoretically invariant to scale and rotation(上一部分解释了)
-  + Can handle significant changes in illumination
-    + Sometimes even day vs. night 因为对亮度不敏感
-  + Fast and efficient—can run in real time
-  + Lots of code available
+    + Can handle changes in viewpoint
+        + Theoretically invariant to scale and rotation(上一部分解释了)
+    + Can handle significant changes in illumination
+        + Sometimes even day vs. night 因为对亮度不敏感
+    + Fast and efficient—can run in real time
+    + Lots of code available
 
 <center><img src=./figures/2024-12-01-23-39-31.png width=60%></center>
 
@@ -206,12 +209,14 @@ Feature Matching: Given two sets of feature descriptors, find the best matching 
 对于低维的情况用一些方法可以加速，但对高维的情况就很难了，基本上就是两两算一遍，对目前的算力不成问题
 
 Given a feature in $I_1$, how to find the best match in $I_2$?
+
 1. Define distance function that compares two descriptors
 2. Test all the features in $I_2$, find the one with min distance
 
 #### Feature distance
 
 How to define the difference between two features f1, f2?
+
 + Simple approach: L2 distance ||f1 - f2|| 欧氏距离
 + Can give small distances for ambiguous (incorrect) matches 有时候会具有歧义性
 
@@ -223,8 +228,9 @@ How to define the difference between two features f1, f2?
 #### Mutual Nearest Neighbors 相互最近邻
 
 + Another strategy: find mutual nearest neighbors
-  + f2 is the nearest neighbor of f1 in I2
-  + f1 is the nearest neighbor of f2 in I1
+
+    + f2 is the nearest neighbor of f1 in I2
+    + f1 is the nearest neighbor of f2 in I1
 
 #### Learning-based local features
 
@@ -235,21 +241,23 @@ How to define the difference between two features f1, f2?
 两类问题
 
 + Feature-tracking
-  + Extract feature(interest) points and track them over multiple frames
-  + Output: displacement of sparse point 稀疏点的跟踪
+    + Extract feature(interest) points and track them over multiple frames
+    + Output: displacement of sparse point 稀疏点的跟踪
 + Optical flow
-  + Recover image motion at each pixel
-  + Output: dense displacement field (optical flow) 稠密的光流
+    + Recover image motion at each pixel
+    + Output: dense displacement field (optical flow) 稠密的光流
 
 一个方法：Lucas-Kanade method
 
 <center><img src=./figures/2024-12-02-12-58-49.png width=60%></center>
 
 与特征匹配的区别：
+
 + 特征匹配是从图像中找特征再去做匹配
 + 运动估计的点是已经给定的，可能不是特征点
 
 Key assumptions of Lucas-Kanade
+
 1. Small motion: points do not move very far away
 2. Brigntness constancy: same point looks the same in every frame
 3. Spatial coherence: points move like their neighbors
@@ -285,15 +293,16 @@ $$
 
 + More equations than variables
 + 所以转化为优化问题 $\min_d \|Ad-b\|^2$
-  + Least squares solution for d given by
+    + Least squares solution for d given by
 
 <center><img src=./figures/2024-12-02-13-25-20.png width=60%></center>
 
 但是上面方程的可解性与 $A^TA$ 有关，如果 $A^TA$ 不可逆，那么就无解，不可逆意味着不满秩
+
 + 也就是说特征值 $\lambda_1$ 和 $\lambda_2$ 不能够太小
-  + 回忆前面特征提取的部分，特征值比较小对应图像的什么情况？
-    + 根据 Harris corner detector，对于平坦的区域 flag 和边缘 edge，即非角点的区域，特征值比较小
-    + 这意味着光流估计的效果不好，这与直觉是符合的，对于平坦和边缘一般很难分辨这个点是否运动了
+    + 回忆前面特征提取的部分，特征值比较小对应图像的什么情况？
+        + 根据 Harris corner detector，对于平坦的区域 flag 和边缘 edge，即非角点的区域，特征值比较小
+        + 这意味着光流估计的效果不好，这与直觉是符合的，对于平坦和边缘一般很难分辨这个点是否运动了
 
 <center><img src=./figures/2024-12-02-13-30-51.png width=60%></center>
 
@@ -314,6 +323,7 @@ $$
 潜在的可能导致 error 的问题：
 
 当我们的推导时的假设不成立时，会导致误差
+
 + Brightness constancy is not satisfied 亮度有剧烈变化
 + The motion is not small 运动太大
 + A point does not move like its neighbors 空间一致性不成立，遮挡边缘
