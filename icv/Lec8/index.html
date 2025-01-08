@@ -633,9 +633,11 @@
 <h3 id="active-depth-sensing">Active depth sensing<a class="headerlink" href="#active-depth-sensing" title="Permanent link">¶</a></h3>
 <p>通过主动地向外传递信号来探测深度，比如激光雷达<span><span class="heti-spacing"> </span>(LiDAR)</span>，Active stereo，结构光相机<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>后面两个是通过立体视觉来实现深度估计<span class="heti-skip"><span class="heti-spacing"> </span>)<span class="heti-spacing"> </span></span>等。这些方法都是通过测量光的时间来得到深度信息。</p>
 <p></p><center><img src="./figures/2024-12-29-21-01-57.png" width="80%"/></center>
-<p><span>!!! example<span class="heti-spacing"> </span></span>激光雷达<span><span class="heti-spacing"> </span>(LiDAR)</span>
-</p><center><img src="./figures/2024-12-29-21-03-21.png" width="80%"/></center>
-    首先是360度转动的，然后根据 Time of Flight(ToF) 来计算深度，主要是根据相位差来计算深度。缺点是非常贵，不会特别特别的准确，相对视觉的方案比较准确，分辨率相对较高，但不会特别的高。
+<div class="admonition example">
+<p class="admonition-title">激光雷达<span><span class="heti-spacing"> </span>(LiDAR)</span></p>
+<p></p><center><img src="./figures/2024-12-29-21-03-21.png" width="80%"/></center>
+首先是360度转动的，然后根据 Time of Flight(ToF) 来计算深度，主要是根据相位差来计算深度。缺点是非常贵，不会特别特别的准确，相对视觉的方案比较准确，分辨率相对较高，但不会特别的高。
+</div>
 <h3 id="passive-depth-sensing">Passive depth sensing<a class="headerlink" href="#passive-depth-sensing" title="Permanent link">¶</a></h3>
 <p>被动式的，传感器没有发出信号，只是接收信号，比如双目视觉，单目视觉。本章主要介绍视觉的双目深度估计。</p>
 <p></p><center><img src="./figures/2024-12-29-21-06-20.png" width="80%"/></center>
