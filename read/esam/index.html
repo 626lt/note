@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="lt's notes" name="description"/>
+<link href="https://626lt.github.io/note/read/esam/" rel="canonical"/>
+<link href="../hloc/" rel="prev"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.0.4" name="generator"/>
+<title>esam - lt's notes</title>
+<link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link href="../../css/heti.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css" rel="stylesheet"/>
+<link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/counter.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#embodiedsam">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="lt's notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            lt's notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              esam
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="夜间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</label>
+<input aria-label="日间模式" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/626lt/note" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    626lt/note
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../cg/">
+        CG
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../os/">
+        OS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../ml/">
+        ML
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../icv/">
+        ICV
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../compliers/">
+        Compliers
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../">
+        Read
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="lt's notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="lt's notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+    lt's notes
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/626lt/note" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    626lt/note
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../cg/">CG</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="CG" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          CG
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Intro/">
+        Introduction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/2D%20Graphics/">
+        2D Graphics
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/OpenGL/">
+        OpenGL
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Geometric%20Transformation/">
+        Geometric Transformation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/View/">
+        View
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Antialiasing/">
+        Antialiasing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cg/Color/">
+        Color
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../os/">OS</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="OS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          OS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/intro/">
+        intro
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/structures/">
+        structures
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Threads/">
+        Threads
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Synchronization/">
+        Synchronization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Deadlock/">
+        Deadlock
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../os/Memory/">
+        Memory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../ml/">ML</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="ML" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          ML
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ml/probability%20graph/">
+        probability graph
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../icv/">ICV</a>
+<label for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="ICV" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          ICV
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec2/">
+        Image formation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec3/">
+        Image processing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec4/">
+        Model Fitting and Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec5/">
+        Image Matching and Motion Estimation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec6/">
+        Image Stitching
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec7/">
+        Structure from Motion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec8/">
+        Depth estimate and 3D Reconstruction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec10/">
+        Recognition
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../icv/Lec12/">
+        Computational Photography
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../compliers/">Compliers</a>
+</div>
+<nav aria-label="Compliers" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Compliers
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">Read</a>
+<label for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Read" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Read
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../diffusion/">
+        Diffusion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Consistency%20Models/">
+        Consistency Models
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../SDE-diffusion/">
+        SDE-Diffusion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../PeRflow/">
+        PeRflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../hloc/">
+        Hloc
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          esam
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        esam
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#method">
+    Method
+  </a>
+<nav aria-label="Method" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+    Overview
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#query-lifting-and-refinement">
+    QUERY LIFTING AND REFINEMENT
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dual-level-query-decoder">
+    Dual-level Query Decoder
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#efficient-online-query-merging">
+    EFFICIENT ONLINE QUERY MERGING
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#loss-function">
+    Loss Function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    实验结果
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    潜在问题
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#method">
+    Method
+  </a>
+<nav aria-label="Method" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+    Overview
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#query-lifting-and-refinement">
+    QUERY LIFTING AND REFINEMENT
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dual-level-query-decoder">
+    Dual-level Query Decoder
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#efficient-online-query-merging">
+    EFFICIENT ONLINE QUERY MERGING
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#loss-function">
+    Loss Function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    实验结果
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    潜在问题
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="embodiedsam">EmbodiedSAM<a class="headerlink" href="#embodiedsam" title="Permanent link">¶</a></h1>
+<p>ONLINE SEGMENT ANY 3D THING IN REAL TIME</p>
+<p>输入是给定相机位姿的图片流，输出是这个<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>场景的语义分割结果，做到<span><span class="heti-spacing"> </span>real time</span></p>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">¶</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h3>
+<p>给定一个序列的知道<span class="heti-skip"><span class="heti-spacing"> </span>pose<span class="heti-spacing"> </span></span>的图像序列，用 <span class="arithmatex">\(x_t = (I_t,P_t)\)</span> 前者是带颜色的图像，后者是通过把深度图根据相机参数映射得到的三维点云。目标是在<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>空间中获得实例分割的结果，希望做到<span><span class="heti-spacing"> </span>onlin, realtime, temproally consistent</span>。</p>
+<p>用增量式方法来做，对每一个新输入的图像，对当前帧做实例预测，然后把之前的结果<span class="heti-skip"><span class="heti-spacing"> </span>merge<span class="heti-spacing"> </span></span>进去。</p>
+<p></p><center><img src="./figures/2025-03-07-14-58-02.png" width="100%"/></center>
+<h3 id="query-lifting-and-refinement">QUERY LIFTING AND REFINEMENT<a class="headerlink" href="#query-lifting-and-refinement" title="Permanent link">¶</a></h3>
+<p>收到图片后，首先用<span class="heti-skip"><span class="heti-spacing"> </span>SAM<span class="heti-spacing"> </span></span>去获得<span class="heti-skip"><span class="heti-spacing"> </span>2D<span class="heti-spacing"> </span></span>的实例分割，我们将基于此获得<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>的实例分割。由于直接把这个<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>通过点云的映射投到三维会造成不精确和空间不连续，我们先把每一个<span class="heti-skip"><span class="heti-spacing"> </span>2D mask<span class="heti-spacing"> </span></span>升维成一个<span><span class="heti-spacing"> </span>3D query feature</span>，这个步骤是用下面的方法做的</p>
+<p>对于点云 <span class="arithmatex">\(P\in \mathcal{R}^{N\times 3}\)</span> 和二维<span><span class="heti-spacing"> </span>Mask</span> <span class="arithmatex">\(M \in \mathcal{M}^{2d}\)</span>，首先我们根据<span class="heti-skip"><span class="heti-spacing"> </span>Mask<span class="heti-spacing"> </span></span>的实例分割结果把对应点像素点的颜色（也就是分割实例）投影到点云上，这样点云中的每个点就有了一个<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>index</span>（就是第几个特征类）<span class="arithmatex">\(S \in \mathcal{Z}^N\)</span>，<span>S<span class="heti-spacing"> </span></span>的每个元素在<span class="arithmatex">\([0,M)\)</span>中。</p>
+<p>接下来把点云去过一个<span class="heti-skip"><span class="heti-spacing"> </span>3D sparse U-Net<span class="heti-spacing"> </span></span>来分离<span class="heti-skip"><span class="heti-spacing"> </span>temroal-aware<span class="heti-spacing"> </span></span>的特征，<span class="arithmatex">\(F_P \in \mathcal{R}^{N\times C}\)</span></p>
+<p>有了这两个就可以把<span class="heti-skip"><span class="heti-spacing"> </span>point-wise<span class="heti-spacing"> </span></span>的特征<span class="heti-skip"><span class="heti-spacing"> </span>pool<span class="heti-spacing"> </span></span>成为<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的特征 <span class="arithmatex">\(F_S \in \mathcal{M\times C}\)</span>，这里我的理解就是把全部的特征<span class="heti-skip"><span class="heti-spacing"> </span>pool<span class="heti-spacing"> </span></span>成一个个的<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的特征。这里的<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>其实就是分割实例的结果。</p>
+<p>这里如果用<span class="heti-skip"><span class="heti-spacing"> </span>naive<span class="heti-spacing"> </span></span>的池化比如最大<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>平均的做法，会让前面分离出来的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>特征减弱，所以把<span class="heti-skip"><span class="heti-spacing"> </span>geometric shape<span class="heti-spacing"> </span></span>考虑进去。对于一个<span><span class="heti-spacing"> </span>superpoint</span>（聚类），对其中的每一个点计算一个<span class="heti-skip"><span class="heti-spacing"> </span>normalized relative position<span class="heti-spacing"> </span></span><span class="arithmatex">\(p_j^r\)</span>相对于聚类中心<span class="heti-skip"><span class="heti-spacing"> </span>$ \mathbb{P}_i = {p_j^r = \frac{p_j - c_i}{max(p_j) - min(p_j)|p_j\in P^i}}$<span class="heti-spacing"> </span></span>这代表了<span><span class="heti-spacing"> </span>normalized shape of this superpoint with diameter of 1 and center of origin</span></p>
+<p>根据这个<span class="heti-skip"><span class="heti-spacing"> </span>shape<span class="heti-spacing"> </span></span>我们可以计算一个<span class="heti-skip"><span class="heti-spacing"> </span>local feature<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>global feature</span></p>
+<div class="arithmatex">\[
+\mathbb{z}^{local} = MLP(\mathbb{P}_i) \in \mathcal{R}^{|\mathbb{P}_i|\times C}, \mathbb{z}^{global} = Agg(\mathbb{z}^{local}) \in \mathcal{R}^{C}
+\]</div>
+<p>这里的<span class="heti-skip"><span class="heti-spacing"> </span>MLP<span class="heti-spacing"> </span></span>作用在每一个<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>上，<span>Agg<span class="heti-spacing"> </span></span>是一个聚合函数，用<span class="heti-skip"><span class="heti-spacing"> </span>channel-wise max pooling<span class="heti-spacing"> </span></span>来实现。这里的<span class="heti-skip"><span class="heti-spacing"> </span>local feature<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>global feature<span class="heti-spacing"> </span></span>代表点和形状之间的相关性，所以直接<span class="heti-skip"><span class="heti-spacing"> </span>concat<span class="heti-spacing"> </span></span>到一起，然后再用一个<span class="heti-skip"><span class="heti-spacing"> </span>MLP<span class="heti-spacing"> </span></span>来预测<span><span class="heti-spacing"> </span>point-wise weight</span></p>
+<div class="arithmatex">\[
+w_j = \text{Sigmoid}(\text{MLP}(\mathbb{z_j})) \in \mathcal{R}^{(0,1)}, \mathbb{z_j} = [\mathbb{z_j^{local}}, \mathbb{z_j^{global}}]
+\]</div>
+<p>最后把这两部分合起来得到<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的特征</p>
+<div class="arithmatex">\[
+F_S^i = g(F_P^i) + \mathbb{z}^{global}, g(F_P^i) = \text{mean}(F_P^i \times [w_1,\cdots,w_{P_i}])
+\]</div>
+<p>这个计算可以对每个<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>并行计算，所以是很高效的</p>
+<h3 id="dual-level-query-decoder">Dual-level Query Decoder<a class="headerlink" href="#dual-level-query-decoder" title="Permanent link">¶</a></h3>
+<p>经过前面的步骤，我们获得了三维<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的特征 <span class="arithmatex">\(F_S\)</span>，然后我们从中初始化了一系列<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>实例查询 <span class="arithmatex">\(Q_0\)</span>，这个<span class="heti-skip"><span class="heti-spacing"> </span>Query<span class="heti-spacing"> </span></span>用一些<span class="heti-skip"><span class="heti-spacing"> </span>transformer-based query decoder layers<span class="heti-spacing"> </span></span>来不断<span><span class="heti-spacing"> </span>refine</span>，然后用来预测<span><span class="heti-spacing"> </span>3D masks</span></p>
+<p>下面是这个<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>的做法，用<span><span class="heti-spacing"> </span>masked cross-attention between queries and scene representations</span></p>
+<div class="arithmatex">\[
+\hat{Q}_l = \text{Softmax(\frac{Q\dot K^T}{\sqrt{C}} + A_l)} \dot V
+\]</div>
+<p>这其中<span class="heti-skip"><span class="heti-spacing"> </span>Q<span class="heti-spacing"> </span></span>是 <span class="arithmatex">\(Q_l\)</span> 的线性投影， <span>K<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>V<span class="heti-spacing"> </span></span>是场景表示<span class="heti-skip"><span class="heti-spacing"> </span>F<span class="heti-spacing"> </span></span>的线性投影，这里的<span class="heti-skip"><span class="heti-spacing"> </span>F<span class="heti-spacing"> </span></span>可以是<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>的特征 <span class="arithmatex">\(F_P\)</span> 也可以是<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>的特征 <span class="arithmatex">\(F_S\)</span>，<span class="arithmatex">\(A_l\)</span> 是<span><span class="heti-spacing"> </span>attention mask</span>，代表当第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>在第<span class="heti-skip"><span class="heti-spacing"> </span>j<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>point/superpoint<span class="heti-spacing"> </span></span>中出现才做<span><span class="heti-spacing"> </span>attention</span></p>
+<p>经过这样的<span class="heti-skip"><span class="heti-spacing"> </span>query decoder<span class="heti-spacing"> </span></span>后，在经过一个<span class="heti-skip"><span class="heti-spacing"> </span>self-attention<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>layer<span class="heti-spacing"> </span></span>和前向网络就可以得到 <span class="arithmatex">\(Q_{l+1}\)</span>，经过这样一次迭代，refine query。</p>
+<p>上面的<span class="heti-skip"><span class="heti-spacing"> </span>attention mask<span class="heti-spacing"> </span></span>是通过</p>
+<div class="arithmatex">\[
+M_l^{cur} = \text{Sigmoid}(\phi(Q_l)\cdot F^T) &gt; \tau
+\]</div>
+<p>其中 <span class="arithmatex">\(\phi\)</span> 是线性层，根据<span class="heti-skip"><span class="heti-spacing"> </span>F<span class="heti-spacing"> </span></span>的不同选择得到不同的<span><span class="heti-spacing"> </span>mask</span></p>
+<p>这里之所以要选择<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>或者<span><span class="heti-spacing"> </span>superpoint</span>，是因为只用<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>会导致开销很大，也就是之前说的无法<span class="heti-skip"><span class="heti-spacing"> </span>real time<span class="heti-spacing"> </span></span>的一个重要原因，如果只用<span class="heti-skip"><span class="heti-spacing"> </span>superpoint<span class="heti-spacing"> </span></span>这个迭代的优化是有上限的，所以使用了一个<span class="heti-skip"><span class="heti-spacing"> </span>dual-level<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>query decoder</span>，在<span class="heti-skip"><span class="heti-spacing"> </span>cross- attention<span class="heti-spacing"> </span></span>的时候用<span><span class="heti-spacing"> </span>superpoint</span>，而在<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>预测的时候用<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>来获得更细粒度的结果。这样会造成<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>shape<span class="heti-spacing"> </span></span>与<span class="heti-skip"><span class="heti-spacing"> </span>QK<span class="heti-spacing"> </span></span>的形状不一致，所以还需要一个池化来做，这个池化就是前面提到的<span><span class="heti-spacing"> </span>Geometric-aware pooling</span></p>
+<p>这样迭代三次后，就得到了准确的<span class="heti-skip"><span class="heti-spacing"> </span>point mask<span class="heti-spacing"> </span></span>和相应的<span><span class="heti-spacing"> </span>Query</span>，然后做<span class="heti-skip"><span class="heti-spacing"> </span>mask-NMS<span class="heti-spacing"> </span></span>来滤除重复的结果</p>
+<h3 id="efficient-online-query-merging">EFFICIENT ONLINE QUERY MERGING<a class="headerlink" href="#efficient-online-query-merging" title="Permanent link">¶</a></h3>
+<p>前面的部分得到了<span><span class="heti-spacing"> </span>point mask</span>，现在的问题是如何把这些<span class="heti-skip"><span class="heti-spacing"> </span>merge<span class="heti-spacing"> </span></span>起来得到一个场景级的实例分割。</p>
+<p>传统方法是把之前所有的<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的所有<span class="heti-skip"><span class="heti-spacing"> </span>point<span class="heti-spacing"> </span></span>都做一次比较，这样的开销太大了，为了实现具身智能的<span><span class="heti-spacing"> </span>real time</span>，这里选择首先把<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>表示为另一种形式（可以看作一种压缩），然后再做比较。</p>
+<p></p><center><img src="./figures/2025-03-07-16-26-27.png" width="100%"/></center>
+<p>之前除了<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>还有对应的每个实例的<span><span class="heti-spacing"> </span>query feature</span>，可以把<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>融合转化为<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>融合，例如之前帧一共有<span class="heti-skip"><span class="heti-spacing"> </span>M<span class="heti-spacing"> </span></span>个物体，当前帧一共<span class="heti-skip"><span class="heti-spacing"> </span>N<span class="heti-spacing"> </span></span>个物体，由于每个物体都有一一对应的<span><span class="heti-spacing"> </span>query</span>，因此这个问题可以通过矩阵乘法直接完成相似度计算！假设<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>特征维度为<span><span class="heti-spacing"> </span>C</span>，我们将<span class="heti-skip"><span class="heti-spacing"> </span>MxC<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>NxC<span class="heti-spacing"> </span></span>的特征相乘便得到<span class="heti-skip"><span class="heti-spacing"> </span>MxN<span class="heti-spacing"> </span></span>的相似度矩阵，再通过二分图匹配的方法在该矩阵上得到匹配关系。对于匹配上的物体，我们将其<span class="heti-skip"><span class="heti-spacing"> </span>3D Mask<span class="heti-spacing"> </span></span>合并，并将对应的<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>特征加权融合；对于未匹配上的物体则直接注册为全局新物体。</p>
+<p>实际中，仅依靠<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>表示虽然高效，却仍存在表示能力不够的问题。我们在不影响速度的前提下设计了三种更细致的判据，通过不同的<span class="heti-skip"><span class="heti-spacing"> </span>MLP head<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>上预测出三种表示<heti-adjacent class="heti-adjacent-half">：</heti-adjacent>（1）物体的外接框<heti-adjacent class="heti-adjacent-half">；</heti-adjacent>（2）物体的对比表示<heti-adjacent class="heti-adjacent-half">；</heti-adjacent>（3）物体的语义表示。这三种表示具体含义如下图所示。</p>
+<p>每次进行<span class="heti-skip"><span class="heti-spacing"> </span>3D Mask<span class="heti-spacing"> </span></span>的融合后，这三种表示也会进行对应的加权融合，并作为“过去帧”再次与未来的“当前帧”进行高效融合。由于所有操作仅需要矩阵乘法和二分图匹配，所需时间在<span class="heti-skip"><span class="heti-spacing"> </span>5ms<span class="heti-spacing"> </span></span>以内，相比手工融合的策略快数百倍，且性能更强！</p>
+<div class="arithmatex">\[
+C = \text{IoU}(B_{t-1}^{\text{pre}}, B_{t}^{\text{cur}}) + \frac{f_{t-1}^{\text{pre}}}{\|f_{t-1}^{\text{pre}}\|_2} \cdot \left(\frac{f_{t}^{\text{cur}}}{\|f_{t}^{\text{cur}}\|_2}\right)^T + \frac{S_{t-1}^{\text{pre}}}{\|S_{t-1}^{\text{pre}}\|_2} \cdot \left(\frac{S_{t}^{\text{cur}}}{\|S_{t}^{\text{cur}}\|_2}\right)^T
+\]</div>
+<h2 id="loss-function">Loss Function<a class="headerlink" href="#loss-function" title="Permanent link">¶</a></h2>
+<p></p><center><img src="./figures/2025-03-07-16-39-54.png" width="100%"/></center>
+<p>这个<span class="heti-skip"><span class="heti-spacing"> </span>loss function<span class="heti-spacing"> </span></span>包含了分辨前景还是背景的损失，预测<span class="heti-skip"><span class="heti-spacing"> </span>3D mask<span class="heti-spacing"> </span></span>用了<span class="heti-skip"><span class="heti-spacing"> </span>binary cross-entropy<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>Dice loss</span>，对前面的<span class="heti-skip"><span class="heti-spacing"> </span>merge<span class="heti-spacing"> </span></span>的训练用了<span><span class="heti-spacing"> </span>iou loss</span>， 对分割的训练用了<span class="heti-skip"><span class="heti-spacing"> </span>sem<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>loss</span>，最后还有相邻帧之间的<span><span class="heti-spacing"> </span>contrastive loss</span>，这是一个端到端的多任务训练过程。</p>
+<h2 id="_1">实验结果<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<p>我们进行了多种设置的实验。首先是<span><span class="heti-spacing"> </span>class-agnostic 3D instance segmentation</span>，对标<span class="heti-skip"><span class="heti-spacing"> </span>SAM3D<span class="heti-spacing"> </span></span>等文章的设置。由于这些文章大多数为<span><span class="heti-spacing"> </span>zero-shot</span>，而我们需要训练，为了更公平展示泛化性，我们还进行了<span class="heti-skip"><span class="heti-spacing"> </span>zero-shot<span class="heti-spacing"> </span></span>迁移实验，从<span class="heti-skip"><span class="heti-spacing"> </span>ScanNet200<span class="heti-spacing"> </span></span>迁移到<span class="heti-skip"><span class="heti-spacing"> </span>SceneNN<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>3RScan<span class="heti-spacing"> </span></span>上。</p>
+<p></p><center><img src="./figures/2025-03-07-16-43-29.png" width="100%"/></center>
+<p>此外我们还进行了<span class="heti-skip"><span class="heti-spacing"> </span>online 3D instance segmentation<span class="heti-spacing"> </span></span>的实验，对标之前的在线<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>实例分割工作。在两种任务上我们都取得了<span class="heti-skip"><span class="heti-spacing"> </span>SOTA<span class="heti-spacing"> </span></span>的性能和速度。</p>
+<p></p><center><img src="../figures/2025-03-07-16-43-53.png" width="100%"/></center>
+<p>我们还分析了<span class="heti-skip"><span class="heti-spacing"> </span>EmbodiedSAM<span class="heti-spacing"> </span></span>的推理时间分布，发现速度的瓶颈主要在<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>特征提取部分，我们的<span class="heti-skip"><span class="heti-spacing"> </span>merging<span class="heti-spacing"> </span></span>策略的开销几乎可以忽略不记。如何加速<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>骨干网络的特征提取是一个非常有价值的问题，也是未来突破<span class="heti-skip"><span class="heti-spacing"> </span>30FPS<span class="heti-spacing"> </span></span>的最后阻碍。</p>
+<h2 id="_2">潜在问题<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<p>尽管表现令人满意，但<span class="heti-skip"><span class="heti-spacing"> </span>ESAM<span class="heti-spacing"> </span></span>仍然存在一些局限性。首先，<span>ESAM<span class="heti-spacing"> </span></span>是否是实时的，取决于所采用的<span><span class="heti-spacing"> </span>VFM</span>。目前，我们采用<span class="heti-skip"><span class="heti-spacing"> </span>SAM<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>FastSAM</span>，其中只有<span class="heti-skip"><span class="heti-spacing"> </span>FastSAM<span class="heti-spacing"> </span></span>才能实现实时推断。但是，我们认为，在不久的将来，将会有更有效的<span class="heti-skip"><span class="heti-spacing"> </span>2D VFM<span class="heti-spacing"> </span></span>具有更好的性能和更多功能，并且可以进一步改善<span><span class="heti-spacing"> </span>ESAM</span>，并改善<span><span class="heti-spacing"> </span>2D VFM</span>。其次，用于特征提取的<span class="heti-skip"><span class="heti-spacing"> </span>3D U-NET<span class="heti-spacing"> </span></span>和基于内存的适配器相对较重，这在<span class="heti-skip"><span class="heti-spacing"> </span>ESAM<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>部分中的大部分推理时间都很重要。如果我们能使骨干更有效，那么<span class="heti-skip"><span class="heti-spacing"> </span>ESAM<span class="heti-spacing"> </span></span>的速度可能会提高到更高的水平，这是留给将来的工作。</p>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Hloc" class="md-footer__link md-footer__link--prev" href="../hloc/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                Hloc
+              </div>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023-2024 <a href="https://github.com/626lt" rel="noopener" target="_blank">626lt</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="../../js/katex.js"></script>
+<script src="../../js/heti.js"></script>
+</body>
+</html>

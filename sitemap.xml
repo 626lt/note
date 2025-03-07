@@ -2,158 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://626lt.github.io/note/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/2D%20Graphics/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/Antialiasing/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/Color/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/Color/hw/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/Geometric%20Transformation/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/Intro/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/OpenGL/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/cg/View/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
+    </url>
+    <url>
+         <loc>https://626lt.github.io/note/compliers/</loc>
+         <lastmod>2025-03-07</lastmod>
+    </url>
+    <url>
+         <loc>https://626lt.github.io/note/compliers/intro/</loc>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec10/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec11/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec12/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec2/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec3/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec4/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec5/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec6/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec7/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec8/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/icv/Lec9/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/ml/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/ml/probability%20graph/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/Deadlock/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/Memory/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/Review/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/Synchronization/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/Threads/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/VM/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/intro/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/os/structures/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/Consistency%20Models/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
+    </url>
+    <url>
+         <loc>https://626lt.github.io/note/read/PCM/</loc>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/PeRflow/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/SDE-diffusion/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
+    </url>
+    <url>
+         <loc>https://626lt.github.io/note/read/cut3r/</loc>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/diffusion/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
+    </url>
+    <url>
+         <loc>https://626lt.github.io/note/read/esam/</loc>
+         <lastmod>2025-03-07</lastmod>
     </url>
     <url>
          <loc>https://626lt.github.io/note/read/hloc/</loc>
-         <lastmod>2025-01-08</lastmod>
+         <lastmod>2025-03-07</lastmod>
     </url>
 </urlset>
